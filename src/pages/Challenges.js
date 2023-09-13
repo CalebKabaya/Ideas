@@ -158,7 +158,7 @@ export default function UserPage() {
             Challanges
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            Add idea
           </Button>
         </Stack>
 
