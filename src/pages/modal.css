@@ -1,0 +1,251 @@
+.App {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .popup {
+    position: fixed;
+    border-radius: 3px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 500px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .popup-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .popup-content {
+    /* Add styles for your idea details content here */
+  }
+  
+  .popup button {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  /* ... (existing styles) */
+  
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  
+  /* ... (existing styles) */
+  
+  .form-group input {
+    font-size: 12px;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: border-color 0.2s ease; /* Add transition effect for smooth color change */
+  }
+  
+  .form-group input:focus {
+    border-color: #0086C9; /* Change the border color when input is focused */
+  }
+  
+  
+  .char-count {
+    font-size: 10px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  .form-group textarea {
+    font-size: 12px;
+    padding: 5px;
+    width: 100%;
+    height: 100px; /* Adjust the height as needed */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-group textarea:focus {
+    border-color: #0086C9;
+  }
+  
+  /* ... (existing styles) */
+  
+  .form-group select {
+    font-size: 12px;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s ease;
+    border-radius: 3px;
+  }
+  
+  .form-group select:focus {
+    border-color: #0086C9;
+  }
+  
+  /* Style for the "Select Department" option */
+  .form-group select option:first-child {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .upload-frame {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    border-radius: 3px;
+  }
+  
+  /* Style for the label outside of the field */
+  .upload-label {
+    display: flex;
+    font-size: 12px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .upload-label img {
+    width: 32px; /* Adjust the width to make the icon smaller */
+    height: 32px; /* Adjust the height to maintain aspect ratio */
+    
+  }
+  
+  .upload-text {
+    font-size: 10px;
+    color: #0086C9;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: 600;
+  
+    padding-top: 5px;
+  }
+  
+  /* Style for the toggle switch and description */
+  .toggle-switch {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .toggle-switch input[type="checkbox"] {
+    appearance: none; /* Remove default styles */
+    -webkit-appearance: none; /* Safari */
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 20px;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.4s; /* Add transition for smooth color change */
+  }
+  
+  .toggle-switch input[type="checkbox"]:checked {
+    background: #0086C9; /* Set the background color to blue when checked */
+  }
+  
+  .toggle-switch input[type="checkbox"]:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+    transition: 0.4s;
+  }
+  
+  .toggle-switch input[type="checkbox"]:checked:before {
+    left: 21px; /* Move the thumb to the right when checked */
+  }
+  
+  .toggle-switch label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .toggle-description {
+    font-size: 12px;
+    color: #777;
+    /* margin-top: 5px; */
+    margin-left: 50px;
+  }
+  .form-container {
+    max-height: 450px; /* Set the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrollbar when content exceeds the height */
+    padding: 10px; /* Add padding for spacing */
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    margin-top: 20px; /* Add margin for spacing from form */
+  }
+  
+  /* Style for the cancel button */
+  .cancel-button {
+    background-color: #ccc; /* Gray background */
+    color: #333; /* Text color */
+    border: none;
+    padding: 10px 20px; /* Adjust padding for button size */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px; /* Add margin between buttons */
+    outline: none; /* Remove button outline on focus */
+  }
+  
+  /* Style for the submit button */
+  .submit-button {
+    background-color: #0086C9; /* Blue background */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px; /* Adjust padding for button size */
+    border-radius: 3px; /* Set border radius to 3px */
+    cursor: pointer;
+    outline: none; /* Remove button outline on focus */
+    font-family: 'Inter', sans-serif; /* Use the Inter font */
+    font-size: 12px; /* Set font size to 12px */
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px; /* Set the width of the scrollbar */
+  }
+  
+  /* Thumb (the draggable part of the scrollbar) */
+  ::-webkit-scrollbar-thumb {
+    background: #0086C9; /* Set the background color of the thumb */
+    border-radius: 5px; /* Rounded corners for the thumb */
+  }
+  
+  
+  
+  
+  
+  

@@ -5,6 +5,8 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography,Button,Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
+import Modal from './Modal';
+
 // sections
 import {
   AppTasks,
@@ -23,6 +25,16 @@ import {
 export default function DashboardAppPage() {
   const theme = useTheme();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Helmet>
@@ -34,9 +46,13 @@ export default function DashboardAppPage() {
           <Typography variant="h4" gutterBottom>
             Ideas
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button  onClick={openModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add idea
           </Button>
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>Modal Content</h2>
+        <p>This is the content of the modal.</p>
+      </Modal>
         </Stack>
       </Container>
     </>
