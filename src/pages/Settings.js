@@ -6,6 +6,11 @@ import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/blog';
+// import BasicTabs from '../../src/sections/settings/settings';
+import BasicTabs from '../sections/settings/settings';
+
+
+
 
 // ----------------------------------------------------------------------
 
@@ -29,8 +34,13 @@ export default function BlogPage() {
           <Typography variant="h4" gutterBottom>
             Settings
           </Typography>
-         
+          {/* <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+          <BasicTabs />
+
+          </Stack> */}
+
         </Stack>
+        <BasicTabs />
 
         
       </Container>
