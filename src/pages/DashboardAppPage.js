@@ -35,7 +35,7 @@ export default function DashboardAppPage() {
             Ideas
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New idea
+            Add idea
           </Button>
         </Stack>
       </Container>
