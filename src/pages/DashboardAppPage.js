@@ -54,6 +54,13 @@ export default function DashboardAppPage() {
 
 
         
+          {/* <Button  onClick={openModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+            Add idea
+          </Button> */}
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>Modal Content</h2>
+        <p>This is the content of the modal.</p>
+      </Modal>
         </Stack>
       </Container>
     </>
