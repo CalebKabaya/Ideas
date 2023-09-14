@@ -1,13 +1,12 @@
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import FileUpload from "react-material-file-upload";
-import { useState, useRef,useCallback } from "react";
-import logo from "./Avatar_1.png";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox ,Grid} from '@mui/material';
+import Box from '@mui/material/Box';
+import FileUpload from 'react-material-file-upload';
+import { useState, useRef, useCallback } from 'react';
+import logo from './Avatar_1.png';
 
-import "./settings.css";
+import './settings.css';
 
 export const Profile = () => {
   const [file, setFile] = useState();
@@ -28,10 +27,13 @@ export const Profile = () => {
     fileInputRef.current.click();
   };
   return (
-    <div className="">
+<Grid>
+<Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+
+<div className="">
       {/* <div className="bg-sky-500 sm:max-lg:bg-black"> */}
 
-      <div className=" flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6 px-8">
+      <div className=" flex-col justify-start sm:flex-row items-start self-stretch flex-grow-0 flex-shrink-0 gap-6 px-8">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6">
           <div className=" md:h-full md:w-48flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
@@ -48,7 +50,7 @@ export const Profile = () => {
 
           <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
 
-          <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
+          <div className="flex flex-col sm:flex-row  justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
             <div className="md:flex flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-auto relative">
               <p className="md:flex self-stretch flex-grow-0 flex-shrink-0 w-auto text-sm font-semibold text-left text-[#344054]">
                 Your photo
@@ -57,18 +59,16 @@ export const Profile = () => {
                 This will be displayed on your profile.
               </p>
             </div>
-            <div className="flex justify-between items-start flex-grow-0 flex-shrink-0 w-auto">
-            {selectedFile && (
+            {/* photo */}
+            <div className="flex flex-col justify-between items-start flex-grow-0 flex-shrink-0 w-auto">
+              {selectedFile && (
+                <Stack direction="row" spacing={2}>
+                  <Avatar alt="Remy Sharp" src={URL.createObjectURL(selectedFile)} sx={{ width: 80, height: 80 }} />
+                </Stack>
+              )}
+              {/* <div className="flex justify-start pt-4 sm:pt-8 md:pt-0 lg:pt-0 xl:pt-0 pb-8 sm:pb-8 items-start flex-grow-0 flex-shrink-0 gap-4"> */}
+              <div className="flex justify-start mb-2 sm:mb-4 mt-2 sm:mt-4 items-start flex-grow-0 flex-shrink-0 gap-4">
 
-              <Stack direction="row" spacing={2}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={URL.createObjectURL(selectedFile)}
-                  sx={{ width: 80, height: 80 }}
-                />
-              </Stack>
-                )}
-              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-4">
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
                   <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#475467]">
                     <a href="#" className=" hover:underline text-[#475467]">
@@ -77,31 +77,40 @@ export const Profile = () => {
                   </p>
                 </div>
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
-
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        ref={fileInputRef}
-                        style={{ display: "none" }} // Hide the file input
-                      />
-                      <button className=" flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#088ab2]" onClick={handleCustomButtonClick}>
-                        Update
-                      </button>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    ref={fileInputRef}
+                    style={{ display: 'none' }} // Hide the file input
+                  />
+                  <button
+                    className=" flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#088ab2]"
+                    onClick={handleCustomButtonClick}
+                  >
+                    Update
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
-            <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
-              <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
+            
+            <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
+              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
                   User name
                 </p>
               </div>
-              <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[512px] gap-1.5">
-                <Box
+              <div className="flex  justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[512px] gap-1.5">
+                <Stack
+                 
+                  spacing={3}
+                >
+                  <TextField fullWidth name="username" label="Username " id="fullWidth" size="small" />
+                </Stack>
+                {/* <Box
                   component="form"
                   sx={{
                     width: 500,
@@ -116,71 +125,58 @@ export const Profile = () => {
                     id="fullWidth"
                     size="small"
                   />
-                </Box>
+                </Box> */}
               </div>
             </div>
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
 
-            <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
-              <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
+            <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
+              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
                   Email address
                 </p>
               </div>
-              <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[512px] sm:max-lg:w-[100] gap-1.5">
+              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[512px] sm:max-lg:w-[100] gap-1.5">
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-1.5">
                   <div>
-                    <Box
-                      component="form"
-                      sx={{
-                        width: 500,
-                        maxWidth: "100%",
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        fullWidth
-                        label="test@gmail.com"
-                        id="fullWidth"
-                        input
-                        // disabled={true}
-                        size="small"
-                      />
-                    </Box>
-                    <div className="flex justify-start items-center flex-grow relative gap-2"/>
+                  <Stack
+                 
+                 spacing={3}
+               >
+                 <TextField fullWidth name="email" label="Email address " id="fullWidth" size="small" />
+               </Stack>
+                    <div className="flex justify-start items-center flex-grow relative gap-2" />
                   </div>
                 </div>
               </div>
             </div>
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
           </div>
+
+          </div>
+
         </div>
       </div>
 
       <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 mt-6 gap-3">
         <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 relative ">
           <Stack direction="row" spacing={2}>
-            <Button
-              sx={{ textTransform: "lowercase !important" }}
-              variant="outlined"
-            >
+            <Button sx={{ textTransform: 'lowercase !important' }} variant="outlined">
               Cancel
             </Button>
           </Stack>
         </div>
         <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 relative ">
           <Stack direction="row" spacing={2}>
-            <Button
-              sx={{ textTransform: "lowercase !important" }}
-              variant="contained"
-              color="success"
-            >
+            <Button sx={{ textTransform: 'lowercase !important' }} variant="contained" color="success">
               Save
             </Button>
           </Stack>
         </div>
       </div>
-    </div>
+  </Grid>
+</Grid>
+
+    
   );
 };
