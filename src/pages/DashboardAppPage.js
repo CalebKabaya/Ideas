@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+import { useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography,Button,Stack } from '@mui/material';
@@ -46,9 +47,9 @@ export default function DashboardAppPage() {
           <Typography variant="h4" gutterBottom>
             Ideas
           </Typography>
-          <Button  onClick={openModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button  onClick={openModal} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add idea
-          </Button>
+          </Button> */}
           <Modal isOpen={isModalOpen} onClose={closeModal}>
         <h2>Modal Content</h2>
         <p>This is the content of the modal.</p>
