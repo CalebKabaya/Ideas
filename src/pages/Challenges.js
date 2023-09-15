@@ -23,11 +23,7 @@ export default function DashboardAppPage() {
       <title> Dashboard: Challenges| Ideas Portal </title>
     </Helmet>
 
-    <Container>
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4" gutterBottom>
-        Challenges
-        </Typography>
+ 
 
 
       <Container>
@@ -57,7 +53,6 @@ export default function DashboardAppPage() {
         </Stack>
 
 
-      </Stack>
       <MyHeader />
 
       

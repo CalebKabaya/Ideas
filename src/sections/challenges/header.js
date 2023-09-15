@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import * as React from 'react';
 import ChallengesCards from './challengescards';
 import RankingCards from './ranking';
+import jobPostImage from "./jobPostImage.png"
+
 
 export default function MyHeader() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +23,7 @@ export default function MyHeader() {
 
   return (
     <div className="flex flex-col justify-start items-start relative gap-6">
-      <div className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]" />
+      <div className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]" style={{ backgroundImage: `url(${jobPostImage})`, src: {jobPostImage} }} />
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-3">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base font-semibold text-left text-[#101828]">
