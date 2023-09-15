@@ -16,11 +16,11 @@ const navConfig = [
     path: '/dashboard/user',
     icon: icon('trophy-01'),
   },
-  {
-    title: 'support',
-    path: '/dashboard/products',
-    icon: icon('life-buoy-01'),
-  },
+  // {
+  //   title: 'support',
+  //   path: '/dashboard/products',
+  //   icon: icon('life-buoy-01'),
+  // },
   {
     title: 'settings',
     path: '/dashboard/blog',
