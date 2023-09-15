@@ -1,110 +1,150 @@
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-// @mui
-import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
-// hooks
-import useResponsive from '../hooks/useResponsive';
-// components
-import Logo from '../components/logo';
-import Iconify from '../components/iconify';
-// sections
-import { LoginForm } from '../sections/auth/login';
-import MyImages from './Background.jpg';
+import { Container, Paper, Typography, TextField, Button, Link, FormControlLabel, Checkbox } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
+import bgImage from './Background.jpg';
+import logoImage from './logo2-removebg-preview.png';
 
-// ----------------------------------------------------------------------
 
-const StyledRoot = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh',
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    padding: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    background: 'rgba(102, 96, 96, 0.3)',
+    backdropFilter: 'blur(10px)',
+    borderRadius: '8px',
+    color: 'white',
+  },
+  logo: {
+    width: '80px',
+    height: 'auto',
+    marginBottom: theme.spacing(2),
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  input: {
+    background: 'white',
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#0086C9', // Change the button background color
+    color: 'white', // Change the button text color
+    '&:hover': {
+      backgroundColor: '#0073AD', // Change the button background color on hover
+    },
+  },
+  detailsText: {
+    color: '#0086C9',
+    fontSize: '13px', // Adjust the font size of the placeholders
+    marginTop: theme.spacing(1),
+  },
+  rememberMeCheckbox: {
+    marginTop: theme.spacing(2),
+  },
+  inputPlaceholder: {
+    fontSize: '12px', // Set the font size of the placeholders to 10px
   },
 }));
 
-const StyledSection = styled('div')(({ theme }) => ({
-  width: '100%',
-  maxWidth: 480,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  boxShadow: theme.customShadows.card,
-  backgroundColor: theme.palette.background.default,
-}));
+function LoginForm() {
+  const classes = useStyles();
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate(); 
 
-const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
-  margin: 'auto',
-  minHeight: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  padding: theme.spacing(12, 0),
-}));
+  const handleRememberMeChange = (event) => {
+    setRememberMe(event.target.checked);
+  };
 
-// ----------------------------------------------------------------------
-
-export default function LoginPage() {
-  const mdUp = useResponsive('up', 'md');
+  const handleSignIn = () => {
+    // Add your authentication logic here
+    // For demonstration purposes, let's assume authentication is successful
+    // and navigate to the Dashboard component.
+    navigate('/Dashboard'); // Navigate to the Dashboard component
+  };
 
   return (
-    <>
+    <div className={classes.root}>
       <Helmet>
-        <title> Login | Minimal UI </title>
+        <title>Login</title>
       </Helmet>
-
-      <StyledRoot>
-        <Logo
-          sx={{
-            position: 'fixed',
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
-
-        {mdUp && (
-          <StyledSection>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
-            </Typography>
-            {/* <img src="/assets/illustrations/illustration_login.png" alt="login" /> */}
-            <img src="{MyImage}" alt="login" />
-
-          </StyledSection>
-        )}
-
-        <Container maxWidth="sm">
-          <StyledContent>
-            <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
-            </Typography>
-
-            <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link variant="subtitle2">Get started</Link>
-            </Typography>
-
-            <Stack direction="row" spacing={2}>
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:google-fill" color="#DF3E30" width={22} height={22} />
-              </Button>
-
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:facebook-fill" color="#1877F2" width={22} height={22} />
-              </Button>
-
-              <Button fullWidth size="large" color="inherit" variant="outlined">
-                <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
-              </Button>
-            </Stack>
-
-            <Divider sx={{ my: 3 }}>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                OR
-              </Typography>
-            </Divider>
-
-            <LoginForm />
-          </StyledContent>
-        </Container>
-      </StyledRoot>
-    </>
+      <Container component="main" maxWidth="xs">
+        <Paper className={classes.paper} elevation={3}>
+          <img src={logoImage} alt="Logo" className={classes.logo} />
+          <Typography variant="h5">Welcome to Ideas portal</Typography>
+          <Typography className={classes.detailsText}>
+            Please enter your details
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              InputProps={{
+                className: classes.input,
+                classes: { input: classes.inputPlaceholder },
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              InputProps={{
+                className: classes.input,
+                classes: { input: classes.inputPlaceholder },
+              }}
+            />
+            <FormControlLabel
+              className={classes.rememberMeCheckbox}
+              control={
+                <Checkbox
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                  color="primary"
+                />
+              }
+              label="Remember me for thirty days?"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={classes.submit} /* Removed color property */
+              onClick={handleSignIn} 
+            >
+              Sign In
+            </Button>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </form>
+        </Paper>
+      </Container>
+    </div>
   );
 }
+
+export default LoginForm;

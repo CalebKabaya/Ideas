@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './modal.css';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import icon from './uploadicon.png';
+
+
+
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
@@ -91,9 +95,40 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    // Add the viewport meta tag dynamically when the component mounts
+    const meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1.0';
+    document.head.appendChild(meta);
+
+    // Clean up the added meta tag when the component unmounts
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <button onClick={togglePopup}>Add idea</button>
+      <button onClick={togglePopup}
+      
+      className="submit-button"
+      style={{
+        backgroundColor: '#0086C9', /* Blue background */
+        color: '#fff',             /* Text color */
+        border: 'none',
+        padding: '0 20px',         /* Adjust padding for button size */
+        borderRadius: '3px',       /* Set border radius to 3px */
+        cursor: 'pointer',
+        outline: 'none',           /* Remove button outline on focus */
+        fontFamily: 'Inter, sans-serif', /* Use the Inter font */
+        fontSize: '14px',          /* Set font size to 12px */
+        marginLeft: '10px',        /* Add margin between buttons */
+        height: '35px',            /* Set button height */
+        display: 'flex',
+        alignItems: 'center',      /* Center text vertically */
+        justifyContent: 'center'   /* Center text horizontally */
+      }}>+ Add idea</button>
       {showPopup && (
         <div className="popup">
           <div className="popup-header">Idea Details</div>
@@ -212,6 +247,7 @@ function App() {
         fontSize: '12px', 
         justifyContent: 'center'   /* Center text horizontally */
       }}
+      onClick={togglePopup}
     >
       Cancel
     </button>

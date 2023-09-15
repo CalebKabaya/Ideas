@@ -244,7 +244,24 @@
     border-radius: 5px; /* Rounded corners for the thumb */
   }
   
+  @media (max-width: 768px) {
+    /* Adjust styles for tablets here */
+    .form-container {
+      max-width: 90%; /* Example: Reduce form width for tablets */
+    }
+  }
   
+  /* Media query for screens with a maximum width of 480px (typical for mobile devices) */
+  @media (max-width: 480px) {
+    /* Adjust styles for mobile devices here */
+    .form-container {
+      max-width: 100%; /* Example: Full width for mobile devices */
+    }
+    .char-count {
+      font-size: 10px; /* Example: Reduce character count font size */
+    }
+    /* Adjust other styles as needed for mobile devices */
+  }
   
   
   
