@@ -49,7 +49,7 @@ export default function DashboardAppPage() {
             Ideas
           </Typography>
          
-          <Modal  isOpen={isModalOpen} onClose={closeModal}/>
+          {/* <Modal  isOpen={isModalOpen} onClose={closeModal}/> */}
 
 
 
