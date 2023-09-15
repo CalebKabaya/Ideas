@@ -157,7 +157,8 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Challeneges
+
+            Challenges
           </Typography>
           <Button  className="submit-button"
       style={{

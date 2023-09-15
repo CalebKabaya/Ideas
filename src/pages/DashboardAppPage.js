@@ -11,16 +11,10 @@ import Modal from './Modal';
 
 // sections
 import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
-} from '../sections/@dashboard/app';
+ 
+  IdeasHistory,
+} from '../sections/@dashboard/app/IdeasHistory'
+
 
 // ----------------------------------------------------------------------
 
@@ -58,10 +52,15 @@ export default function DashboardAppPage() {
             Add idea
           </Button> */}
           <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2>Modal Content</h2>
-        <p>This is the content of the modal.</p>
-      </Modal>
+            <h2>Modal Content</h2>
+           <p>This is the content of the modal.</p>
+         </Modal>
         </Stack>
+
+        <Grid item xs={12} md={6} lg={8}>
+        <IdeasHistory />
+        </Grid>
+
       </Container>
     </>
   );
