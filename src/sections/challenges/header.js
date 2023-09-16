@@ -9,8 +9,10 @@ import Select from '@mui/material/Select';
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 
-import ChallengesCards from './challengescards';
+import ChallengesCards from './challengesIdeasCards';
 import RankingCards from './ranking';
+import ChallengesList from './challengelist';
+
 import jobPostImage from './jobPostImage.png';
 import PaginationRounded from '../pagination/pagination';
 
@@ -93,15 +95,15 @@ export default function MyHeader() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-rows-2 justify-start items-start relative gap-8 w-full">
+      <div className="flex flex-col md:flex-row sm:flex-row justify-start items-start relative gap-8 w-full">
         {/* challenges */}
 
-        <div className="col-span-1">
-          {' '}
+        <div className="lg:w-3/5 md:w-full sm:w-full">
           <ChallengesCards />
         </div>
+
         {/* raking */}
-        <div className="col-span-1">
+        <div className="lg:w-2/5 md:w-full sm:w-full">
           <RankingCards />
         </div>
 
