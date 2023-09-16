@@ -7,9 +7,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as React from 'react';
+import Stack from '@mui/material/Stack';
+
 import ChallengesCards from './challengescards';
 import RankingCards from './ranking';
-import jobPostImage from "./jobPostImage.png"
+import jobPostImage from './jobPostImage.png';
+import PaginationRounded from '../pagination/pagination';
 
 
 export default function MyHeader() {
@@ -23,7 +26,10 @@ export default function MyHeader() {
 
   return (
     <div className="flex flex-col justify-start items-start relative gap-6">
-      <div className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]" style={{ backgroundImage: `url(${jobPostImage})`, src: {jobPostImage} }} />
+      <div
+        className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]"
+        style={{ backgroundImage: `url(${jobPostImage})`, src: { jobPostImage } }}
+      />
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-3">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base font-semibold text-left text-[#101828]">
@@ -37,8 +43,9 @@ export default function MyHeader() {
           </p>
         </div>
 
-        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 p-5 rounded-xl bg-gray-50">
-          <div className="flex flex-col sm:flex-row justify-start items-center flex-grow gap-2 bg-gray-100 w-full">
+        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-3  bg-gray-50">
+          <div className="flex flex-col sm:flex-row justify-start items-start flex-grow-0 gap-3 w-full">
+            {/*             
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0  gap-2">
               <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5 w-full ">
                 <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">Search for ideas</p>
@@ -59,11 +66,11 @@ export default function MyHeader() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex flex-col justify-start items-start flex-grow gap-2 w-full">
               <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">Status</p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]"> Sort Ideas By</p>
                 <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5">
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
@@ -86,17 +93,21 @@ export default function MyHeader() {
         </div>
       </div>
 
-
-     
-      <div className="grid grid-cols-3 justify-start items-start relative gap-8 w-full">
+      <div className="grid grid-cols-2 sm:grid-rows-2 justify-start items-start relative gap-8 w-full">
         {/* challenges */}
-       
-        <div className="col-span-2"> <ChallengesCards /></div>
-        {/* raking */}
-        <div className="col-span-1"><RankingCards /></div>
 
-    
+        <div className="col-span-1">
+          {' '}
+          <ChallengesCards />
+        </div>
+        {/* raking */}
+        <div className="col-span-1">
+          <RankingCards />
+        </div>
+
       </div>
+    
+
     </div>
   );
 }

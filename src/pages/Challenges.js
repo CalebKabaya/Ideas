@@ -48,7 +48,7 @@ export default function DashboardAppPage() {
         display: 'flex',
         alignItems: 'center',      /* Center text vertically */
         justifyContent: 'center'   /* Center text horizontally */
-      }}>+ Add idea
+      }}>+ Submit Your Idea
           </Button>
         </Stack>
 
