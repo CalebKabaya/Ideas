@@ -14,7 +14,7 @@ export default function ChallengesList() {
         >
             
           <div
-            className="flex-grow-0 flex-shrink-0 w-[200px] h-36 relative overflow-hidden rounded-lg b"
+            className="flex-grow-0 flex-shrink-0 lg:w-[200px] md:w-[200px] sm:w-[200px] xs:w-[200px] h-36 relative overflow-hidden rounded-lg b"
             style={{ backgroundImage: `url(${CardImage})`, src: { CardImage } }}
           >
             <div className="flex justify-start items-center absolute left-2 top-[114px] gap-1 pl-1.5 pr-2 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
@@ -50,7 +50,7 @@ export default function ChallengesList() {
             </div>
             <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-2">
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                <p className="flex-grow-0 flex-shrink-0 text-base text-left text-sm text-[#475467]">202 Participants</p>
+                <p className="flex-grow-0 flex-shrink-0  text-left text-sm sm:text-xs text-[#475467]">202 Participants</p>
               </div>
             </div>
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-[30px] relative">
@@ -73,7 +73,7 @@ export default function ChallengesList() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <p className="flex-grow-0 flex-shrink-0 text-base font-medium text-sm text-left text-[#475467]">
+                  <p className="flex-grow-0 flex-shrink-0 font-medium text-sm sm:text-xs text-left text-[#475467]">
                     May -2023 -Present{' '}
                   </p>
                 </div>
@@ -81,7 +81,7 @@ export default function ChallengesList() {
             </div>
           </div>
           <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">View Challenge</p>
+            <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View Challenge</p>
             <svg
               width={20}
               height={20}
@@ -107,7 +107,7 @@ export default function ChallengesList() {
           style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
         >
           <div
-            className="flex-grow-0 flex-shrink-0 w-[200px] h-36 relative overflow-hidden rounded-lg  bg-cover bg-no-repeat bg-center"
+            className="flex-grow-0 flex-shrink-0 lg:w-[200px] md:w-[200px] sm:w-[200px] xs:w-[200px] h-36 relative overflow-hidden rounded-lg  bg-cover bg-no-repeat bg-center"
             style={{ backgroundImage: `url(${CardImage2})`, src: { CardImage2 } }}
           />
 
@@ -122,7 +122,7 @@ export default function ChallengesList() {
             </div>
             <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-2">
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                <p className="flex-grow-0 flex-shrink-0  text-sm text-left text-[#475467]">202 Participants</p>
+                <p className="flex-grow-0 flex-shrink-0  text-sm sm:text-xs text-left text-[#475467]">202 Participants</p>
               </div>
             </div>
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-[30px] relative">
@@ -145,15 +145,15 @@ export default function ChallengesList() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-[#475467]">
+                  <p className="flex-grow-0 flex-shrink-0 text-sm  sm:text-xs font-medium text-left text-[#475467]">
                     May -2023 -Present{' '}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible">
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">View Challenge</p>
+          <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
+            <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View Challenge</p>
             <svg
               width={20}
               height={20}

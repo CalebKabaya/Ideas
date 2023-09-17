@@ -39,7 +39,7 @@ export default function DashboardAppPage() {
 
       <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Ideas
           </Typography>
          

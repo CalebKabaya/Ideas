@@ -20,7 +20,7 @@ export const Terms = () => {
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
           <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
             <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
-              <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg font-semibold text-left text-[#101828]">
+              <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-md font-semibold text-left text-[#101828]">
                 Notification settings
               </p>
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
