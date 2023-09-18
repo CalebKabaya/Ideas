@@ -7,7 +7,7 @@ import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 
 // @mui
-import { Grid, Container, Typography,Button,Stack } from '@mui/material';
+import { Grid, Container, Typography,Stack } from '@mui/material';
 
 // components
 import  MyHeader from '../sections/challenges/header';
