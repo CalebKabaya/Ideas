@@ -25,7 +25,7 @@ export default function Router() {
         { path: 'challenges', element: <Challenges /> },
         // { path: 'products', element: <ProductsPage /> },
         { path: 'settings', element: <Settings /> },
-        { path: 'challengelist', element: <ChallengeListPage /> },
+        { path: 'challengeslist', element: <ChallengeListPage /> },
 
       ],
     },

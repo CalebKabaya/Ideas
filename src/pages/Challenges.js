@@ -7,17 +7,13 @@ import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 
 // @mui
-import { Grid, Container, Typography,Button,Stack } from '@mui/material';
+import { Grid, Container, Typography, Button, Stack } from '@mui/material';
 
 // components
-import  MyHeader from '../sections/challenges/header';
-import  ChallengesList from '../sections/challenges/challengelist';
+import MyHeader from '../sections/challenges/header';
+import ChallengesList from '../sections/challenges/challengelist';
 
 import Modal from './ChallengeModal';
-
-
-
-
 
 export default function DashboardAppPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,20 +25,16 @@ export default function DashboardAppPage() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  
+
   return (
     <>
-    <Helmet>
-      <title> Dashboard: Challenges| Ideas Portal </title>
-    </Helmet>
-
- 
-
+      <Helmet>
+        <title> Dashboard: Challenges| Ideas Portal </title>
+      </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h6" gutterBottom>
-
             Ideas Challenges
           </Typography>
           {/* <Button  className="submit-button"
@@ -62,16 +54,12 @@ export default function DashboardAppPage() {
         alignItems: 'center',      
         justifyContent: 'center'   
       }}>+ Submit Your Idea
-          </Button> */}
-          {/* <Modal isOpen={isModalOpen} onClose={closeModal}/> */}
-          
+          </Button>  */}
+          <Modal isOpen={isModalOpen} onClose={closeModal} />
         </Stack>
 
-
-      <MyHeader />
-
-      
-    </Container>
-  </>
+        <MyHeader />
+      </Container>
+    </>
   );
 }
