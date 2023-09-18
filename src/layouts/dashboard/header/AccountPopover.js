@@ -1,22 +1,15 @@
-import { useState } from 'react';
-// @mui
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-// mocks_
 import account from '../../../_mock/account';
 
-// ----------------------------------------------------------------------
-
 const MENU_OPTIONS = [
- 
- 
- 
 ];
-
-// ----------------------------------------------------------------------
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -86,8 +79,15 @@ export default function AccountPopover() {
           ))}
         </Stack>
 
+        {/* Modify the "Logout" MenuItem to navigate to the login page */}
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate('/login'); // Navigate to the login page using navigate
+          }}
+          sx={{ m: 1 }}
+        >
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </Popover>

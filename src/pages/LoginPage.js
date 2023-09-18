@@ -89,6 +89,7 @@ function LoginForm() {
             <TextField
               variant="outlined"
               margin="normal"
+              sx={{ mt: 2 }}
               fullWidth
               id="email"
               label="Email Address"
@@ -117,7 +118,7 @@ function LoginForm() {
             <FormControlLabel
               className={classes.rememberMeCheckbox}
               control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} color="primary" />}
-              label="Remember me for thirty days?"
+              label="Remember me for 30 days?"
             />
             <Button
               type="submit"
@@ -128,7 +129,7 @@ function LoginForm() {
             >
               Sign In
             </Button>
-            <Link href="#" variant="body2">
+            <Link href="#" variant="body2" style={{ color: 'white', textDecoration: 'white underline' }}>
               Forgot password?
             </Link>
           </form>
