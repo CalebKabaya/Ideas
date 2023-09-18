@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
+import SingleIdea from './pages/SingleIdea';
 import BlogPage from './pages/Settings';
 import UserPage from './pages/Challenges';
 import LoginPage from './pages/LoginPage';
@@ -23,12 +24,18 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
+        { path: 'single-idea', element: <SingleIdea /> },
+
       ],
     },
     {
       path: 'login',
       element: <LoginPage />,
     },
+    // {
+    //  path: 'SingleIdea',
+    //  element: <SingleIdea />, 
+    // },
     {
       element: <SimpleLayout />,
       children: [
