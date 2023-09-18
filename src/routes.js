@@ -32,10 +32,6 @@ export default function Router() {
       path: 'login',
       element: <LoginPage />,
     },
-    // {
-    //  path: 'SingleIdea',
-    //  element: <SingleIdea />, 
-    // },
     {
       element: <SimpleLayout />,
       children: [
