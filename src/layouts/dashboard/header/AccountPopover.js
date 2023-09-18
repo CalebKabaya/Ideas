@@ -5,7 +5,6 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover 
 import account from '../../../_mock/account';
 
 const MENU_OPTIONS = [
-  // Define your menu options here if needed
 ];
 
 export default function AccountPopover() {
@@ -88,6 +87,7 @@ export default function AccountPopover() {
           }}
           sx={{ m: 1 }}
         >
+
           Logout
         </MenuItem>
       </Popover>
