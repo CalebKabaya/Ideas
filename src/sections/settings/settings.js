@@ -56,9 +56,9 @@ export default function BasicTabs() {
   }, []);
 
   return (
-    <div>
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{display: 'grid', borderBottom: 1, borderColor: "divider" }}>
+    
+      <Box sx={{ width: "auto",display: 'grid'}}>
+        <Box sx={{display: 'grid', borderBottom: 1, borderColor: "divider"}}>
           <Tabs
            variant="scrollable"
             className="tabs"
@@ -75,10 +75,12 @@ export default function BasicTabs() {
             <Tab label="Notification" {...a11yProps(2)} />
             <Tab label="Terms of Service" {...a11yProps(3)} />
           </Tabs>
-        </Box>
-        {/* Profile */}
 
-        <CustomTabPanel value={value} index={0}>
+          
+        </Box>
+         {/* Profile */}
+
+         <CustomTabPanel value={value} index={0}>
           <Profile />
         </CustomTabPanel>
 
@@ -96,6 +98,6 @@ export default function BasicTabs() {
           <Notifications />
         </CustomTabPanel>
       </Box>
-    </div>
+      
   );
 }

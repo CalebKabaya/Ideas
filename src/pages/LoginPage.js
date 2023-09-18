@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import bgImage from './Background.jpg';
 import logoImage from './logo2-removebg-preview.png';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 function LoginForm() {
   const classes = useStyles();
   const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
@@ -85,9 +84,7 @@ function LoginForm() {
         <Paper className={classes.paper} elevation={3}>
           <img src={logoImage} alt="Logo" className={classes.logo} />
           <Typography variant="h5">Welcome to Ideas portal</Typography>
-          <Typography className={classes.detailsText}>
-            Please enter your details
-          </Typography>
+          <Typography className={classes.detailsText}>Please enter your details</Typography>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -119,13 +116,7 @@ function LoginForm() {
             />
             <FormControlLabel
               className={classes.rememberMeCheckbox}
-              control={
-                <Checkbox
-                  checked={rememberMe}
-                  onChange={handleRememberMeChange}
-                  color="primary"
-                />
-              }
+              control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} color="primary" />}
               label="Remember me for thirty days?"
             />
             <Button
@@ -133,7 +124,7 @@ function LoginForm() {
               fullWidth
               variant="contained"
               className={classes.submit} /* Removed color property */
-              onClick={handleSignIn} 
+              onClick={handleSignIn}
             >
               Sign In
             </Button>

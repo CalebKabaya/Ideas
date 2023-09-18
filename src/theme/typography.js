@@ -8,8 +8,11 @@ export function pxToRem(value) {
   return `${value / 16}rem`;
 }
 
-export function responsiveFontSizes({ sm, md, lg }) {
+export function responsiveFontSizes({ sx,sm, md, lg }) {
   return {
+    '@media (min-width:320px)': {
+      fontSize: pxToRem(sx),
+    },
     '@media (min-width:600px)': {
       fontSize: pxToRem(sm),
     },
@@ -66,7 +69,7 @@ const typography = {
     fontWeight: 700,
     lineHeight: 28 / 18,
     fontSize: pxToRem(17),
-    ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 }),
+    ...responsiveFontSizes({  xs: 12,sm: 18, md: 18, lg: 18 }),
   },
   subtitle1: {
     fontWeight: 600,
