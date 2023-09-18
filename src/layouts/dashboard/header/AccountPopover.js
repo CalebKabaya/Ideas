@@ -1,31 +1,16 @@
-import { useState } from 'react';
-// @mui
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-// mocks_
 import account from '../../../_mock/account';
 
-// ----------------------------------------------------------------------
-
 const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
+  // Define your menu options here if needed
 ];
-
-// ----------------------------------------------------------------------
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -95,9 +80,14 @@ export default function AccountPopover() {
           ))}
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
-
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        {/* Modify the "Logout" MenuItem to navigate to the login page */}
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate('/login'); // Navigate to the login page using navigate
+          }}
+          sx={{ m: 1 }}
+        >
           Logout
         </MenuItem>
       </Popover>
