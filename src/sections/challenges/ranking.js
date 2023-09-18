@@ -8,9 +8,9 @@ import Avatar4 from "./avartas/Avatar4.png"
 
 export default function RankingCards() {
   return (
-    <div className="relative w-full rounded-2xl bg-white border border-[#eaecf0] sm:rounded-lg">
+    <div className="relative w-full rounded-2xl bg-white border border-[#eaecf0]">
       
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-2xl bg-white border border-[#eaecf0]">
+      <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400  bg-white border border-[#eaecf0]">
       <caption className="p-5 text-md font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
             Ranking
         </caption>
