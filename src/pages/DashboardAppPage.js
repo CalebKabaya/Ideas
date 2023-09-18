@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Button, Stack } from '@mui/material';
+import { Grid, Container, Typography, Stack } from '@mui/material';
 
 // Import your authentication context or state management here
 // import { AuthContext } from './AuthContext';
