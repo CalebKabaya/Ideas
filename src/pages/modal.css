@@ -14,6 +14,7 @@
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 999;
+    
   }
   
   .popup-header {
@@ -29,6 +30,7 @@
   .popup button {
     display: block;
     margin-top: 10px;
+    
   }
   
   /* ... (existing styles) */
@@ -264,5 +266,33 @@
   }
   
   
+  @media (max-width: 768px) {
+    /* Adjust styles for tablets here */
   
+    .popup {
+      width: 90%; /* Reduce popup width for tablets */
+      max-width: 400px; /* Set a maximum width for tablets */
+      top: 50%; /* Adjust vertical position */
+      transform: translate(-50%, -50%);
+    }
   
+    /* Other styles for tablets */
+  }
+  
+  /* Media query for screens with a maximum width of 480px (typical for mobile devices) */
+  @media (max-width: 480px) {
+    /* Adjust styles for mobile devices here */
+  
+    .popup {
+      width: 100%; /* Full width for mobile devices */
+      max-width: 80%; /* Remove max-width for mobile devices */
+      top: 50%; /* Adjust vertical position */
+      transform: translate(-50%, -50%);
+    }
+  
+    /* Other styles for mobile devices */
+  
+    .char-count {
+      font-size: 10px; /* Example: Reduce character count font size for mobile */
+    }
+  }

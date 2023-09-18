@@ -13,7 +13,7 @@ const navConfig = [
   },
   {
     title: 'challenges',
-    path: '/dashboard/user',
+    path: '/dashboard/challengeslist',
     icon: icon('trophy-01'),
   },
   // {
@@ -23,7 +23,7 @@ const navConfig = [
   // },
   {
     title: 'settings',
-    path: '/dashboard/blog',
+    path: '/dashboard/settings',
     icon: icon('settings-01'),
   },
   // {
