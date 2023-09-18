@@ -38,7 +38,7 @@ export const Profile = () => {
           <div className=" md:h-full md:w-48flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
               <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
-                <p className="self-stretch flex-grow-0 flex-shrink-0 text-lg font-semibold text-left text-[#101828]">
+                <p className="self-stretch flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828]">
                   Profile Update
                 </p>
                 <p className="self-stretch flex-grow-0 flex-shrink-0  text-sm text-left text-[#475467]">

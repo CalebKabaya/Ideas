@@ -3,12 +3,14 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
-import BlogPage from './pages/Settings';
-import UserPage from './pages/Challenges';
+import Settings from './pages/Settings';
+import Challenges from './pages/Challenges';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/Support';
 import DashboardAppPage from './pages/DashboardAppPage';
+import ChallengeListPage from './pages/ChallengesList';
+
 
 // ----------------------------------------------------------------------
 
@@ -20,9 +22,11 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
+        { path: 'challenges', element: <Challenges /> },
+        // { path: 'products', element: <ProductsPage /> },
+        { path: 'settings', element: <Settings /> },
+        { path: 'challengeslist', element: <ChallengeListPage /> },
+
       ],
     },
     {
