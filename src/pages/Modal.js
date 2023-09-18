@@ -103,7 +103,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{ margin: '0', padding: '0' }}>
       <button
         onClick={togglePopup}
         className="submit-button"
