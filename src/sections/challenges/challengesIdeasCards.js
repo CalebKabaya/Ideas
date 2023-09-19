@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 
 export default function ChallengesCards() {
   return (
@@ -37,6 +39,8 @@ export default function ChallengesCards() {
                 </div>
               </div>
             </div>
+            <Link to="/dashboard/single-idea" >
+
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible" >
               <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
               <svg
@@ -57,6 +61,7 @@ export default function ChallengesCards() {
                 />
               </svg>
             </div>
+            </Link>
           </div>
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
             We need a way to simplify the process of receiving tickets
