@@ -7,14 +7,11 @@ import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 
 // @mui
-import { Grid, Container, Typography,Button,Stack } from '@mui/material';
+import { Grid, Container, Typography,Stack } from '@mui/material';
 
 // components
 import  MyHeader from '../sections/challenges/header';
 import Modal from './ChallengeModal';
-
-
-
 
 
 export default function DashboardAppPage() {
@@ -34,7 +31,6 @@ export default function DashboardAppPage() {
       <title> Dashboard: Challenges| Ideas Portal </title>
     </Helmet>
 
-    
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h6" gutterBottom>
@@ -43,7 +39,6 @@ export default function DashboardAppPage() {
           <Modal isOpen={isModalOpen} onClose={closeModal}/>
            
         </Stack>
-
 
       <MyHeader />
       </Container>

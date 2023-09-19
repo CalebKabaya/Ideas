@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import icon from './uploadicon.png';
 
 function App() {
+
   const [showPopup, setShowPopup] = useState(false);
   const [ideaTitle, setIdeaTitle] = useState('');
   const [ideaDescription, setIdeaDescription] = useState('');
@@ -102,6 +103,8 @@ function App() {
     };
   }, []);
 
+  const department = "department";
+
   return (
     <div className="App" style={{ margin: '0', padding: '0' }}>
       <button
@@ -127,6 +130,7 @@ function App() {
       >
         + Add idea
       </button>
+
       {showPopup && (
         <div className="popup">
           <div className="popup-header">Idea Details</div>
@@ -174,7 +178,9 @@ function App() {
                   </span>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="department">What department/division would your idea serve:</label>
+                  
+                  <label htmlFor={department}>What department/division would your idea serve:</label>
+
                   <select
                     id="department"
                     name="department"

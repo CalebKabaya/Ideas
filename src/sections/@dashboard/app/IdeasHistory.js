@@ -1,4 +1,5 @@
-import { Container, InputAdornment, TextField } from "@mui/material";
+import { Container, InputAdornment, TextField, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useState, useCallback } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
@@ -14,13 +15,19 @@ export const IdeasHistory = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = React.useState("");
   const [department, setDepartment] = React.useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
     setStatus(event.target.value);
     setDepartment(event.target.value);
   };
- 
+
+  const handleClick = () => {
+    // Use the navigate function to navigate to another page
+    navigate("/dashboard/single-idea"); // Specify the path to the other page
+  };
+
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -145,9 +152,12 @@ export const IdeasHistory = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">
+                <Button
+                type="submit"
+                onClick={handleClick} 
+                className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">
                   View idea
-                </p>
+                </Button>
               </div>
             </div>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">
@@ -219,9 +229,12 @@ export const IdeasHistory = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">
+                <Button
+                type="submit"
+                onClick={handleClick} 
+                className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#026aa2]">
                   View idea
-                </p>
+                </Button>
               </div>
             </div>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">

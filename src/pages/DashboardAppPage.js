@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Button, Stack } from '@mui/material';
+import { Grid, Container, Typography, Stack } from '@mui/material';
 
 // Import your authentication context or state management here
 // import { AuthContext } from './AuthContext';
@@ -12,9 +12,7 @@ import Iconify from '../components/iconify';
 import Modal from './Modal';
 
 // sections
-import {
-  IdeasHistory,
-} from '../sections/@dashboard/app/IdeasHistory';
+import { IdeasHistory } from '../sections/@dashboard/app/IdeasHistory';
 
 // Define a PrivateRoute component
 const PrivateRoute = ({ isAuthenticated, ...rest }) => {
@@ -42,6 +40,7 @@ export default function DashboardAppPage() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  // const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -55,10 +54,9 @@ export default function DashboardAppPage() {
             Ideas
           </Typography>
 
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <h2>Modal Content</h2>
-            <p>This is the content of the modal.</p>
-          </Modal>
+          <Modal isOpen={isModalOpen} onClose={closeModal}/>
+            
+
         </Stack>
 
         <Grid item xs={12} md={6} lg={8}>
