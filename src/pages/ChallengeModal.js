@@ -122,9 +122,10 @@ function App() {
           display: 'flex',
           alignItems: 'center' /* Center text vertically */,
           justifyContent: 'center' /* Center text horizontally */,
+          marginBottom: '0',
         }}
       >
-        + Submit Your Idea
+        + Add idea
       </button>
       {showPopup && (
         <div className="popup">
@@ -195,7 +196,8 @@ function App() {
                       <img src={icon} alt="Upload Icon" width="48" height="48" />{' '}
                       {/* Use the imported image variable */}
                       <span className="upload-text" style={{ color: '#0086C9' }}>
-                        Click to upload or drag and drop <br/>SVG, PNG, JPG, or GIF (max. 800x400px)
+                        Click to upload or drag and drop <br />
+                        SVG, PNG, JPG, or GIF (max. 800x400px)
                       </span>
                       <input
                         type="file"
@@ -205,7 +207,7 @@ function App() {
                         onChange={handleFileUpload}
                         style={{ display: 'none' }}
                       />
-                      <button className="upload-button" onClick={handleUpload}/>
+                      <button className="upload-button" onClick={handleUpload} />
                       <div className="upload-progress">{uploadedFile && <p>Selected file: {uploadedFile.name}</p>}</div>
                     </label>
                   </div>
