@@ -1,8 +1,9 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar1 from "./avartas/Avatar1.png"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Avatar1 from "./avartas/Avatar1.png"
+
 
 export default function SingleIdea() {
 
