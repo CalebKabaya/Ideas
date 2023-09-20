@@ -9,11 +9,7 @@ export default function SingleIdea() {
   //   navigate("/dashboard/app")
   // }
 
-  //   <Link to="/dashboard/app">
-  //   <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#0086c9]">
-  //     Back to all ideas
-  //   </p>
-  // </Link>
+ 
   return (
     <div className="flex flex-col justify-start items-start w-full gap-2.5 p-3 bg-white rounded-xl overflow-hidden">
       <div className="flex flex-col justify-start items-end flex-grow-0  w-full flex-shrink-0 gap-6 rounded-xl">
@@ -50,7 +46,7 @@ export default function SingleIdea() {
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[13px] w-full md:w-full sm:w-full">
               <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse lg:justify-between  md:justify-between sm:justify-between  xs:justify-left items-center flex-grow-0 flex-shrink-0 relative w-full gap-[19px]">
                 <div className='flex justify-start items-start text-left flex-grow-0 flex-shrink-0 relative gap-[13px]'>
-                <p className="flex-grow-0 text-left flex-shrink-0  text-xl font-semibold  text-[#101828]">
+                <p className="flex-grow-0 text-left flex-shrink-0  text-lg font-semibold  text-[#101828]">
                   Ticket automation
                 </p>
                 </div>
@@ -90,10 +86,10 @@ export default function SingleIdea() {
                       <img className="w-10 h-10 rounded-full" src={Avatar1} alt="Jese" />
                       </div>
                       <div className='flex flex-col'>
-                      <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828]">
+                      <p className="flex-grow-0 flex-shrink-0 text-xs font-semibold text-left text-[#101828]">
                         James Maina
                       </p>
-                      <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-[#475467]">20 Jan 2024</p>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">20 Jan 2024</p>
                       </div>
                     
                     </div>
@@ -110,7 +106,7 @@ export default function SingleIdea() {
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-5">
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
               <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
-                <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg font-semibold text-left text-[#101828]">
+                <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm font-semibold text-left text-[#101828]">
                   Idea overview
                 </p>
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
@@ -120,7 +116,7 @@ export default function SingleIdea() {
             </div>
           </div>
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-6 p-4 rounded-lg bg-gray-50 border border-[#eaecf0]">
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#344054]">
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#344054]">
               The automated ticketing system would help to streamline and enhance the management and collaboration
               surrounding innovative concepts and suggestions within an organization or community. This system leverages
               advanced technology to efficiently capture, categorize, prioritize, and track ideas, ensuring that no
@@ -129,36 +125,36 @@ export default function SingleIdea() {
           </div>
 
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-3">
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base font-medium text-left text-[#101828]">
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm font-medium text-left text-[#101828]">
               Potential Benefits
             </p>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">
+              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
                 Automation reduces administrative overhead, accelerates idea evaluation, and minimizes manual processes.
               </span>
               <br />
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">
+              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
                 All stakeholders can track the status and progress of ideas, promoting open communication.
               </span>
               <br />
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">
+              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
                 The platform encourages participation from a diverse range of contributors, fostering a culture of
                 innovation.
               </span>
             </p>
           </div>
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-3">
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base font-medium text-left text-[#101828]">
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm font-medium text-left text-[#101828]">
               Target audience
             </p>
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-base text-left text-[#475467]">P&amp;D</p>
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">P&amp;D</p>
           </div>
           
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-3 px-6 pt-6 pb-5 bg-white border-t-0 border-r-0 border-b border-l-0 border-[#eaecf0]">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-5">
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
                 <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
-                  <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg font-semibold text-left text-[#101828]">
+                  <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-md font-semibold text-left text-[#101828]">
                     Comments
                   </p>
                 </div>
@@ -173,7 +169,7 @@ export default function SingleIdea() {
                   className="flex justify-start items-start self-stretch flex-grow relative overflow-hidden gap-2 px-3.5 py-3 rounded-lg bg-white border border-[#d0d5dd]"
                   style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                 >
-                  <p className="self-stretch flex-grow w-full h-[50px] text-base text-left text-[#667085]">
+                  <p className="self-stretch flex-grow w-full h-[50px] text-sm text-left text-[#667085]">
                     Send a message
                   </p>
                 </div>
@@ -293,7 +289,7 @@ export default function SingleIdea() {
                   </div>
 
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
-                    <p className="flex-grow  text-base text-left text-[#101828]">
+                    <p className="flex-grow  text-sm text-left text-[#101828]">
                       Hey Paul, can you please review the latest design when you can?
                     </p>
                   </div>
@@ -345,7 +341,7 @@ export default function SingleIdea() {
                   </div>
 
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
-                    <p className="flex-grow  text-base text-left text-[#101828]">
+                    <p className="flex-grow  text-sm text-left text-[#101828]">
                       Hey Paul, can you please review the latest design when you can?
                     </p>
                   </div>
