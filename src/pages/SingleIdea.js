@@ -1,12 +1,24 @@
-import { React, Button } from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function SingleIdea() {
-  // const navigate = useNavigate()
 
-  // const handleClick = () => {
-  //   navigate("/dashboard/app")
-  // }
+  const [comment, setComment] = useState('');
+
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+    // You can add your logic here to handle the submitted comment
+    console.log('Submitted Comment:', comment);
+    // Reset the comment field
+    setComment('');
+  };
+
   return (
     <div className="w-[1128px] h-[1097px] relative overflow-hidden bg-white">
       <div className="w-[1096px] h-[127px] absolute left-4 top-6">
@@ -160,6 +172,8 @@ export default function SingleIdea() {
             </div>
           </div>
         </div>
+
+
         <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative">
           <div className="flex flex-col justify-start items-start w-[1080px] h-[74px] absolute left-0 top-0 gap-1.5">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
@@ -167,9 +181,26 @@ export default function SingleIdea() {
                 className="flex justify-start items-start self-stretch flex-grow relative overflow-hidden gap-2 px-3.5 py-3 rounded-lg bg-white border border-[#d0d5dd]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
-                <p className="self-stretch flex-grow w-[1052px] h-[50px] text-base text-left text-[#667085]">
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    label="Send a message"
+                    variant="outlined"
+                    value={comment}
+                    onChange={handleCommentChange}
+                  />
+
+                  {/* <input
+              type="text"
+              className="self-stretch flex-grow w-[1052px] h-[50px] text-base text-left text-[#667085] outline-none"
+              placeholder="Send a message"
+              value={comment}
+              onChange={handleCommentChange}
+            /> */}
+                {/* <p className="self-stretch flex-grow w-[1052px] h-[50px] text-base text-left text-[#667085]">
                   Send a message
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -201,7 +232,10 @@ export default function SingleIdea() {
                   </defs>
                 </svg>
               </div>
-              <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 p-2 rounded-lg">
+              <div
+               className="flex justify-center items-center flex-grow-0 flex-shrink-0  relative overflow-hidden gap-2 p-2 rounded-lg cursor-pointer"
+                // onClick={handleCommentSubmit}
+                >
                 <svg
                   width={20}
                   height={20}
@@ -238,8 +272,24 @@ export default function SingleIdea() {
             <div
               className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-4 py-2.5 rounded-lg bg-[#0086c9] border border-[#0086c9]"
               style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+             
             >
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-white">Send</p>
+
+              <Button
+                // className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-4 py-2.5 rounded-lg bg-[#0086c9] border border-[#0086c9]"
+                // style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+                variant="contained"
+                color="primary"
+                onClick={handleCommentSubmit}
+
+                style={{ marginTop: '16px' }}
+              >
+                Send
+              </Button>
+              {/* <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-white"
+              onClick={handleCommentSubmit}
+               >
+               Send</p> */}
             </div>
           </div>
         </div>
