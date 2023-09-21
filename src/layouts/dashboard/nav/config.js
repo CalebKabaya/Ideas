@@ -9,6 +9,7 @@ const navConfig = [
   {
     title: 'home',
     path: '/dashboard/app',
+    path1: '/dashboard/admin/app',
     icon: icon('home-line'),
   },
   {

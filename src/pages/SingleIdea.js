@@ -1,15 +1,26 @@
-import { React, Button } from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Avatar1 from "./avartas/Avatar1.png"
 
+
 export default function SingleIdea() {
-  // const navigate = useNavigate()
 
-  // const handleClick = () => {
-  //   navigate("/dashboard/app")
-  // }
+  const [comment, setComment] = useState('');
 
- 
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+    // You can add your logic here to handle the submitted comment
+    console.log('Submitted Comment:', comment);
+    // Reset the comment field
+    setComment('');
+  };
+
   return (
     <div className="flex flex-col justify-start items-start w-full gap-2.5 p-3 bg-white rounded-xl overflow-hidden">
       <div className="flex flex-col justify-start items-end flex-grow-0  w-full flex-shrink-0 gap-6 rounded-xl">
