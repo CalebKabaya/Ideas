@@ -2,17 +2,21 @@ import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
-//
-
+// user
 import SingleIdea from './pages/SingleIdea';
 import Settings from './pages/Settings';
 import Challenges from './pages/Challenges';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-// import ProductsPage from './pages/Support';
 import DashboardAppPage from './pages/DashboardAppPage';
 import ChallengeListPage from './pages/ChallengesList';
-
+// admin
+import AdminSingleIdea from './adminpages/SingleIdea';
+import AdminSettings from './adminpages/Settings';
+import AdminChallenges from './adminpages/Challenges';
+// import AdminPage404 from './pages/Page404';
+import AdminDashboardAppPage from './adminpages/DashboardAppPage';
+import AdminChallengeListPage from './adminpages/ChallengesList';
 
 // ----------------------------------------------------------------------
 
@@ -38,11 +42,11 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/admin/app" />, index: true },
         { path: 'admin/app', element: <DashboardAppPage /> },
-        { path: 'admin/single-idea', element: <SingleIdea /> },
-        { path: 'admin/challenges', element: <Challenges /> },
+        { path: 'admin/single-idea', element: <AdminSingleIdea /> },
+        { path: 'admin/challenges', element: <AdminChallenges /> },
         // { path: 'products', element: <ProductsPage /> },
-        { path: 'admin/settings', element: <Settings /> },
-        { path: 'admin/challengeslist', element: <ChallengeListPage /> },
+        { path: 'admin/settings', element: <AdminSettings /> },
+        { path: 'admin/challengeslist', element: <AdminChallengeListPage/> },
 
       ],
     },

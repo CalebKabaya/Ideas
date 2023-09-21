@@ -8,7 +8,7 @@ export default function ChallengesList() {
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
-      <Link to="/dashboard/challenges" className='w-full'>
+      <Link to="/dashboard/admin/challenges" className='w-full'>
       <div
         className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-[27px] p-4 rounded-xl bg-white border border-[#eaecf0]"
         style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
@@ -102,7 +102,7 @@ export default function ChallengesList() {
         </div>
       </div>
       </Link>
-      <Link to="/dashboard/challenges" className='w-full'>
+      <Link to="/dashboard/admin/challenges" className='w-full'>
 
       <div
         className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-[27px] p-4 rounded-xl bg-white border border-[#eaecf0]"
