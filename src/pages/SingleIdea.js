@@ -1,3 +1,4 @@
+
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -24,7 +25,6 @@ export default function SingleIdea() {
   return (
     <div className="flex flex-col justify-start items-start w-full gap-2.5 p-3 bg-white rounded-xl overflow-hidden">
       <div className="flex flex-col justify-start items-end flex-grow-0  w-full flex-shrink-0 gap-6 rounded-xl">
-
         <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 gap-2.5 w-full ">
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-[13px] w-full ">
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-2.5">
@@ -56,10 +56,10 @@ export default function SingleIdea() {
 
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[13px] w-full md:w-full sm:w-full">
               <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse lg:justify-between  md:justify-between sm:justify-between  xs:justify-left items-center flex-grow-0 flex-shrink-0 relative w-full gap-[19px]">
-                <div className='flex justify-start items-start text-left flex-grow-0 flex-shrink-0 relative gap-[13px]'>
-                <p className="flex-grow-0 text-left flex-shrink-0  text-lg font-semibold  text-[#101828]">
-                  Ticket automation
-                </p>
+                <div className="flex justify-start items-start text-left flex-grow-0 flex-shrink-0 relative gap-[13px]">
+                  <p className="flex-grow-0 text-left flex-shrink-0  text-lg font-semibold  text-[#101828]">
+                    Ticket automation
+                  </p>
                 </div>
                 <div className="flex flex-row justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[59px]">
                   <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
@@ -93,23 +93,20 @@ export default function SingleIdea() {
                       <div className="self-stretch flex-grow h-14 relative opacity-[0.08] overflow-hidden rounded-[200px] border-[0.75px] border-[#101828]" />
                     </div>
                     <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 relative gap-5 ">
-                      <div className='flex'>
-                      <img className="w-10 h-10 rounded-full" src={Avatar1} alt="Jese" />
+                      <div className="flex">
+                        <img className="w-10 h-10 rounded-full" src={Avatar1} alt="Jese" />
                       </div>
-                      <div className='flex flex-col'>
-                      <p className="flex-grow-0 flex-shrink-0 text-xs font-semibold text-left text-[#101828]">
-                        James Maina
-                      </p>
-                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">20 Jan 2024</p>
+                      <div className="flex flex-col">
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-semibold text-left text-[#101828]">
+                          James Maina
+                        </p>
+                        <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">20 Jan 2024</p>
                       </div>
-                    
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
 
@@ -160,7 +157,7 @@ export default function SingleIdea() {
             </p>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">P&amp;D</p>
           </div>
-          
+
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-3 px-6 pt-6 pb-5 bg-white border-t-0 border-r-0 border-b border-l-0 border-[#eaecf0]">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-5">
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
@@ -172,8 +169,42 @@ export default function SingleIdea() {
               </div>
             </div>
           </div>
+          <form className="flex flex-col w-full">
+            {/* <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
+              <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
+                <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
+                 
+                      <input
+                        type="text"
+                        id="first_name"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="John"
+                        required
+                      />
+                </div>
+              </div>
+            </div> */}
 
-          <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
+            <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
+              <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
+                <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
+                  <div
+                    className="flex justify-start items-start self-stretch flex-grow relative overflow-hidden gap-2 px-3.5 py-3"
+                   
+                  >
+                    <input
+                      type="text"
+                      id="first_name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="John"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
             <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
               <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
                 <div
@@ -183,185 +214,119 @@ export default function SingleIdea() {
                   <p className="self-stretch flex-grow w-full h-[50px] text-sm text-left text-[#667085]">
                     Send a message
                   </p>
+                  <div>
+            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+            <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required/>
+        </div>
+
                 </div>
               </div>
             </div>
 
-            {/* <div className="flex justify-start items-center absolute  top-[22px] gap-2 bg-orange-600">
-              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-0.5">
-                <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 p-2 rounded-lg">
+          </div> */}
+
+            <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
+              <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">
+                <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-3">
                   <svg
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
+                    width={42}
+                    height={42}
+                    viewBox="0 0 42 42"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                    preserveAspectRatio="xMidYMid meet"
+                    className="flex-grow-0 flex-shrink-0 w-10 h-10 relative"
+                    preserveAspectRatio="none"
                   >
-                    <g clipPath="url(#clip0_753_83)">
-                      <path
-                        d="M6.66699 11.6666C6.66699 11.6666 7.91699 13.3333 10.0003 13.3333C12.0837 13.3333 13.3337 11.6666 13.3337 11.6666M12.5003 7.49996H12.5087M7.50033 7.49996H7.50866M18.3337 9.99996C18.3337 14.6023 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6023 1.66699 9.99996C1.66699 5.39759 5.39795 1.66663 10.0003 1.66663C14.6027 1.66663 18.3337 5.39759 18.3337 9.99996ZM12.917 7.49996C12.917 7.73008 12.7304 7.91663 12.5003 7.91663C12.2702 7.91663 12.0837 7.73008 12.0837 7.49996C12.0837 7.26984 12.2702 7.08329 12.5003 7.08329C12.7304 7.08329 12.917 7.26984 12.917 7.49996ZM7.91699 7.49996C7.91699 7.73008 7.73044 7.91663 7.50033 7.91663C7.27021 7.91663 7.08366 7.73008 7.08366 7.49996C7.08366 7.26984 7.27021 7.08329 7.50033 7.08329C7.73044 7.08329 7.91699 7.26984 7.91699 7.49996Z"
-                        stroke="#667085"
-                        strokeWidth="1.66667"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                    <rect width={40} height={40} rx={20} fill="#D3DCCF" />
+                    <rect width={40} height={40} rx={20} fill="url(#pattern0)" />
+                    <g opacity="0.08">
+                      <rect
+                        x="0.375"
+                        y="0.375"
+                        width="39.25"
+                        height="39.25"
+                        rx="19.625"
+                        stroke="#101828"
+                        strokeWidth="0.75"
                       />
                     </g>
+                    <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
+                    <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" stroke="white" strokeWidth="1.5" />
                     <defs>
-                      <clippath id="clip0_753_83">
-                        <rect width={20} height={20} fill="white" />
-                      </clippath>
+                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width={1} height={1}>
+                        <use xlinkHref="#image0_753_1800" transform="scale(0.0015625)" />
+                      </pattern>
+                      <image id="image0_753_1800" width={640} height={640} />
                     </defs>
                   </svg>
+                  <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
+                    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
+                      <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
+                    </div>
+
+                    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
+                      <p className="flex-grow  text-sm text-left text-[#101828]">
+                        Hey Paul, can you please review the latest design when you can?
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 p-2 rounded-lg">
+                <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-[#0086c9]">Reply</p>
+              </div>
+            </div>
+
+            <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
+              <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">
+                <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-3">
                   <svg
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
+                    width={42}
+                    height={42}
+                    viewBox="0 0 42 42"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                    preserveAspectRatio="xMidYMid meet"
+                    className="flex-grow-0 flex-shrink-0 w-10 h-10 relative"
+                    preserveAspectRatio="none"
                   >
-                    <path
-                      d="M9.99967 10.8333C10.4599 10.8333 10.833 10.4602 10.833 9.99996C10.833 9.53972 10.4599 9.16663 9.99967 9.16663C9.53944 9.16663 9.16634 9.53972 9.16634 9.99996C9.16634 10.4602 9.53944 10.8333 9.99967 10.8333Z"
-                      stroke="#667085"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M15.833 10.8333C16.2932 10.8333 16.6663 10.4602 16.6663 9.99996C16.6663 9.53972 16.2932 9.16663 15.833 9.16663C15.3728 9.16663 14.9997 9.53972 14.9997 9.99996C14.9997 10.4602 15.3728 10.8333 15.833 10.8333Z"
-                      stroke="#667085"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M4.16634 10.8333C4.62658 10.8333 4.99967 10.4602 4.99967 9.99996C4.99967 9.53972 4.62658 9.16663 4.16634 9.16663C3.7061 9.16663 3.33301 9.53972 3.33301 9.99996C3.33301 10.4602 3.7061 10.8333 4.16634 10.8333Z"
-                      stroke="#667085"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <rect width={40} height={40} rx={20} fill="#D3DCCF" />
+                    <rect width={40} height={40} rx={20} fill="url(#pattern0)" />
+                    <g opacity="0.08">
+                      <rect
+                        x="0.375"
+                        y="0.375"
+                        width="39.25"
+                        height="39.25"
+                        rx="19.625"
+                        stroke="#101828"
+                        strokeWidth="0.75"
+                      />
+                    </g>
+                    <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
+                    <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" stroke="white" strokeWidth="1.5" />
+                    <defs>
+                      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width={1} height={1}>
+                        <use xlinkHref="#image0_753_1800" transform="scale(0.0015625)" />
+                      </pattern>
+                      <image id="image0_753_1800" width={640} height={640} />
+                    </defs>
                   </svg>
-                </div>
-              </div>
-              <div
-                className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-4 py-2.5 rounded-lg bg-[#0086c9] border border-[#0086c9]"
-                style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-              >
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-white">Send</p>
-              </div>
-            </div> */}
+                  <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
+                    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
+                      <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
+                    </div>
 
-          </div>
-
-          <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
-            <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">
-              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-3">
-                <svg
-                  width={42}
-                  height={42}
-                  viewBox="0 0 42 42"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="flex-grow-0 flex-shrink-0 w-10 h-10 relative"
-                  preserveAspectRatio="none"
-                >
-                  <rect width={40} height={40} rx={20} fill="#D3DCCF" />
-                  <rect width={40} height={40} rx={20} fill="url(#pattern0)" />
-                  <g opacity="0.08">
-                    <rect
-                      x="0.375"
-                      y="0.375"
-                      width="39.25"
-                      height="39.25"
-                      rx="19.625"
-                      stroke="#101828"
-                      strokeWidth="0.75"
-                    />
-                  </g>
-                  <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
-                  <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" stroke="white" strokeWidth="1.5" />
-                  <defs>
-                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width={1} height={1}>
-                      <use xlinkHref="#image0_753_1800" transform="scale(0.0015625)" />
-                    </pattern>
-                    <image id="image0_753_1800" width={640} height={640} />
-                  </defs>
-                </svg>
-                <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
-                  <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
-                    <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
+                    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
+                      <p className="flex-grow  text-sm text-left text-[#101828]">
+                        Hey Paul, can you please review the latest design when you can?
+                      </p>
+                    </div>
                   </div>
-
-                  <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
-                    <p className="flex-grow  text-sm text-left text-[#101828]">
-                      Hey Paul, can you please review the latest design when you can?
-                    </p>
-                  </div>
-
                 </div>
+                <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-[#0086c9]">Reply</p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-[#0086c9]">Reply</p>
             </div>
-          </div>
-
-          <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
-            <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">
-              <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-3">
-                <svg
-                  width={42}
-                  height={42}
-                  viewBox="0 0 42 42"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="flex-grow-0 flex-shrink-0 w-10 h-10 relative"
-                  preserveAspectRatio="none"
-                >
-                  <rect width={40} height={40} rx={20} fill="#D3DCCF" />
-                  <rect width={40} height={40} rx={20} fill="url(#pattern0)" />
-                  <g opacity="0.08">
-                    <rect
-                      x="0.375"
-                      y="0.375"
-                      width="39.25"
-                      height="39.25"
-                      rx="19.625"
-                      stroke="#101828"
-                      strokeWidth="0.75"
-                    />
-                  </g>
-                  <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
-                  <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" stroke="white" strokeWidth="1.5" />
-                  <defs>
-                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width={1} height={1}>
-                      <use xlinkHref="#image0_753_1800" transform="scale(0.0015625)" />
-                    </pattern>
-                    <image id="image0_753_1800" width={640} height={640} />
-                  </defs>
-                </svg>
-                <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
-                  <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
-                    <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
-                  </div>
-
-                  <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2.5 rounded-tr-lg rounded-bl-lg rounded-br-lg bg-[#f2f4f7]">
-                    <p className="flex-grow  text-sm text-left text-[#101828]">
-                      Hey Paul, can you please review the latest design when you can?
-                    </p>
-                  </div>
-
-                </div>
-              </div>
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-[#0086c9]">Reply</p>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
