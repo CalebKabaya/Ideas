@@ -9,7 +9,7 @@ import Settings from './pages/Settings';
 import Challenges from './pages/Challenges';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/Support';
+// import ProductsPage from './pages/Support';
 import DashboardAppPage from './pages/DashboardAppPage';
 import ChallengeListPage from './pages/ChallengesList';
 
@@ -29,6 +29,20 @@ export default function Router() {
         // { path: 'products', element: <ProductsPage /> },
         { path: 'settings', element: <Settings /> },
         { path: 'challengeslist', element: <ChallengeListPage /> },
+
+      ],
+    },
+    {
+      path: '/dashboard',
+      element: <DashboardLayout />,
+      children: [
+        { element: <Navigate to="/dashboard/admin/app" />, index: true },
+        { path: 'admin/app', element: <DashboardAppPage /> },
+        { path: 'admin/single-idea', element: <SingleIdea /> },
+        { path: 'admin/challenges', element: <Challenges /> },
+        // { path: 'products', element: <ProductsPage /> },
+        { path: 'admin/settings', element: <Settings /> },
+        { path: 'admin/challengeslist', element: <ChallengeListPage /> },
 
       ],
     },
