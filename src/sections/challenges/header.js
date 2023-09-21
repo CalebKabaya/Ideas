@@ -14,7 +14,7 @@ import RankingCards from './ranking';
 import ChallengesList from './challengelist';
 
 import jobPostImage from './jobPostImage.png';
-import PaginationRounded from '../pagination/pagination';
+import Pagination from '../pagination/pagination';
 
 
 export default function MyHeader() {
@@ -108,8 +108,12 @@ export default function MyHeader() {
         </div>
 
       </div>
-    
+      
+      <div className='flex justify-center w-full mt-9'>
+      <Pagination/>
 
+      </div>
     </div>
+    
   );
 }

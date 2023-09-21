@@ -1,8 +1,7 @@
 import {React, useCallback} from 'react';
 
 
-
-export default function Notifications(){
+export default function SingleIdea(){
   
   return (
     
@@ -23,9 +22,9 @@ export default function Notifications(){
             <path
               d="M15.8332 9.99999H4.1665M4.1665 9.99999L9.99984 15.8333M4.1665 9.99999L9.99984 4.16666"
               stroke="#0086C9"
-              // stroke-width="1.66667"
-              // stroke-linecap="round"
-              // stroke-linejoin="round"
+              strokeWidth="1.66667"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#0086c9]">
@@ -50,7 +49,7 @@ export default function Notifications(){
           className="self-stretch flex-grow-0 flex-shrink-0"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* <path fill-rule="evenodd" clip-rule="evenodd" d="M1096 1H0V0H1096V1Z" fill="#EAECF0" /> */}
+          <path fillRule="evenodd" clipRule="evenodd" d="M1096 1H0V0H1096V1Z" fill="#EAECF0" />
         </svg>
       </div>
       <div className="flex justify-start items-center absolute left-[916px] top-[52px] gap-4">
@@ -81,9 +80,9 @@ export default function Notifications(){
             <path
               d="M8.16699 17.5C7.93364 17.5 7.81696 17.5 7.72783 17.4546C7.64943 17.4146 7.58569 17.3509 7.54574 17.2725C7.50033 17.1834 7.50033 17.0667 7.50033 16.8333V8.33333H4.16699L10.0003 2.5L15.8337 8.33333H12.5003V16.8333C12.5003 17.0667 12.5003 17.1834 12.4549 17.2725C12.415 17.3509 12.3512 17.4146 12.2728 17.4546C12.1837 17.5 12.067 17.5 11.8337 17.5H8.16699Z"
               stroke="white"
-              // stroke-width="1.66667"
-              // stroke-linecap="round"
-              // stroke-linejoin="round"
+              strokeWidth="1.66667"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Upvote</p>
@@ -177,15 +176,15 @@ export default function Notifications(){
                 className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
                 preserveAspectRatio="xMidYMid meet"
               >
-                {/* <g clip-path="url(#clip0_699_83)">
+                <g clipPath="url(#clip0_699_83)">
                   <path
                     d="M6.66699 11.6667C6.66699 11.6667 7.91699 13.3333 10.0003 13.3333C12.0837 13.3333 13.3337 11.6667 13.3337 11.6667M12.5003 7.49999H12.5087M7.50033 7.49999H7.50866M18.3337 9.99999C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 9.99999C1.66699 5.39762 5.39795 1.66666 10.0003 1.66666C14.6027 1.66666 18.3337 5.39762 18.3337 9.99999ZM12.917 7.49999C12.917 7.73011 12.7304 7.91666 12.5003 7.91666C12.2702 7.91666 12.0837 7.73011 12.0837 7.49999C12.0837 7.26987 12.2702 7.08332 12.5003 7.08332C12.7304 7.08332 12.917 7.26987 12.917 7.49999ZM7.91699 7.49999C7.91699 7.73011 7.73044 7.91666 7.50033 7.91666C7.27021 7.91666 7.08366 7.73011 7.08366 7.49999C7.08366 7.26987 7.27021 7.08332 7.50033 7.08332C7.73044 7.08332 7.91699 7.26987 7.91699 7.49999Z"
                     stroke="#667085"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
-                </g> */}
+                </g>
                 <defs>
                   <clippath id="clip0_699_83">
                     <rect width={20} height={20} fill="white" />
@@ -206,23 +205,23 @@ export default function Notifications(){
                 <path
                   d="M9.99967 10.8333C10.4599 10.8333 10.833 10.4602 10.833 9.99999C10.833 9.53975 10.4599 9.16666 9.99967 9.16666C9.53944 9.16666 9.16634 9.53975 9.16634 9.99999C9.16634 10.4602 9.53944 10.8333 9.99967 10.8333Z"
                   stroke="#667085"
-                  // stroke-width="1.66667"
-                  // stroke-linecap="round"
-                  // stroke-linejoin="round"
+                  strokeWidth="1.66667"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M15.833 10.8333C16.2932 10.8333 16.6663 10.4602 16.6663 9.99999C16.6663 9.53975 16.2932 9.16666 15.833 9.16666C15.3728 9.16666 14.9997 9.53975 14.9997 9.99999C14.9997 10.4602 15.3728 10.8333 15.833 10.8333Z"
                   stroke="#667085"
-                  // stroke-width="1.66667"
-                  // stroke-linecap="round"
-                  // stroke-linejoin="round"
+                  strokeWidth="1.66667"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M4.16634 10.8333C4.62658 10.8333 4.99967 10.4602 4.99967 9.99999C4.99967 9.53975 4.62658 9.16666 4.16634 9.16666C3.7061 9.16666 3.33301 9.53975 3.33301 9.99999C3.33301 10.4602 3.7061 10.8333 4.16634 10.8333Z"
                   stroke="#667085"
-                  // stroke-width="1.66667"
-                  // stroke-linecap="round"
-                  // stroke-linejoin="round"
+                  strokeWidth="1.66667"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -260,7 +259,7 @@ export default function Notifications(){
                   height="39.25"
                   rx="19.625"
                   stroke="#101828"
-                  // stroke-width="0.75"
+                  strokeWidth="0.75"
                 />
               </g>
               <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
@@ -271,7 +270,7 @@ export default function Notifications(){
                 height="11.5"
                 rx="5.75"
                 stroke="white"
-                // stroke-width="1.5"
+                strokeWidth="1.5"
               />
              </svg>
             <div className="flex flex-col justify-start items-start flex-grow gap-1.5">
@@ -318,7 +317,7 @@ export default function Notifications(){
                   height="39.25"
                   rx="19.625"
                   stroke="#101828"
-                  // stroke-width="0.75"
+                  strokeWidth="0.75"
                 />
               </g>
               <rect x="29.25" y="29.25" width="11.5" height="11.5" rx="5.75" fill="#17B26A" />
@@ -329,7 +328,7 @@ export default function Notifications(){
                 height="11.5"
                 rx="5.75"
                 stroke="white"
-                // stroke-width="1.5"
+                strokeWidth="1.5"
               />
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow gap-1.5">
