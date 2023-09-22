@@ -16,7 +16,6 @@ import ChallengesList from './challengelist';
 import jobPostImage from './jobPostImage.png';
 import Pagination from '../pagination/pagination';
 
-
 export default function MyHeader() {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = React.useState('');
@@ -28,6 +27,34 @@ export default function MyHeader() {
 
   return (
     <div className="flex flex-col justify-start items-start relative gap-6">
+      <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
+        <div
+          className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-48 md:w-24  gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
+          style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+        >
+          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-xs font-medium text-left text-[#475467]">
+              Total Participants
+            </p>
+            <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+              <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">2,420</p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-48 md:w-24 gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
+          style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+        >
+          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-xs font-medium text-left text-[#475467]">
+              Total Ideas
+            </p>
+            <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+              <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">234</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]"
         style={{ backgroundImage: `url(${jobPostImage})`, src: { jobPostImage } }}
@@ -106,14 +133,11 @@ export default function MyHeader() {
         <div className="lg:w-2/5 md:w-full sm:w-full xs:w-full">
           <RankingCards />
         </div>
-
       </div>
-      
-      <div className='flex justify-center w-full mt-9'>
-      <Pagination/>
 
+      <div className="flex justify-center w-full mt-9">
+        <Pagination />
       </div>
     </div>
-    
   );
 }

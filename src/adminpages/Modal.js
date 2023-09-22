@@ -128,7 +128,7 @@ function App() {
           marginBottom: '0',
         }}
       >
-        + Add idea
+        + New Challenge
       </button>
 
       {showPopup && (

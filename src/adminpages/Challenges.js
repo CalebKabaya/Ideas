@@ -11,7 +11,8 @@ import { Grid, Container, Typography,Stack } from '@mui/material';
 
 // components
 import  MyHeader from '../sections/admin/challenges/header';
-import Modal from './ChallengeModal';
+import Modal from './Modal';
+
 
 
 export default function DashboardAppPage() {
@@ -34,9 +35,8 @@ export default function DashboardAppPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h6" gutterBottom>
-            Challenges
+            The Digital Transfomation Challenge
           </Typography>
-          <Modal isOpen={isModalOpen} onClose={closeModal}/>
            
         </Stack>
 
