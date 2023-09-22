@@ -8,12 +8,24 @@ import SearchIcon from '@mui/icons-material/Search';
 
 // components
 import ChallengesList from '../sections/admin/challenges/challengelist';
+import Modal from './Modal';
+
 
 export default function ChallengeListPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -30,8 +42,8 @@ export default function ChallengeListPage() {
         </Stack>
 
         <Stack>
-          <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 mb-7">
-            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5 w-full ">
+          <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 mb-7">
+            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5 w-5/6">
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">Search for Challenge </p>
               <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-3.5 py-2.5">
                 <TextField
@@ -51,6 +63,11 @@ export default function ChallengeListPage() {
                 />
               </div>
             </div>
+            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5 w-1/6 ">
+            <Modal isOpen={isModalOpen} onClose={closeModal}/>
+
+            </div>
+
           </div>
         </Stack>
         <ChallengesList />
