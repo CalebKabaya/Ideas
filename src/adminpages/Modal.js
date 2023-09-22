@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './modal.css';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import icon from './uploadicon.png';
 
 function App() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [ideaTitle, setIdeaTitle] = useState('');
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
   const [ideaDescription, setIdeaDescription] = useState('');
   const [potentialBenefits, setPotentialBenefits] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -126,6 +130,8 @@ function App() {
           alignItems: 'center' /* Center text vertically */,
           justifyContent: 'center' /* Center text horizontally */,
           marginBottom: '0',
+          marginTop: '45px',
+          whiteSpace: 'nowrap'
         }}
       >
         + New Challenge
@@ -133,12 +139,12 @@ function App() {
 
       {showPopup && (
         <div className="popup">
-          <div className="popup-header">Idea Details</div>
+          <div className="popup-header">Challenge Details</div>
           <div className="popup-content">
             <div className="form-container">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="ideaTitle">Enter your idea title:</label>
+                  <label htmlFor="ideaTitle">Enter your challenge title:</label>
                   <input
                     type="text"
                     id="ideaTitle"
@@ -152,11 +158,11 @@ function App() {
                   </span>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="ideaDescription">Give a description of the idea:</label>
+                  <label htmlFor="ideaDescription">Give a description of challenge:</label>
                   <textarea
                     id="ideaDescription"
                     name="ideaDescription"
-                    placeholder="Idea description"
+                    placeholder="Challenge description"
                     value={ideaDescription}
                     onChange={handleDescriptionChange}
                   />
@@ -164,39 +170,32 @@ function App() {
                     {descriptionCharCount} {descriptionCharCount === 1 ? 'character left' : 'characters left'}
                   </span>
                 </div>
+                
                 <div className="form-group">
-                  <label htmlFor="potentialBenefits">What are some of the potential benefits of your idea:</label>
-                  <textarea
-                    id="potentialBenefits"
-                    name="potentialBenefits"
-                    placeholder="Enter potential benefits"
-                    value={potentialBenefits}
-                    onChange={handleBenefitsChange}
-                  />
-                  <span className="char-count">
-                    {benefitsCharCount} {benefitsCharCount === 1 ? 'character left' : 'characters left'}
-                  </span>
+                  <label htmlFor="datePicker">Set time frame for idea submission:</label>
+                  <div className="date-picker-container">
+                    <div className="date-picker-field">
+                      <label htmlFor="fromDate">From:</label>
+                      <DatePicker
+                        id="fromDate"
+                        selected={fromDate}
+                        onChange={(date) => setFromDate(date)}
+                        dateFormat="MM/dd/yyyy"
+                      />
+                    </div>
+                    <div className="date-picker-field">
+                      <label htmlFor="toDate">To:</label>
+                      <DatePicker
+                        id="toDate"
+                        selected={toDate}
+                        onChange={(date) => setToDate(date)}
+                        dateFormat="MM/dd/yyyy"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="form-group">
-                  
-                  <label htmlFor={department}>What department/division would your idea serve:</label>
-
-                  <select
-                    id="department"
-                    name="department"
-                    value={selectedDepartment}
-                    onChange={handleDepartmentChange}
-                  >
-                    <option value="">Select Department</option>
-                    <option value="P&D">P&D</option>
-                    <option value="Asset management">Asset Management</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Customer support">Customer Support</option>
-                    <option value="Human resources">Human Resources</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="attachment">Any attachment?</label>
+                  <label htmlFor="attachment">Upload Image?</label>
                   <div className="upload-frame">
                     <label htmlFor="attachment" className="upload-label">
                       <img src={icon} alt="Upload Icon" width="48" height="48" />{' '}
@@ -217,14 +216,6 @@ function App() {
                       <div className="upload-progress">{uploadedFile && <p>Selected file: {uploadedFile.name}</p>}</div>
                     </label>
                   </div>
-                </div>
-
-                <div className="form-group">
-                  <div className="toggle-switch">
-                    <input type="checkbox" id="anonymous" name="anonymous" />
-                    <label htmlFor="anonymous">Anonymous</label>
-                  </div>
-                  <p className="toggle-description">By clicking this, your idea will be submitted anonymously.</p>
                 </div>
 
                 <div className="button-container">
