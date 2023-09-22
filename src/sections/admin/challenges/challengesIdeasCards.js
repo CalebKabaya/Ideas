@@ -39,7 +39,7 @@ export default function ChallengesCards() {
                 </div>
               </div>
             </div>
-            <Link to="/dashboard/single-idea">
+            <Link to="/dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -127,7 +127,7 @@ export default function ChallengesCards() {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -211,7 +211,7 @@ export default function ChallengesCards() {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -295,7 +295,7 @@ export default function ChallengesCards() {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
