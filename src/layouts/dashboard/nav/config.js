@@ -9,7 +9,7 @@ const navConfig = [
   {
     title: 'home',
     path: '/dashboard/app',
-    path1: '/dashboard/admin/app',
+    // path1: '/dashboard/admin/app',
     icon: icon('home-line'),
   },
   {
@@ -38,5 +38,29 @@ const navConfig = [
   //   icon: icon('ic_disabled'),
   // },
 ];
+
+export const adminNavConfig = [
+  {
+    title: 'home',
+    path: '/dashboard/admin/app',
+    // path1: '/dashboard/admin/app',
+    icon: icon('home-line'),
+  },
+  {
+    title: 'challenges',
+    path: '/dashboard/admin/challengeslist',
+    icon: icon('trophy-01'),
+  },
+  // {
+  //   title: 'support',
+  //   path: '/dashboard/products',
+  //   icon: icon('life-buoy-01'),
+  // },
+  {
+    title: 'settings',
+    path: '/dashboard/admin/settings',
+    icon: icon('settings-01'),
+  },
+]
 
 export default navConfig;
