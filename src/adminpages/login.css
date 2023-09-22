@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body {
+  font-family: 'Inter', sans-serif;
+  /* background-image: url(Background.jpg); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login--logo{
+  display: flex;
+  width: 27%;
+  margin-top: 20px;
+  
+}
+
+.welcome--text{
+
+color: var(--base-white, #FFF);
+text-align: center;
+/* Display xs/Semibold */
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: 32px; 
+margin-top: 15px;
+}
+
+.logindesc{
+  align-self: stretch;
+  color: #0086C9;
+text-align: center;
+/* Text md/Regular */
+font-family: Inter;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+
+}
+
+.form {
+  margin-top: 40px;
+}
+
+.wrapper form .input-box{
+  height: 30px;
+  width: 250px;
+  margin: 10px;
+
+}
+
+form .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 10px;
+  font-weight: 300;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.input-box input:focus,
+.input-box input:valid{
+  /* border-color: #0086C9;  */
+  
+}
+
+form .checker{
+  display: flex;
+  font-size: 10px;
+  color: #FFF;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+/* .input-box-button {
+  background-color: #0086C9 ; 
+} */
+.login--button{
+  display: flex-inline;
+  width: 93%;
+  text-align: center;
+  border-radius: 6px;
+  background-color: #0086C9;
+  border: none;
+  color: #FFF;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 0.4rem;
+  font-size: 12px;
+
+}
