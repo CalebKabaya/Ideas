@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Notifications } from "./terms&condition";
 import { Terms } from "./notification";
-import { IdeasHistory } from "./ideashistory";
 import { Profile } from "./profile";
 
 function CustomTabPanel(props) {
@@ -71,9 +70,8 @@ export default function BasicTabs() {
               },
             }}          >
             <Tab label="Profile" {...a11yProps(0)} />
-            <Tab label="Ideas History" {...a11yProps(1)} />
-            <Tab label="Notification" {...a11yProps(2)} />
-            <Tab label="Terms of Service" {...a11yProps(3)} />
+            <Tab label="Notification" {...a11yProps(1)} />
+            <Tab label="Terms of Service" {...a11yProps(2)} />
           </Tabs>
 
           
@@ -83,18 +81,14 @@ export default function BasicTabs() {
          <CustomTabPanel value={value} index={0}>
           <Profile />
         </CustomTabPanel>
-
-        <CustomTabPanel value={value} index={1}>
-          <IdeasHistory />
-        </CustomTabPanel>
         {/* Terms  */}
 
-        <CustomTabPanel value={value} index={2}>
+        <CustomTabPanel value={value} index={1}>
           <Terms />
         </CustomTabPanel>
 
         {/* Notification  */}
-        <CustomTabPanel value={value} index={3}>
+        <CustomTabPanel value={value} index={2}>
           <Notifications />
         </CustomTabPanel>
       </Box>
