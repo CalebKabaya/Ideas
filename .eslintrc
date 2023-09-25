@@ -26,7 +26,6 @@
   },
   "rules": {
     "no-new": 0,
-    
     "no-alert": 0,
     "no-shadow": 0,
     "no-console": 0,
@@ -65,7 +64,6 @@
     "react/function-component-definition": 0,
     "react/jsx-no-constructed-context-values": 0,
     "eslint-disable no-plusplus":0,
-
     "jsx-a11y/label-has-associated-control": [ 2, {
       "labelComponents": ["CustomLabel"],
       "labelAttributes": ["inputLabel"],
