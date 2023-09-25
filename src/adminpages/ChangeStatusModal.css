@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+/* Set the font-family for the entire document (or for specific elements as needed) */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.App {
+  
+  padding: none;
+  max-width: fit-content;
+  max-height: fit-content;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width:250px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-title {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 14px;
+  
+}
+
+
+
+.status {
+  margin-top: 40px;
+  text-align: left;
+}
+
+label {
+  display: block; /* Make the label appear on top of the dropdown */
+  margin-bottom: 5px;
+  font-size: 12px; /* Increase font size for the label */
+}
+
+.priority {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.priority label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  /* font-weight: bold; Make the label bold */
+  width: 100%; /* Make the label full-width */
+}
+
+
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+}
+
+/* Style the dropdown options */
+select option {
+  font-size: 12px; /* Adjust font size for options */
+  padding: 8px;
+}
+
+/* Style the dropdown when it's open */
+select:focus {
+  outline: none; /* Remove the default outline */
+  border-color: #007bff; /* Change border color when focused */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.6); /* Add a subtle box shadow when focused */
+}
+
+.reason {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.reason label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  width: 100%; /* Make the label full-width */
+}
+
+.reason textarea {
+  width: 95%; /* Make the textarea full-width */
+  padding: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+  height: 80px; /* Increase the text field height as needed */
+}
+
+/* Style the textarea when focused */
+.reason textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.6);
+}
+
+/* Add the styles for the "Submit" and "Cancel" buttons */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Move buttons to the right */
+  margin-top: 20px; /* Lower their position */
+}
+
+.submit-button,
+.cancel-button {
+  flex: 0; /* Remove flex property to make buttons their natural width */
+  padding: 8px 16px; /* Adjust padding to make buttons smaller */
+  margin-right: 10px; /* Add space between them */
+  border-radius: 4px; /* Add border radius */
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s ease-in-out; /* Add transition effect */
+  font-size: 14px; /* Adjust font size to make buttons smaller */
+}
+
+.submit-button {
+  background-color: #026AA2;
+  color: #fff;
+  border: none;
+}
+
+.cancel-button {
+  background-color: #fff;
+  color: #026AA2;
+  border: 1px solid #026AA2;
+}
+
+/* Add hover styles for buttons */
+.submit-button:hover,
+.cancel-button:hover {
+  opacity: 0.8;
+}
+
+/* .backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: none;
+  z-index: 1; 
+  backdrop-filter: blur(5px); 
+} */
+
+/* Add a class to show the backdrop when it's active */
+.backdrop.active {
+  display: block;
+}
+
+/* Style the modal container */
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  z-index: 2; /* Place the modal above the backdrop */
+}

@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Modal from './ChangestatusModal';
+
 import Avatar1 from './avartas/Avatar1.png';
 
 export default function SingleIdea() {
@@ -16,6 +18,16 @@ export default function SingleIdea() {
     console.log('Submitted Comment:', comment);
     // Reset the comment field
     setComment('');
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -145,12 +157,20 @@ export default function SingleIdea() {
                         High Priority
                       </p>
                     </div>
+
+
+
                   </div>
                 </div>
-                <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                {/* <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                   change status
-                </button>
+                </button> */}
+                <Modal isOpen={isModalOpen} onClose={closeModal}/>
+
+
+
               </div>
+
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-[52px]">
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                   <div
