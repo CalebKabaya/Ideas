@@ -56,42 +56,44 @@ export default function BasicTabs() {
 
   return (
     
-      <Box sx={{ width: "auto",display: 'grid'}}>
-        <Box sx={{display: 'grid', borderBottom: 1, borderColor: "divider"}}>
-          <Tabs
-           variant="scrollable"
-            className="tabs"
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            sx={{
-              '& .muitabs-flexcontainer': {
-                flexwrap: 'wrap',
-              },
-            }}          >
-            <Tab label="Profile" {...a11yProps(0)} />
-            <Tab label="Notification" {...a11yProps(1)} />
-            <Tab label="Terms of Service" {...a11yProps(2)} />
-          </Tabs>
+    <Box sx={{ width: 'auto',display: 'grid'}}>
+    <Box sx={{display: 'grid', borderBottom: 1, borderColor: "divider"}}>
+      <Tabs
+       variant="scrollable"
+        className="tabs"
+        value={value}
+        onChange={handleChange}
+        aria-label="basic tabs example"
+        sx={{
+          '& .muitabs-flexcontainer': {
+            flexwrap: 'wrap',
+          },
+        }}          >
+        <Tab label="Profile" {...a11yProps(0)} />
+        <Tab label="Notification" {...a11yProps(2)} />
+        <Tab label="Terms of Service" {...a11yProps(3)} />
+      </Tabs>
 
-          
-        </Box>
-         {/* Profile */}
+      
+    </Box>
+     {/* Profile */}
 
-         <CustomTabPanel value={value} index={0}>
-          <Profile />
-        </CustomTabPanel>
-        {/* Terms  */}
+     <CustomTabPanel value={value} index={0}>
+      <Profile />
+    </CustomTabPanel>
 
-        <CustomTabPanel value={value} index={1}>
-          <Terms />
-        </CustomTabPanel>
+    
+    {/* Terms  */}
 
-        {/* Notification  */}
-        <CustomTabPanel value={value} index={2}>
-          <Notifications />
-        </CustomTabPanel>
-      </Box>
+    <CustomTabPanel value={value} index={1}>
+      <Terms />
+    </CustomTabPanel>
+
+    {/* Notification  */}
+    <CustomTabPanel value={value} index={2}>
+      <Notifications />
+    </CustomTabPanel>
+  </Box>
       
   );
 }

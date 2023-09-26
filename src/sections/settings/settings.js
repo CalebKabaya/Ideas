@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { useCallback } from "react";
 import PropTypes from "prop-types";
@@ -57,7 +58,7 @@ export default function BasicTabs() {
 
   return (
     
-      <Box sx={{ width: "auto",display: 'grid'}}>
+      <Box sx={{ width: 'auto',display: 'grid'}}>
         <Box sx={{display: 'grid', borderBottom: 1, borderColor: "divider"}}>
           <Tabs
            variant="scrollable"
