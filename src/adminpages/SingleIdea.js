@@ -173,6 +173,7 @@ export default function SingleIdea() {
 
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-[52px]">
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <button>
                   <div
                     className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-[#0086c9] border border-[#0086c9]"
                     style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
@@ -196,6 +197,7 @@ export default function SingleIdea() {
                     </svg>
                     <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Upvote</p>
                   </div>
+                  </button>
                   <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">123</p>
                 </div>
                 <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 relative gap-5 ">

@@ -6,7 +6,7 @@ export const Notifications = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8 w-full overflow-hidden ">
+    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8 w-full overflow-hidden">
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6 px-8">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
           <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
@@ -19,7 +19,7 @@ export const Notifications = () => {
               </p>
             </div>
           </div>
-          <svg
+          {/* <svg
             height={1}
             viewBox="0 0 1096 1"
             fill="none"
@@ -28,7 +28,7 @@ export const Notifications = () => {
             preserveAspectRatio="none"
           >
             <path fillRule="evenodd" clipRule="evenodd" d="M1096 1H0V0H1096V1Z" fill="#EAECF0" />
-          </svg>
+          </svg> */}
         </div>
       </div>
 
@@ -38,7 +38,7 @@ export const Notifications = () => {
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-full">
               <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg text-left text-[#475467]">
-                  <span className="self-stretch flex-grow-0 flex-shrink-0 w-w-full text-sm text-left text-[#475467]">
+                  <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
                     Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi eleifend faucibus
                     eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam enim urna, etiam. Mauris posuere
                     vulputate arcu amet, vitae nisi, tellus tincidunt. At feugiat sapien varius id.

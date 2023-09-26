@@ -18,12 +18,12 @@ export default function BlogPage() {
         <title> Dashboard | Settings  </title>
       </Helmet>
 
-      <Container>
+      <Container >
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h6" gutterBottom>
             Settings
           </Typography>
-          {/* <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+          {/* <Stack direction="col" spacing={1} flexShrink={0} sx={{ my: 1 }}>
           <BasicTabs />
 
           </Stack> */}

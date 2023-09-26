@@ -1,3 +1,4 @@
+
 import { useCallback } from 'react';
 
 
@@ -10,7 +11,7 @@ export const Notifications = () => {
   );
 
   return (
-    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
+    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8 ">
   <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6 px-8">
     <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
       <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
@@ -24,7 +25,7 @@ export const Notifications = () => {
           </p>
         </div>
       </div>
-      <svg
+      {/* <svg
         height={1}
         viewBox="0 0 1096 1"
         fill="none"
@@ -33,7 +34,7 @@ export const Notifications = () => {
         preserveAspectRatio="none"
       >
         <path fillRule="evenodd" clipRule="evenodd" d="M1096 1H0V0H1096V1Z" fill="#EAECF0" />
-      </svg>
+      </svg> */}
     </div>
   </div>
   
@@ -43,7 +44,7 @@ export const Notifications = () => {
         <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-full">
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg text-left text-[#475467]">
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-w-full text-sm text-left text-[#475467]">
+              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
                 Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi
                 eleifend faucibus eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam
                 enim urna, etiam. Mauris posuere vulputate arcu amet, vitae nisi, tellus tincidunt.
@@ -164,51 +165,9 @@ export const Notifications = () => {
               Maecenas est morbi mattis id in ac pellentesque ac.
             </p>
           </div>
-          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-full h-10" />
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-md font-semibold text-left text-[#101828]">
-              What are your privacy rights?
-            </p>
-            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-full h-5" />
-          </div>
-          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-              Pharetra morbi libero id aliquam elit massa integer tellus. Quis felis aliquam
-              ullamcorper porttitor. Pulvinar ullamcorper sit dictumst ut eget a, elementum eu.
-              Maecenas est morbi mattis id in ac pellentesque ac.
-            </p>
-          </div>
-          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-full h-8" />
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-md font-semibold text-left text-[#101828]">
-              How can you contact us about this policy?
-            </p>
-            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-full h-4" />
-          </div>
-          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-lg text-left text-[#475467]">
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-                Sagittis et eu at elementum, quis in. Proin praesent volutpat egestas sociis sit
-                lorem nunc nunc sit. Eget diam curabitur mi ac. Auctor rutrum lacus malesuada massa
-                ornare et. Vulputate consectetur ac ultrices at diam dui eget fringilla tincidunt.
-                Arcu sit dignissim massa erat cursus vulputate gravida id. Sed quis auctor vulputate
-                hac elementum gravida cursus dis.
-              </span>
-              <br />
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-                Lectus id duis vitae porttitor enim gravida morbi.
-              </span>
-              <br />
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-                Eu turpis posuere semper feugiat volutpat elit, ultrices suspendisse. Auctor vel in
-                vitae placerat.
-              </span>
-              <br />
-              <span className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-                Suspendisse maecenas ac donec scelerisque diam sed est duis purus.
-              </span>
-            </p>
-          </div>
+         
+          
+          
         </div>
       </div>
     </div>

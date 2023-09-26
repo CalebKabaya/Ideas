@@ -59,9 +59,9 @@ export const IdeasHistory = () => {
                     label="Select Status "
                     onChange={handleChange}
                   >
-                    <MenuItem value={10}>Pending</MenuItem>
-                    <MenuItem value={20}>Aprroved</MenuItem>
-                    <MenuItem value={30}>Declined</MenuItem>
+                    <MenuItem value={"Pending"}>Pending</MenuItem>
+                    <MenuItem value={"Aproved"}>Aproved</MenuItem>
+                    <MenuItem value={"Declined"}>Declined</MenuItem>
                   </Select>
                 </FormControl>
               </div>
@@ -81,9 +81,9 @@ export const IdeasHistory = () => {
                     label="Select Department "
                     onChange={handleChange}
                   >
-                    <MenuItem value={10}>IT</MenuItem>
-                    <MenuItem value={20}>P&D</MenuItem>
-                    <MenuItem value={30}>Life Insuarance</MenuItem>
+                    <MenuItem value={"IT"}>IT</MenuItem>
+                    <MenuItem value={"P&D"}>P&D</MenuItem>
+                    <MenuItem value={"Life Insurance"}>Life Insuarance</MenuItem>
                   </Select>
                 </FormControl>
               </div>
