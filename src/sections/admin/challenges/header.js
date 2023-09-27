@@ -26,7 +26,7 @@ export default function MyHeader() {
   };
 
   return (
-    <div className="flex flex-col justify-start items-start relative gap-6">
+    <div className="flex flex-col justify-start items-start relative gap-6 ">
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
         <div
           className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-48 md:w-24  gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
