@@ -104,35 +104,36 @@ export default function SingleIdea() {
                     </div>
                   </div>
                 </div>
+
                 <Modal isOpen={isModalOpen} onClose={closeModal}/>
               </div>
 
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-[52px]">
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                   <button>
-                  <div
-                    className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-[#0086c9] border border-[#0086c9]"
-                    style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-                  >
-                    <svg
-                      width={20}
-                      height={20}
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                      preserveAspectRatio="xMidYMid meet"
+                    <div
+                      className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-[#0086c9] border border-[#0086c9]"
+                      style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                     >
-                      <path
-                        d="M8.16675 17.5C7.93339 17.5 7.81671 17.5 7.72759 17.4546C7.64918 17.4146 7.58544 17.3509 7.5455 17.2725C7.50008 17.1834 7.50008 17.0667 7.50008 16.8333V8.33333H4.16675L10.0001 2.5L15.8334 8.33333H12.5001V16.8333C12.5001 17.0667 12.5001 17.1834 12.4547 17.2725C12.4147 17.3509 12.351 17.4146 12.2726 17.4546C12.1834 17.5 12.0668 17.5 11.8334 17.5H8.16675Z"
-                        stroke="white"
-                        strokeWidth="1.66667"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Upvote</p>
-                  </div>
+                      <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <path
+                          d="M8.16675 17.5C7.93339 17.5 7.81671 17.5 7.72759 17.4546C7.64918 17.4146 7.58544 17.3509 7.5455 17.2725C7.50008 17.1834 7.50008 17.0667 7.50008 16.8333V8.33333H4.16675L10.0001 2.5L15.8334 8.33333H12.5001V16.8333C12.5001 17.0667 12.5001 17.1834 12.4547 17.2725C12.4147 17.3509 12.351 17.4146 12.2726 17.4546C12.1834 17.5 12.0668 17.5 11.8334 17.5H8.16675Z"
+                          stroke="white"
+                          strokeWidth="1.66667"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Upvote</p>
+                    </div>
                   </button>
                   <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">123</p>
                 </div>
