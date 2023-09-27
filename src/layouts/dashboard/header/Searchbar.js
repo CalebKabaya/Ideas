@@ -66,9 +66,16 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
-            <Button variant="contained" onClick={handleClose}>
-              Search
-            </Button>
+            <Button
+  variant="contained"
+  onClick={handleClose}
+  style={{
+    backgroundColor: '#0086C9',
+    color: 'white',
+  }}
+>
+  Search
+</Button>
           </StyledSearchbar>
         </Slide>
       </div>

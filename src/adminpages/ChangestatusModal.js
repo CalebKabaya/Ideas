@@ -41,7 +41,7 @@ function Modal() {
     backgroundColor: 'white', /* Initial background color */
     color: '#0086C9', /* Initial text color */
     border: '2px solid #0086C9', /* Border color and width */
-    borderRadius: '3px', /* Set border radius to 3px */
+    borderRadius: '0px', /* Set border radius to 3px */
     cursor: 'pointer',
     outline: 'none', /* Remove button outline on focus */
     fontFamily: 'Inter, sans-serif', /* Use the Inter font */
@@ -75,7 +75,7 @@ function IdeaModal({ closeModal }) {
   const [reason, setReason] = useState('');
   const [priority, setPriority] = useState('Low Priority');
 
-  const statusOptions = ['New Idea', 'Approved', 'Declined'];
+  const statusOptions = ['Approved', 'Declined'];
   const priorityOptions = ['Low Priority', 'High Priority'];
 
   const handleStatusChange = (event) => {
