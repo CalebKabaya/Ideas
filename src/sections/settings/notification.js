@@ -15,7 +15,7 @@ export const Terms = () => {
   };
 
   return (
-    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6">
+    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6  w-full overflow-hidden">
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6 px-8">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-5">
           <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 // import Avatar1 from './sections/admin/singleidea/Avatar1';
 
 
-export default function SingleIdea() {
+export default function SingleAdminIdea() {
 
   const [comment, setComment] = useState('');
 

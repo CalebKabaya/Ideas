@@ -13,7 +13,7 @@ import jobPostImage from "./jobPostImage.png"
 
 // import { makeStyles } from "@material-ui/core/styles";
 
-export const IdeasHistory = () => {
+export const AdminIdeasHistory = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = React.useState("");
   const [department, setDepartment] = React.useState("");
@@ -27,15 +27,12 @@ export const IdeasHistory = () => {
 
   const handleClick = () => {
     // Use the navigate function to navigate to another page
-    navigate("/dashboard/single-idea"); // Specify the path to the other page
+    navigate("/admin/single-idea"); // Specify the path to the other page
   };
 
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
-    <div className="flex-grow-0 flex-shrink-0 w-full h-[196px] rounded-2xl bg-cover bg-no-repeat bg-center border border-[#eaecf0]" 
-            style={{ backgroundImage: `url(${jobPostImage})`, src: {jobPostImage} }} 
-          />
       <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 p-5 rounded-xl bg-gray-50">
 
         <div className="flex flex-col sm:flex-row justify-start items-center flex-grow gap-3">
@@ -117,7 +114,6 @@ export const IdeasHistory = () => {
         </div>
       </div>
         {/* idea card */}
-
         
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
@@ -156,7 +152,7 @@ export const IdeasHistory = () => {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -246,7 +242,7 @@ export const IdeasHistory = () => {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="dashboard/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -334,7 +330,7 @@ export const IdeasHistory = () => {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -422,7 +418,7 @@ export const IdeasHistory = () => {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg
@@ -510,7 +506,7 @@ export const IdeasHistory = () => {
               </div>
             </div>
 
-            <Link to="/dashboard/single-idea">
+            <Link to="/admin/single-idea">
               <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
                 <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                 <svg

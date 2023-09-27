@@ -4,7 +4,7 @@ import { Container, Stack, Typography } from '@mui/material';
 // components
 // mock
 // import BasicTabs from '../../src/sections/settings/settings';
-import BasicTabs from '../sections/settings/settings';
+import BasicTabs from '../sections/admin/settings/settings';
 
 
 
