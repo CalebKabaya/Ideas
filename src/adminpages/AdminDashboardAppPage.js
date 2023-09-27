@@ -17,8 +17,9 @@ import Iconify from '../components/iconify';
 
 // sections
 import { AdminUnreviewedIdeas } from '../sections/admin/app/AdminUnreviewedIdeas';
-import { AdminReviewedIdeas } from '../sections/admin/app/AdminReviewedIdeas';
+// import { AdminReviewedIdeas } from '../sections/admin/app/AdminReviewedIdeas';
 import { AdminIdeasUnderImplementation } from '../sections/admin/app/AdminIdeasUnderImplementation';
+import BasicTabs  from '../sections/admin/reviewed/Reviewed';
 
 
 
@@ -199,7 +200,7 @@ export default function AdminDashboardAppPage() {
         <AdminUnreviewedIdeas />
       </TabPanel>
       <TabPanel className="w-full font-sans text-sm" value={2}>
-        <AdminReviewedIdeas />
+        <BasicTabs />
       </TabPanel>
       <TabPanel className="w-full font-sans text-sm" value={3}>
         <AdminIdeasUnderImplementation />
