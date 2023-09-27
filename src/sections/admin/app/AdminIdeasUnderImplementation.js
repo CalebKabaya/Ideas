@@ -33,9 +33,9 @@ export const AdminIdeasUnderImplementation = () => {
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
-      <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 p-5 rounded-xl bg-gray-50">
+      {/* <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-4 p-5 rounded-xl bg-gray-50"> */}
 
-        <div className="flex flex-col sm:flex-row justify-start items-center flex-grow gap-3">
+        {/* <div className="flex flex-col sm:flex-row justify-start items-center flex-grow gap-3">
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0  gap-2">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5 w-full ">
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">
@@ -58,8 +58,8 @@ export const AdminIdeasUnderImplementation = () => {
                 />
               </div>
             </div>
-          </div>
-
+          </div> */}
+{/* 
           <div className="flex flex-col justify-start items-start flex-grow gap-2 w-full">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">
@@ -84,9 +84,9 @@ export const AdminIdeasUnderImplementation = () => {
                 </FormControl>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="flex flex-col justify-start items-start flex-grow  w-full gap-2">
+          {/* <div className="flex flex-col justify-start items-start flex-grow  w-full gap-2">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#344054]">
                 Category
@@ -112,7 +112,7 @@ export const AdminIdeasUnderImplementation = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
         {/* idea card */}
         
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600">
