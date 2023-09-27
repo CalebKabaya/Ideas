@@ -145,17 +145,17 @@ export default function AdminDashboardAppPage() {
 
         <Grid item xs={12} md={6} lg={8}>
      <Tabs defaultValue={1}>
-      <TabsList className="mb-4 rounded-xl bg-purple-500 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
+      <TabsList className="w-[359] h-[116] p-6 mb-4 rounded-xl bg-gray-300 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
               className: `font-sans ${
                 selected
-                  ? 'text-purple-500 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
+                  ? 'text-black-600 bg-white'
+                  : 'text-white bg-transparent focus:text-white hover:bg-gray-100'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-6 m-0 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={1}
@@ -167,11 +167,11 @@ export default function AdminDashboardAppPage() {
             root: ({ selected, disabled }) => ({
               className: `font-sans ${
                 selected
-                  ? 'text-purple-500 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
+                  ? 'text-black-600 bg-white'
+                  : 'text-white bg-transparent focus:text-white hover:bg-blue-400'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={2}
@@ -183,11 +183,11 @@ export default function AdminDashboardAppPage() {
             root: ({ selected, disabled }) => ({
               className: `font-sans ${
                 selected
-                  ? 'text-purple-500 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-purple-400'
+                  ? 'text-black-600 bg-white'
+                  : 'text-white bg-transparent focus:text-white hover:bg-blue-400'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-2 m-1.5 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={3}
