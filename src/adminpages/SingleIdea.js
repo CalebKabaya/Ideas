@@ -54,68 +54,13 @@ export default function SingleIdea() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <Link to="/dashboard/admin/challenges">
+                <Link to="/dashboard/admin/app">
                   <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#0086c9]">
                     Back to all ideas
                   </p>
                 </Link>
               </div>
             </div>
-
-            {/* <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[13px] w-full md:w-full sm:w-full">
-              <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse lg:justify-between  md:justify-between sm:justify-between  xs:justify-left items-center flex-grow-0 flex-shrink-0 relative w-full gap-[19px]">
-                <div className="flex justify-start items-start text-left flex-grow-0 flex-shrink-0 relative gap-[13px]">
-                  <p className="flex-grow-0 text-left flex-shrink-0  text-lg font-semibold  text-[#101828]">
-                    Ticket automation
-                  </p>
-                </div>
-                <div className="flex flex-row justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[59px]">
-                  <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                    <div
-                      className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-[#0086c9] border border-[#0086c9]"
-                      style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-                    >
-                      <svg
-                        width={20}
-                        height={20}
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        <path
-                          d="M8.16699 17.5C7.93364 17.5 7.81696 17.5 7.72783 17.4546C7.64943 17.4146 7.58569 17.3509 7.54574 17.2725C7.50033 17.1834 7.50033 17.0667 7.50033 16.8333V8.33333H4.16699L10.0003 2.5L15.8337 8.33333H12.5003V16.8333C12.5003 17.0667 12.5003 17.1834 12.4549 17.2725C12.415 17.3509 12.3512 17.4146 12.2728 17.4546C12.1837 17.5 12.067 17.5 11.8337 17.5H8.16699Z"
-                          stroke="white"
-                          strokeWidth="1.66667"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Upvote</p>
-                    </div>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">123</p>
-                  </div>
-                  <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4 w-full">
-                    <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-14 relative rounded-[200px] bg-[#e0e0e0]">
-                      <div className="self-stretch flex-grow h-14 relative opacity-[0.08] overflow-hidden rounded-[200px] border-[0.75px] border-[#101828]" />
-                    </div>
-                    <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 relative gap-5 ">
-                      <div className="flex">
-                        <img className="w-10 h-10 rounded-full" src={Avatar1} alt="Jese" />
-                      </div>
-                      <div className="flex flex-col">
-                        <p className="flex-grow-0 flex-shrink-0 text-xs font-semibold text-left text-[#101828]">
-                          James Maina
-                        </p>
-                        <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">20 Jan 2024</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
             <div className="flex lg:flex-row md:flex-row sm:flex-col xs:flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative gap-[80px] w-full md:w-full sm:w-full xs:w-full">
               <div className="flex lg:flex-row md:flex-row sm:flex-row xs:flex-row  justify-start items-center flex-grow-0 flex-shrink-0 gap-[15px]">
                 <div className="flex lg:flex-row justify-start items-center flex-grow-0 flex-shrink-0 gap-4">
@@ -157,18 +102,9 @@ export default function SingleIdea() {
                         High Priority
                       </p>
                     </div>
-
-
-
                   </div>
                 </div>
-                {/* <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                  change status
-                </button> */}
                 <Modal isOpen={isModalOpen} onClose={closeModal}/>
-
-
-
               </div>
 
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-[52px]">
@@ -276,20 +212,6 @@ export default function SingleIdea() {
             </div>
           </div>
           <form className="flex flex-col w-full">
-            {/* <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
-              <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
-                <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
-                 
-                      <input
-                        type="text"
-                        id="first_name"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John"
-                        required
-                      />
-                </div>
-              </div>
-            </div> */}
 
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
               <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
@@ -306,27 +228,6 @@ export default function SingleIdea() {
                 </div>
               </div>
             </div>
-
-            {/* <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
-            <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
-              <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
-                <div
-                  className="flex justify-start items-start self-stretch flex-grow relative overflow-hidden gap-2 px-3.5 py-3 rounded-lg bg-white border border-[#d0d5dd]"
-                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-                >
-                  <p className="self-stretch flex-grow w-full h-[50px] text-sm text-left text-[#667085]">
-                    Send a message
-                  </p>
-                  <div>
-            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-            <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required/>
-        </div>
-
-                </div>
-              </div>
-            </div>
-
-          </div> */}
 
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
               <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">

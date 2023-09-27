@@ -15,7 +15,7 @@ import AdminSingleIdea from './adminpages/SingleIdea';
 import AdminSettings from './adminpages/Settings';
 import AdminChallenges from './adminpages/Challenges';
 // import AdminPage404 from './pages/Page404';
-import AdminDashboardAppPage from './adminpages/DashboardAppPage';
+import AdminDashboardAppPage from './adminpages/AdminDashboardAppPage';
 import AdminChallengeListPage from './adminpages/ChallengesList';
 
 // ----------------------------------------------------------------------
@@ -41,7 +41,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/admin/app" />, index: true },
-        { path: 'admin/app', element: <DashboardAppPage /> },
+        { path: 'admin/app', element: <AdminDashboardAppPage /> },
         { path: 'admin/single-idea', element: <AdminSingleIdea /> },
         { path: 'admin/challenges', element: <AdminChallenges /> },
         // { path: 'products', element: <ProductsPage /> },
