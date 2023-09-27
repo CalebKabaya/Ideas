@@ -237,13 +237,13 @@
   }
   
   ::-webkit-scrollbar {
-    width: 5px; /* Set the width of the scrollbar */
+    width: 5px; 
   }
   
-  /* Thumb (the draggable part of the scrollbar) */
+  
   ::-webkit-scrollbar-thumb {
-    background: #0086C9; /* Set the background color of the thumb */
-    border-radius: 5px; /* Rounded corners for the thumb */
+    background: #0086C9;
+    border-radius: 5px; 
   }
   
   @media (max-width: 768px) {

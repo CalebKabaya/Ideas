@@ -65,13 +65,13 @@
     "react/jsx-no-constructed-context-values": 0,
     "eslint-disable no-plusplus":0,
     "jsx-a11y/label-has-associated-control": [ 2, {
-      "labelComponents": ["CustomLabel"],
+     "labelComponents": ["CustomLabel"],
       "labelAttributes": ["inputLabel"],
       "controlComponents": ["CustomInput"],
       "assert": "both",
       "depth": 3
     }],
-    "no-unused-vars": [
+   "no-unused-vars": [
       1,
       {
         "ignoreRestSiblings": false

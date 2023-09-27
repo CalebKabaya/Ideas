@@ -138,25 +138,48 @@ export default function AdminDashboardAppPage() {
             </Typography>
 
             <Button
-            type="submit"
-            cursor="pointer"
-            >Dowload All</Button>
+  type="submit"
+  cursor="pointer"
+  className="bg-white text-black border border-solid border-[#D0D5DD] flex items-center px-4 py-2 rounded text-sm font-normal transition duration-300 hover:bg-[#0086C9] hover:border-[#0086C9] hover:text-white"
+>
+<svg
+    className="w-5 h-5 mr-2"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+    />
+  </svg>
+  Download All
+</Button>
+
+
+
+
+
+
           </Stack>
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
      <Tabs defaultValue={1}>
-      <TabsList className="w-[359] h-[116] p-6 mb-4 rounded-xl bg-gray-300 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
+      <TabsList className="w-[359] h-[62] p-2 gap-4 mb-4 rounded-xl bg-[#0086C9] flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
               className: `font-sans ${
                 selected
                   ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-gray-100'
+                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-6 m-0 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+              } text-sm font-bold w-full p-6 m-0 gap-1.0 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
             }),
           }}
           value={1}
@@ -169,7 +192,7 @@ export default function AdminDashboardAppPage() {
               className: `font-sans ${
                 selected
                   ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-blue-400'
+                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
               } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
@@ -185,7 +208,7 @@ export default function AdminDashboardAppPage() {
               className: `font-sans ${
                 selected
                   ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-blue-400'
+                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
               } ${
                 disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
               } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,

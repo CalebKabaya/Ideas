@@ -124,13 +124,13 @@ function App() {
           outline: 'none' /* Remove button outline on focus */,
           fontFamily: 'Inter, sans-serif' /* Use the Inter font */,
           fontSize: '14px' /* Set font size to 12px */,
-          marginLeft: '10px' /* Add margin between buttons */,
+          marginLeft: '0px' /* Add margin between buttons */,
           height: '35px' /* Set button height */,
           display: 'flex',
           alignItems: 'center' /* Center text vertically */,
           justifyContent: 'center' /* Center text horizontally */,
           marginBottom: '0',
-          marginTop: '45px',
+          // marginTop: '45px',
           whiteSpace: 'nowrap'
         }}
       >
