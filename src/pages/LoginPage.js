@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container, Paper, Typography, TextField, Button, Link, FormControlLabel, Checkbox } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
 import bgImage from './Background.jpg';
 import logoImage from './logo2-removebg-preview.png';
+// import  './extentionsfunctions.js';
+import { authentication } from './extentionsfunctions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +65,7 @@ function LoginForm() {
   const classes = useStyles();
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const [accessToken, setAccessToken] = useState();
 
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
@@ -70,10 +73,25 @@ function LoginForm() {
 
   const handleSignIn = () => {
     // Add your authentication logic here
-    // For demonstration purposes, let's assume authentication is successful
-    // and navigate to the Dashboard component.
     navigate('/Dashboard'); // Navigate to the Dashboard component
   };
+
+  useEffect(() => {
+    const getAccessToken = async () => {
+      try {
+        const res = await authentication();
+        setAccessToken(res);
+      } catch (error) {
+        console.error('Error while getting access token:', error);
+      }
+    };
+    getAccessToken();
+  }, [authentication]); // Add dependencies if necessary
+
+  if (accessToken == null) {
+    return 'loading';
+  }
+  console.log('Data', accessToken?.access_token);
 
   return (
     <div className={classes.root}>
