@@ -9,6 +9,9 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
 import CountUp from 'react-countup';
 
+// Import your authentication context or state management here
+// import { AuthContext } from './AuthContext';
+
 // components
 import Iconify from '../components/iconify';
 
@@ -42,6 +45,7 @@ export default function AdminDashboardAppPage() {
     // Your authentication logic here
     setIsAuthenticated(/* your authentication check result */);
   }, []);
+
 
   return (
     <>
@@ -130,106 +134,91 @@ export default function AdminDashboardAppPage() {
 
         <Grid item xs={12} md={6} lg={8}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-
             <Typography variant="h5" gutterBottom>
               Ideas Progress
             </Typography>
 
             <Button
-  type="submit"
-  cursor="pointer"
-  className="bg-white text-black border border-solid border-[#D0D5DD] flex items-center px-4 py-2 rounded text-sm font-normal transition duration-300 hover:bg-[#0086C9] hover:border-[#0086C9] hover:text-white"
->
-<svg
-    className="w-5 h-5 mr-2"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-    />
-  </svg>
-  Download All
-</Button>
-
-
-
-
-
-
+              type="submit"
+              cursor="pointer"
+              className="bg-white text-black border border-solid border-[#D0D5DD] flex items-center px-4 py-2 rounded text-sm font-normal transition duration-300 hover:bg-[#0086C9] hover:border-[#0086C9] hover:text-white"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+              Download All
+            </Button>
           </Stack>
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
-     <Tabs defaultValue={1}>
-      <TabsList className="w-[359] h-[62] p-2 gap-4 mb-4 rounded-xl bg-[#0086C9] flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
-        <Tab
-          slotProps={{
-            root: ({ selected, disabled }) => ({
-              className: `font-sans ${
-                selected
-                  ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
-              } ${
-                disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-6 m-0 gap-1.0 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
-            }),
-          }}
-          value={1}
-        >
-          Unreviewed Ideas
-        </Tab>
-        <Tab
-          slotProps={{
-            root: ({ selected, disabled }) => ({
-              className: `font-sans ${
-                selected
-                  ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
-              } ${
-                disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
-            }),
-          }}
-          value={2}
-        >
-          Reviewed Ideas
-        </Tab>
-        <Tab
-          slotProps={{
-            root: ({ selected, disabled }) => ({
-              className: `font-sans ${
-                selected
-                  ? 'text-black-600 bg-white'
-                  : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
-              } ${
-                disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
-              } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
-            }),
-          }}
-          value={3}
-        >
-          Under Implementation
-        </Tab>
-      </TabsList>
-      <TabPanel className="w-full font-sans text-sm" value={1}>
-        <AdminUnreviewedIdeas />
-      </TabPanel>
-      <TabPanel className="w-full font-sans text-sm" value={2}>
-        <BasicTabs />
-      </TabPanel>
-      <TabPanel className="w-full font-sans text-sm" value={3}>
-        <AdminIdeasUnderImplementation />
-      </TabPanel>
-    </Tabs>
-
-
-
+          <Tabs defaultValue={1}>
+            <TabsList className="w-[359] h-[10] p-2 lg:gap-4 md:gap-4 xs:gap-1 mb-4 rounded-xl bg-[#0086C9] flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
+              <Tab
+                slotProps={{
+                  root: ({ selected, disabled }) => ({
+                    className: `font-sans ${
+                      selected
+                        ? 'text-black-600 bg-white'
+                        : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
+                    } ${
+                      disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    } text-sm font-bold w-full p-6 m-0 gap-1.0 border-0 rounded-lg flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+                  }),
+                }}
+                value={1}
+              >
+                Unreviewed Ideas
+              </Tab>
+              <Tab
+                slotProps={{
+                  root: ({ selected, disabled }) => ({
+                    className: `font-sans ${
+                      selected
+                        ? 'text-black-600 bg-white'
+                        : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
+                    } ${
+                      disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+                  }),
+                }}
+                value={2}
+              >
+                Reviewed Ideas
+              </Tab>
+              <Tab
+                slotProps={{
+                  root: ({ selected, disabled }) => ({
+                    className: `font-sans ${
+                      selected
+                        ? 'text-black-600 bg-white'
+                        : 'text-white bg-transparent focus:text-white hover:bg-gray-300 hover:text-[#0086C9]'
+                    } ${
+                      disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    } text-sm font-bold w-full p-6 m-0 border-0 rounded-md flex justify-center focus:outline-0 focus:shadow-outline-purple-light`,
+                  }),
+                }}
+                value={3}
+              >
+                Under Implementation
+              </Tab>
+            </TabsList>
+            <TabPanel className="w-full font-sans text-sm" value={1}>
+              <AdminUnreviewedIdeas />
+            </TabPanel>
+            <TabPanel className="w-full font-sans text-sm" value={2}>
+              <BasicTabs />
+            </TabPanel>
+            <TabPanel className="w-full font-sans text-sm" value={3}>
+              <AdminIdeasUnderImplementation />
+            </TabPanel>
+          </Tabs>
         </Grid>
 
         {/* <Grid item xs={12} md={6} lg={8}>
