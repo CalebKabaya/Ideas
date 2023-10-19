@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button } from '@mui/material';
@@ -7,30 +7,22 @@ import { Tab } from '@mui/base/Tab';
 import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
-
-
-// Import your authentication context or state management here
-// import { AuthContext } from './AuthContext';
+import CountUp from 'react-countup';
 
 // components
 import Iconify from '../components/iconify';
 
 // sections
 import { AdminUnreviewedIdeas } from '../sections/admin/app/AdminUnreviewedIdeas';
-// import { AdminReviewedIdeas } from '../sections/admin/app/AdminReviewedIdeas';
 import { AdminIdeasUnderImplementation } from '../sections/admin/app/AdminIdeasUnderImplementation';
-import BasicTabs  from '../sections/admin/reviewed/Reviewed';
+import BasicTabs from '../sections/admin/reviewed/Reviewed';
 
-
-
-// Define a PrivateRoute component
 const PrivateRoute = ({ isAuthenticated, ...rest }) => {
-  const navigate = useNavigate(); // Use useNavigate for routing
+  const navigate = useNavigate();
 
-  // Check authentication status
   if (!isAuthenticated) {
-    navigate('/adminpages/login'); // Redirect to the login page
-    return null; // Return null to prevent rendering
+    navigate('/adminpages/login');
+    return null;
   }
 
   return <Outlet />;
@@ -38,12 +30,18 @@ const PrivateRoute = ({ isAuthenticated, ...rest }) => {
 
 export default function AdminDashboardAppPage() {
   const theme = useTheme();
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Replace with your authentication logic
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
     setToggleState(index);
-}
+  };
+
+  // Use useEffect to trigger the animation when the component mounts
+  useEffect(() => {
+    // Your authentication logic here
+    setIsAuthenticated(/* your authentication check result */);
+  }, []);
 
   return (
     <>
@@ -52,17 +50,17 @@ export default function AdminDashboardAppPage() {
       </Helmet>
 
       <Container maxWidth="xl">
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} >
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h3" gutterBottom>
             Overview
           </Typography>
-        </Stack> 
+        </Stack>
 
         <Grid item xs={12} md={6} lg={8}>
-        <Stack alignItems="center" justifyContent="space-between" mb={5} ml={0} >
+          <Stack alignItems="center" justifyContent="space-between" mb={5} ml={0}>
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-8">
               <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-12  gap-5 p-6 rounded-xl bg-gray-200 border border-[#eaecf0]"
+                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-12  gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
@@ -70,12 +68,12 @@ export default function AdminDashboardAppPage() {
                     Total Users
                   </p>
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-                    <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">2,420</p>
+                    <CountUp end={2420} duration={2} separator="," className="flex-grow w-full text-xl font-semibold text-left text-[#101828]" />
                   </div>
                 </div>
               </div>
               <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-24 gap-5 p-6 rounded-xl bg-gray-200 border border-[#eaecf0]"
+                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-24 gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
@@ -83,12 +81,12 @@ export default function AdminDashboardAppPage() {
                     Total Ideas
                   </p>
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-                    <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">234</p>
+                    <CountUp end={234} duration={2} separator="," className="flex-grow w-full text-xl font-semibold text-left text-[#101828]" />
                   </div>
                 </div>
               </div>
               <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-40 md:w-24 gap-5 p-6 rounded-xl bg-gray-200 border border-[#eaecf0]"
+                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-40 md:w-24 gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
@@ -96,25 +94,25 @@ export default function AdminDashboardAppPage() {
                     Pending Review
                   </p>
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-                    <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">63</p>
+                    <CountUp end={63} duration={2} separator="," className="flex-grow w-full text-xl font-semibold text-left text-[#101828]" />
                   </div>
                 </div>
               </div>
               <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-40 md:w-24 gap-5 p-6 rounded-xl bg-gray-200 border border-[#eaecf0]"
+                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-40 md:w-24 gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-xs font-medium text-left text-[#475467]">
-                    Aprroved Ideas
+                    Approved Ideas
                   </p>
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-                    <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">122</p>
+                    <CountUp end={122} duration={2} separator="," className="flex-grow w-full text-xl font-semibold text-left text-[#101828]" />
                   </div>
                 </div>
               </div>
               <div
-                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-24 gap-5 p-6 rounded-xl bg-gray-200 border border-[#eaecf0]"
+                className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 lg:w-32 md:w-24 gap-5 p-6 rounded-xl bg-white border border-[#eaecf0]"
                 style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
               >
                 <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
@@ -122,12 +120,12 @@ export default function AdminDashboardAppPage() {
                     Total Ideas
                   </p>
                   <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-                    <p className="flex-grow w-full text-xl font-semibold text-left text-[#101828]">49</p>
+                    <CountUp end={49} duration={2} separator="," className="flex-grow w-full text-xl font-semibold text-left text-[#101828]" />
                   </div>
                 </div>
               </div>
-            </div>  
-          </Stack> 
+            </div>
+          </Stack>
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
