@@ -35,29 +35,36 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   input: {
     background: 'white',
+    '&:hover': {
+      background: 'white',
+    },
+    '&:focus': {
+      background: 'white', // Set the background to white even when focused
+    },
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#0086C9', // Change the button background color
-    color: 'white', // Change the button text color
+    backgroundColor: '#0086C9',
+    color: 'white',
     '&:hover': {
-      backgroundColor: '#0073AD', // Change the button background color on hover
+      backgroundColor: '#0073AD',
     },
   },
   detailsText: {
     color: '#0086C9',
-    fontSize: '13px', // Adjust the font size of the placeholders
+    fontSize: '13px',
     marginTop: theme.spacing(1),
   },
   rememberMeCheckbox: {
     marginTop: theme.spacing(2),
   },
   inputPlaceholder: {
-    fontSize: '12px', // Set the font size of the placeholders to 10px
+    fontSize: '12px',
+    transition: 'none',
   },
 }));
 
@@ -72,6 +79,7 @@ function LoginForm() {
   };
 
   const handleSignIn = () => {
+
     // Add your authentication logic here
     navigate('/Dashboard'); // Navigate to the Dashboard component
   };
@@ -105,9 +113,9 @@ function LoginForm() {
           <Typography className={classes.detailsText}>Please enter your details</Typography>
           <form className={classes.form} noValidate>
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
-              sx={{ mt: 2 }}
+              sx={{ mt: 4 }}
               fullWidth
               id="email"
               label="Email Address"
@@ -120,7 +128,7 @@ function LoginForm() {
               }}
             />
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               fullWidth
               name="password"
@@ -142,7 +150,7 @@ function LoginForm() {
               type="submit"
               fullWidth
               variant="contained"
-              className={classes.submit} /* Removed color property */
+              className={classes.submit}
               onClick={handleSignIn}
             >
               Sign In
