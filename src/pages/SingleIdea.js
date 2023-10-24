@@ -3,7 +3,35 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import CommentSection from './comments/CommentSection';
 import Avatar1 from "./avartas/Avatar1.png"
+
+const sampleComments = [
+  {
+    id: 1,
+    text: "Top-level Comment 1",
+    replies: [
+      {
+        id: 2,
+        text: "Reply to Comment 1",
+        replies: [
+          {
+            id: 3,
+            text: "Nested Reply 1 to Comment 2",
+          },
+        ],
+      },
+      {
+        id: 4,
+        text: "Another Reply to Comment 1",
+      },
+    ],
+  },
+  {
+    id: 5,
+    text: "Top-level Comment 2",
+  },
+];
 
 
 export default function SingleIdea() {
@@ -170,20 +198,10 @@ export default function SingleIdea() {
             </div>
           </div>
           <form className="flex flex-col w-full">
-            {/* <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
-              <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
-                <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1.5">
-                 
-                      <input
-                        type="text"
-                        id="first_name"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John"
-                        required
-                      />
-                </div>
-              </div>
-            </div> */}
+
+          <CommentSection comments={sampleComments} />
+
+           
 
             <div className="self-stretch flex-grow-0 flex-shrink-0 h-[74px] relative w-full ">
               <div className="flex flex-col justify-start items-start w-full h-[74px] absolute left-0 top-0 gap-1.5 ">
