@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 // import { authentication } from 'src/pages/extentionsfunctions';
 import { authentication } from 'src/pages/extentionsfunctions';
 
-
 export default function ChallengesCards() {
   const [accessToken, setAccessToken] = useState();
   const [challenges, setChallenges] = useState([]);
@@ -49,12 +48,10 @@ export default function ChallengesCards() {
   console.log(challenges);
 
   return (
-
-
-    
     <div className="flex flex-col justify-start items-start gap-6">
-  {challenges.map((challenge, index) => (
-        <div key={index}
+      {challenges.map((challenge, index) => (
+        <div
+          key={index}
           className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-blue-400"
         >
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
@@ -66,8 +63,8 @@ export default function ChallengesCards() {
                 <div className="flex flex-row  justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
                   <p className="flex-grow-0  flex-shrink-0 text-lg text-left text-[#101828]">
                     <span className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828] gap-2 sm:gap-2">
-                    {challenge.title}
-                              </span>
+                      {challenge.title}
+                    </span>
                     {/* <span className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#101828]">
                       {' '}
                       automation
@@ -85,8 +82,10 @@ export default function ChallengesCards() {
                     >
                       <circle cx={4} cy={4} r={3} fill="#17B26A" />
                     </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]"> {challenge.status}
-</p>
+                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      {' '}
+                      {challenge.status}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -113,8 +112,7 @@ export default function ChallengesCards() {
                 </div>
               </Link>
             </div>
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-            </p>
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]"></p>
             <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
@@ -138,10 +136,7 @@ export default function ChallengesCards() {
             </div>
           </div>
         </div>
-    ))}
-
-    
-
+      ))}
 
       {/* <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] ">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
@@ -226,7 +221,6 @@ export default function ChallengesCards() {
           </div>
         </div>
       </div> */}
-      
     </div>
   );
 }

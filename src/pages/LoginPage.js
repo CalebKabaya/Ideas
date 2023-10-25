@@ -79,7 +79,6 @@ function LoginForm() {
   };
 
   const handleSignIn = () => {
-
     // Add your authentication logic here
     navigate('/Dashboard'); // Navigate to the Dashboard component
   };
@@ -146,13 +145,7 @@ function LoginForm() {
               control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} color="primary" />}
               label="Remember me for 30 days?"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className={classes.submit}
-              onClick={handleSignIn}
-            >
+            <Button type="submit" fullWidth variant="contained" className={classes.submit} onClick={handleSignIn}>
               Sign In
             </Button>
             <Link href="#" variant="body2" style={{ color: 'white', textDecoration: 'white underline' }}>

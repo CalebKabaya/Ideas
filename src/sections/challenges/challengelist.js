@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { authentication } from 'src/pages/extentionsfunctions';
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 
 import CardImage from './Image.png';
 import CardImage2 from './Image-2.png';
@@ -123,7 +124,7 @@ export default function ChallengesList() {
                       />
                     </svg>
                     <p className="flex-grow-0 flex-shrink-0 font-medium text-sm sm:text-xs xs:text-xs text-left text-[#475467]">
-                      {challenge.startdate}- {challenge.enddate}{' '}
+                    {moment(challenge.startdate).format('YYYY-MM-DD')} - {moment(challenge.enddate).format('YYYY-MM-DD')} {' '}
                     </p>
                   </div>
                 </div>
@@ -152,7 +153,6 @@ export default function ChallengesList() {
           </div>
         </Link>
       ))}
-
     </div>
   );
 }

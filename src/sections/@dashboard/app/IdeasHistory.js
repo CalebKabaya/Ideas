@@ -9,7 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as React from 'react';
+// import { authentication } from 'src/pages/extentionsfunctions';
 import { authentication } from 'src/pages/extentionsfunctions';
+import moment from 'moment';
+
 
 import jobPostImage from './jobPostImage.png';
 
@@ -61,7 +64,7 @@ export const IdeasHistory = () => {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas);
+  console.log(ideas,'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -73,6 +76,50 @@ export const IdeasHistory = () => {
     // Use the navigate function to navigate to another page
     navigate('/dashboard/single-idea'); // Specify the path to the other page
   };
+
+    // Function to format the date 
+    const formatDate = (createdate) => {
+      const ideaDate = moment(createdate);
+      const currentDate = moment();
+      const hoursDifference = currentDate.diff(ideaDate, 'hours');
+  
+      let formattedDate;
+      if (hoursDifference < 1) {
+        formattedDate = 'Just now';
+      } else if (hoursDifference < 12) {
+        formattedDate = 'Today';
+      } else if (hoursDifference < 24) {
+        formattedDate = 'Yesterday';
+      } else {
+        formattedDate = ideaDate.format('YYYY-MM-DD');
+      }
+      return formattedDate;
+    };
+  
+    
+    // Function to update the date format in real-time
+    const updateDatesInRealTime = () => {
+      const updatedIdeas = ideas.map((idea) => {
+        return {
+          ...idea,
+          formattedDate: formatDate(idea.createdate),
+        };
+      });
+      setIdeas(updatedIdeas);
+    };
+  
+    useEffect(() => {
+      // Update the date format initially
+      updateDatesInRealTime();
+  
+      // Update the date format every minute (adjust the interval as needed)
+      const interval = setInterval(updateDatesInRealTime, 60000);
+  
+      // Clean up the interval on component unmount
+      return () => clearInterval(interval);
+    }, [ideas]);
+
+
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -185,7 +232,6 @@ export const IdeasHistory = () => {
                       <circle cx={4} cy={4} r={3} fill="#17B26A" />
                     </svg>
                     <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      {' '}
                       {idea.status}
                     </p>
                   </div>
@@ -235,7 +281,8 @@ export const IdeasHistory = () => {
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                {idea.createdate}                </p>
+                {idea.formattedDate}
+                </p>
               </div>
             </div>
           </div>
