@@ -1,6 +1,6 @@
 import { Container, InputAdornment, TextField } from '@mui/material';
 import { authentication } from 'src/pages/extentionsfunctions';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -8,7 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as React from 'react';
-// import { makeStyles } from "@material-ui/core/styles";
 
 export const IdeasHistory = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,13 +52,22 @@ export const IdeasHistory = () => {
     }
   }, [accessToken]); // Fetch challenges whenever accessToken changes
 
+  const handleUpvote = (index) => {
+    // Create a copy of the ideas array
+    const updatedIdeas = [...ideas];
+
+    // Increment the upvote count for the specific idea
+    updatedIdeas[index].upvotes += 1;
+
+    // Update the state with the new array
+    setIdeas(updatedIdeas);
+  };
+
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas)
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
     setStatus(event.target.value);
     setDepartment(event.target.value);
   };
@@ -201,12 +209,38 @@ export const IdeasHistory = () => {
             <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
-                  className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
-                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+                 // className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
+                  
                 >
-                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-s text-left text-[#344054]">Upvote</p>
+                  <button
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      border: '1px solid #026aa2',
+                      padding: '8px 16px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.3s, color 0.3s',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '12px',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = '#0086C9';
+                      e.target.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = 'white';
+                      e.target.style.color = 'black';
+                    }}
+                    onClick={() => handleUpvote(index)}
+                  >
+                    Upvote
+                  </button>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">123</p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                  {idea.upvotes}
+                </p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]"></p>
               </div>
             <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
               <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
