@@ -6,6 +6,8 @@ import { authentication } from 'src/pages/extentionsfunctions';
 export default function ChallengesCards() {
   const [accessToken, setAccessToken] = useState();
   const [challenges, setChallenges] = useState([]);
+ 
+
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -117,11 +119,12 @@ export default function ChallengesCards() {
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
                   className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
-                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}  
+
                 >
                   <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-s text-left text-[#344054]">Upvote</p>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">123</p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">33</p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs xs:text-xs font-medium text-left text-[#475467]">
