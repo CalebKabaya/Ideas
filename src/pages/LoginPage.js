@@ -79,7 +79,9 @@ function LoginForm() {
   };
 
   const handleSignIn = () => {
-    navigate('/Dashboard');
+
+    // Add your authentication logic here
+    navigate('/Dashboard'); // Navigate to the Dashboard component
   };
 
   useEffect(() => {

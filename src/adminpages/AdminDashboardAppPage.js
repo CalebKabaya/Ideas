@@ -9,6 +9,9 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
 import CountUp from 'react-countup';
 
+// Import your authentication context or state management here
+// import { AuthContext } from './AuthContext';
+
 // components
 import Iconify from '../components/iconify';
 

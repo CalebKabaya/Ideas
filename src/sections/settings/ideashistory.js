@@ -1,5 +1,6 @@
 import { Container, InputAdornment, TextField } from '@mui/material';
-import { useState, useCallback } from 'react';
+import { authentication } from 'src/pages/extentionsfunctions';
+import { useState, useCallback, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,6 +14,49 @@ export const IdeasHistory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = React.useState('');
   const [department, setDepartment] = React.useState('');
+
+  const [accessToken, setAccessToken] = useState();
+  const [ideas, setIdeas] = useState([]);
+
+  useEffect(() => {
+    const getAccessToken = async () => {
+      try {
+        const res = await authentication();
+        setAccessToken(res);
+      } catch (error) {
+        console.error('Error while getting access token:', error);
+      }
+    };
+
+    getAccessToken();
+  }, []); // No dependencies, it should only run once
+
+  useEffect(() => {
+    if (accessToken) {
+      let myHeaders = new Headers();
+      myHeaders.append('Authorization', 'Bearer ' + accessToken.access_token);
+
+      let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+      fetch('https://developer.britam.com/api/IdeasPortal/GetIdeas', requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          // Assuming result is JSON, parse it into an object
+          const data = JSON.parse(result);
+          setIdeas(data); // Store the data in state
+        })
+        .catch((error) => console.log('error', error));
+    }
+  }, [accessToken]); // Fetch challenges whenever accessToken changes
+
+  if (accessToken === null) {
+    return 'Loading';
+  }
+  console.log(ideas)
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -91,19 +135,23 @@ export const IdeasHistory = () => {
           </div>
         </div>
       </div>
+
       {/* idea card */}
 
-      <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-blue-400">
+      {ideas.map((idea, index) => (
+
+      <div  key={index}
+       className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-blue-400">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
           <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
               <p className="self-stretch flex-grow-0 flex-shrink-0  text-sm font-semibold text-left text-[#026aa2]">
-                IT Department
+              department
               </p>
               <div className="flex flex-row  justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
                 <p className="flex-grow-0  flex-shrink-0 text-lg text-left text-[#101828]">
                   <span className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828] gap-2 sm:gap-2">
-                    Ticket
+                  {idea.title}
                   </span>
                   <span className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#101828]">
                     {' '}
@@ -150,16 +198,16 @@ export const IdeasHistory = () => {
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
             We need a way to simplify the process of receiving tickets
           </p>
-          <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
-            <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-              <div
-                className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
-                style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-              >
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-s text-left text-[#344054]">Upvote</p>
+            <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
+              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                <div
+                  className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
+                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+                >
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-s text-left text-[#344054]">Upvote</p>
+                </div>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">123</p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">123</p>
-            </div>
             <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
               <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
                 2 comments
@@ -173,6 +221,8 @@ export const IdeasHistory = () => {
           </div>
         </div>
       </div>
+
+      ))}
 
       {/* idea card */}
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-blue-400">
