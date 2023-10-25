@@ -124,7 +124,8 @@ export default function ChallengesList() {
                       />
                     </svg>
                     <p className="flex-grow-0 flex-shrink-0 font-medium text-sm sm:text-xs xs:text-xs text-left text-[#475467]">
-                    {moment(challenge.startdate).format('YYYY-MM-DD')} - {moment(challenge.enddate).format('YYYY-MM-DD')} {' '}
+                    {moment(challenge.startdate).format('MMM-YY')} - {moment(challenge.enddate).format('MMM-YY')} {' '}
+
                     </p>
                   </div>
                 </div>

@@ -46,7 +46,6 @@ export default function AdminDashboardAppPage() {
     setIsAuthenticated(/* your authentication check result */);
   }, []);
 
-
   return (
     <>
       <Helmet>
