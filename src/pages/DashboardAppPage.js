@@ -12,7 +12,7 @@ import Iconify from '../components/iconify';
 import Modal from './Modal';
 
 // sections
-import { IdeasHistory } from '../sections/@dashboard/app/IdeasHistory';
+import { IdeasHistory } from '../sections/@dashboard/app/Ideas';
 
 // Define a PrivateRoute component
 const PrivateRoute = ({ isAuthenticated, ...rest }) => {
