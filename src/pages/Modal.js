@@ -224,7 +224,7 @@ function App() {
                     <input type="checkbox" id="anonymous" name="anonymous" />
                     <label htmlFor="anonymous">Anonymous</label>
                   </div>
-                  <p className="toggle-description">By clicking this, your idea will be submitted anonymously.</p>
+                  <p className="toggle-description">By clicking this, idea will be submitted anonymously.</p>
                 </div>
 
                 <div className="button-container">
