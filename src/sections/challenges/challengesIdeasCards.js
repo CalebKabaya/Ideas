@@ -49,6 +49,20 @@ export default function ChallengesCards() {
   }
   console.log(challenges);
 
+//votes count
+  const handleUpvote = (index) => {
+    // Create a copy of the ideas array
+    const updatedVotes = [...challenges];
+
+    // Increment the upvote count for the specific idea
+    updatedVotes[index].upvotes += 1;
+
+    // Update the state with the new array
+    setChallenges(updatedVotes);
+  };
+
+  
+
   return (
     <div className="flex flex-col justify-start items-start gap-6">
       {challenges.map((challenge, index) => (
@@ -116,15 +130,39 @@ export default function ChallengesCards() {
             </div>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]"></p>
             <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
-                  className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-white border border-[#d0d5dd]"
-                  style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}  
 
+                //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                 >
-                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-s text-left text-[#344054]">Upvote</p>
+                  <button
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      border: '1px solid #026aa2',
+                      padding: '5px 12px',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.3s, color 0.3s',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '12px',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = '#0086C9';
+                      e.target.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = 'white';
+                      e.target.style.color = 'black';
+                    }}
+                    onClick={() => handleUpvote(index)}
+                  >
+                    Upvote
+                  </button>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">33</p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                  {challenge.upvotes}
+                </p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs xs:text-xs font-medium text-left text-[#475467]">

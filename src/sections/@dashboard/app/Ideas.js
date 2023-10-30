@@ -13,7 +13,6 @@ import * as React from 'react';
 import { authentication } from 'src/pages/extentionsfunctions';
 import moment from 'moment';
 
-
 import jobPostImage from './jobPostImage.png';
 
 // import { makeStyles } from "@material-ui/core/styles";
@@ -25,6 +24,8 @@ export const IdeasHistory = () => {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState();
   const [ideas, setIdeas] = useState([]);
+  // const [ideas, setIdeas] = useState(/* your initial ideas array */);
+
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -72,11 +73,10 @@ export const IdeasHistory = () => {
     setIdeas(updatedIdeas);
   };
 
-
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas,'this are the ideas');
+  // console.log(ideas, 'are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -89,49 +89,43 @@ export const IdeasHistory = () => {
     navigate('/dashboard/single-idea'); // Specify the path to the other page
   };
 
-    // Function to format the date 
-    const formatDate = (createdate) => {
-      const ideaDate = moment(createdate);
-      const currentDate = moment();
-      const hoursDifference = currentDate.diff(ideaDate, 'hours');
-  
-      let formattedDate;
-      if (hoursDifference < 1) {
-        formattedDate = 'Just now';
-      } else if (hoursDifference < 12) {
-        formattedDate = 'Today';
-      } else if (hoursDifference < 24) {
-        formattedDate = 'Yesterday';
-      } else {
-        formattedDate = ideaDate.format('YYYY-MM-DD');
-      }
-      return formattedDate;
-    };
-  
-    
-    // Function to update the date format in real-time
-    const updateDatesInRealTime = () => {
-      const updatedIdeas = ideas.map((idea) => {
-        return {
-          ...idea,
-          formattedDate: formatDate(idea.createdate),
-        };
-      });
-      setIdeas(updatedIdeas);
-    };
-  
-    useEffect(() => {
-      // Update the date format initially
-      updateDatesInRealTime();
-  
-      // Update the date format every minute (adjust the interval as needed)
-      const interval = setInterval(updateDatesInRealTime, 60000);
-  
-      // Clean up the interval on component unmount
-      return () => clearInterval(interval);
-    }, [ideas]);
+  // Function to format the date
+  const formatDate = (createdate) => {
+    const ideaDate = moment(createdate);
+    const currentDate = moment();
+    const hoursDifference = currentDate.diff(ideaDate, 'hours');
+
+    let formattedDate;
+    if (hoursDifference < 1) {
+      formattedDate = 'Just now';
+    } else if (hoursDifference < 24) {
+      formattedDate = 'Today';
+    } else if (hoursDifference < 48) {
+      formattedDate = 'Yesterday';
+    } else {
+      formattedDate = ideaDate.format('YYYY-MM-DD');
+    }
+    return formattedDate;
+  };
+
+  const updateDatesInRealTime = () => {
+    const updatedIdeas = ideas.map((idea) => {
+      return {
+        ...idea,
+        formattedDate: formatDate(idea.createdate),
+      };
+    });
+    setIdeas(updatedIdeas);
+  };
+
+  useEffect(() => {
+    // Call the updateDatesInRealTime function when the 'ideas' array changes.
+    updateDatesInRealTime();
+  }, [ideas]); 
 
 
+
+  
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -198,7 +192,7 @@ export const IdeasHistory = () => {
                     label="Select Department "
                     onChange={handleChange}
                   >
-                    <MenuItem value={"IT"}>IT</MenuItem>
+                    <MenuItem value={'IT'}>IT</MenuItem>
                     <MenuItem value={20}>P&D</MenuItem>
                     <MenuItem value={30}>Life Insuarance</MenuItem>
                   </Select>
@@ -229,7 +223,6 @@ export const IdeasHistory = () => {
                     >
                       {idea.title}
                     </span>
-                  
                   </p>
                   <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
                     <svg
@@ -243,9 +236,21 @@ export const IdeasHistory = () => {
                     >
                       <circle cx={4} cy={4} r={3} fill="#17B26A" />
                     </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                    {idea.status === 0 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Pending
+                    </p>}
+                    {idea.status === 1 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Approved
+                    </p>}{idea.status === 2 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Declined
+                    </p>}{idea.status === 4 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Under Implementation
+                    </p>}
+
+                    {/* <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
                       {idea.status}
-                    </p>
+                    </p> */}
+
                   </div>
                 </div>
               </div>
@@ -274,13 +279,14 @@ export const IdeasHistory = () => {
               </Link>
             </div>
             <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-            {idea.description}
+              {idea.description}
             </p>
             <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
+
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
-                  
-                  //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+
+                //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                 >
                   <button
                     style={{
@@ -307,16 +313,19 @@ export const IdeasHistory = () => {
                     Upvote
                   </button>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">{idea.upvotes}
-</p>
+                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                  {idea.upvotes}
+                </p>
               </div>
+
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs  font-medium text-left text-[#475467]">
-                {idea.comments}                </p>
+                  {idea.comments}{' '}
+                </p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                {idea.formattedDate}
+                  {idea.formattedDate}
                 </p>
               </div>
             </div>
