@@ -9,6 +9,7 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
 import CountUp from 'react-countup';
 
+
 // Import your authentication context or state management here
 // import { AuthContext } from './AuthContext';
 
@@ -19,6 +20,8 @@ import Iconify from '../components/iconify';
 import { AdminUnreviewedIdeas } from '../sections/admin/app/AdminUnreviewedIdeas';
 import { AdminIdeasUnderImplementation } from '../sections/admin/app/AdminIdeasUnderImplementation';
 import BasicTabs from '../sections/admin/reviewed/Reviewed';
+import {PdfDownloadButton}  from './DownloadRecords';
+
 
 const PrivateRoute = ({ isAuthenticated, ...rest }) => {
   const navigate = useNavigate();
@@ -137,7 +140,7 @@ export default function AdminDashboardAppPage() {
               Ideas Progress
             </Typography>
 
-            <Button
+            {/* <Button
               type="submit"
               cursor="pointer"
               className="bg-white text-black border border-solid border-[#D0D5DD] flex items-center px-4 py-2 rounded text-sm font-normal transition duration-300 hover:bg-[#0086C9] hover:border-[#0086C9] hover:text-white"
@@ -152,7 +155,9 @@ export default function AdminDashboardAppPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
               Download All
-            </Button>
+            </Button> */}
+            <PdfDownloadButton />
+
           </Stack>
         </Grid>
 

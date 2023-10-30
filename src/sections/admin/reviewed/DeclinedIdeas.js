@@ -195,7 +195,6 @@ export const DeclinedIdeas = () => {
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
                 {/* {moment(idea.createdate).format('YYYY-MM-DD')} */}
-                {idea.formattedDate}
                 </p>
               </div>
             </div>

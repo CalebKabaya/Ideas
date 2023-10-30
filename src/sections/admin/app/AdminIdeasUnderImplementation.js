@@ -62,7 +62,7 @@ export const AdminIdeasUnderImplementation = () => {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas,'this are the ideas');
+  // console.log(ideas,'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -75,48 +75,47 @@ export const AdminIdeasUnderImplementation = () => {
     navigate("/admin/single-idea"); // Specify the path to the other page
   };
   
+// Function to format the date 
+const formatDate = (createdate) => {
+  const ideaDate = moment(createdate);
+  const currentDate = moment();
+  const hoursDifference = currentDate.diff(ideaDate, 'hours');
 
-  // Function to format the date based on the logic you provided
-  const formatDate = (createdate) => {
-    const ideaDate = moment(createdate);
-    const currentDate = moment();
-    const hoursDifference = currentDate.diff(ideaDate, 'hours');
+  let formattedDate;
+  if (hoursDifference < 1) {
+    formattedDate = 'Just now';
+  } else if (hoursDifference < 12) {
+    formattedDate = 'Today';
+  } else if (hoursDifference < 24) {
+    formattedDate = 'Yesterday';
+  } else {
+    formattedDate = ideaDate.format('YYYY-MM-DD');
+  }
+  return formattedDate;
+};
 
-    let formattedDate;
-    if (hoursDifference < 1) {
-      formattedDate = 'Just now';
-    } else if (hoursDifference < 12) {
-      formattedDate = 'Today';
-    } else if (hoursDifference < 24) {
-      formattedDate = 'Yesterday';
-    } else {
-      formattedDate = ideaDate.format('YYYY-MM-DD');
-    }
-    return formattedDate;
-  };
 
-  
-  // Function to update the date format in real-time
-  const updateDatesInRealTime = () => {
-    const updatedIdeas = ideas.map((idea) => {
-      return {
-        ...idea,
-        formattedDate: formatDate(idea.createdate),
-      };
-    });
-    setIdeas(updatedIdeas);
-  };
+// Function to update the date format in real-time
+const updateDatesInRealTime = () => {
+  const updatedIdeas = ideas.map((idea) => {
+    return {
+      ...idea,
+      formattedDate: formatDate(idea.createdate),
+    };
+  });
+  setIdeas(updatedIdeas);
+};
 
-  useEffect(() => {
-    // Update the date format initially
-    updateDatesInRealTime();
+useEffect(() => {
+  // Update the date format initially
+  updateDatesInRealTime();
 
-    // Update the date format every minute (adjust the interval as needed)
-    const interval = setInterval(updateDatesInRealTime, 60000);
+  // Update the date format every minute (adjust the interval as needed)
+  const interval = setInterval(updateDatesInRealTime, 60000);
 
-    // Clean up the interval on component unmount
-    return () => clearInterval(interval);
-  }, [ideas]);
+  // Clean up the interval on component unmount
+  return () => clearInterval(interval);
+}, [ideas]);
 
 
 

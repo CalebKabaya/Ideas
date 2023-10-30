@@ -13,7 +13,6 @@ import * as React from 'react';
 import { authentication } from 'src/pages/extentionsfunctions';
 import moment from 'moment';
 
-
 import jobPostImage from './jobPostImage.png';
 
 // import { makeStyles } from "@material-ui/core/styles";
@@ -27,6 +26,7 @@ export const IdeasHistory = () => {
   const [ideas, setIdeas] = useState([]);
   const [hasUpvoted, setHasUpvoted] = useState({});
   
+
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -106,12 +106,14 @@ export const IdeasHistory = () => {
       // Update local storage with the new hasUpvoted data
       localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
     }
+
   };
 
   if (accessToken === null) {
     return 'Loading';
   }
   //  console.log(ideas,'this are the ideas');
+
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -165,6 +167,7 @@ export const IdeasHistory = () => {
       // Clean up the interval on component unmount
       return () => clearInterval(interval);
     }, [ideas]);
+
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -231,7 +234,7 @@ export const IdeasHistory = () => {
                     label="Select Department "
                     onChange={handleChange}
                   >
-                    <MenuItem value={"IT"}>IT</MenuItem>
+                    <MenuItem value={'IT'}>IT</MenuItem>
                     <MenuItem value={20}>P&D</MenuItem>
                     <MenuItem value={30}>Life Insuarance</MenuItem>
                   </Select>
@@ -262,7 +265,7 @@ export const IdeasHistory = () => {
                     >
                       {idea.title}
                     </span>
-                  
+
                   </p>
                   <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
                     <svg
@@ -276,9 +279,22 @@ export const IdeasHistory = () => {
                     >
                       <circle cx={4} cy={4} r={3} fill="#17B26A" />
                     </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+
+                    {idea.status === 0 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Pending
+                    </p>}
+                    {idea.status === 1 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Approved
+                    </p>}{idea.status === 2 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Declined
+                    </p>}{idea.status === 4 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
+                      Under Implementation
+                    </p>}
+
+                    {/* <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
                       {idea.status}
-                    </p>
+                    </p> */}
+
                   </div>
                 </div>
               </div>
@@ -350,6 +366,7 @@ export const IdeasHistory = () => {
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
                 {idea.formattedDate}
+
                 </p>
               </div>
             </div>
@@ -446,3 +463,4 @@ export const IdeasHistory = () => {
     </div>
   );
 };
+

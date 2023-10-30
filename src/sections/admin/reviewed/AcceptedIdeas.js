@@ -63,7 +63,7 @@ export const AcceptedIdeas = () => {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas,'this are the ideas');
+  // console.log(ideas,'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
