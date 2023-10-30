@@ -25,6 +25,8 @@ export const IdeasHistory = () => {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState();
   const [ideas, setIdeas] = useState([]);
+  const [hasUpvoted, setHasUpvoted] = useState({});
+  
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -61,22 +63,55 @@ export const IdeasHistory = () => {
     }
   }, [accessToken]); // Fetch challenges whenever accessToken changes
 
+  useEffect(() => {
+    // Initialize hasUpvoted with data from local storage
+    const upvotedIdeasFromStorage = JSON.parse(localStorage.getItem('upvotedIdeas')) || {};
+    setHasUpvoted(upvotedIdeasFromStorage);
+  }, []);
+
   const handleUpvote = (index) => {
-    // Create a copy of the ideas array
-    const updatedIdeas = [...ideas];
+    // Check if the user has already upvoted this idea
+    if (hasUpvoted[index]) {
+      // If the user has already upvoted, decrement the upvote count and remove the upvote status
+      const updatedIdeas = [...ideas];
+      updatedIdeas[index].upvotes -= 1;
 
-    // Increment the upvote count for the specific idea
-    updatedIdeas[index].upvotes += 1;
+      // Mark that the user has removed their upvote for this idea
+      const newHasUpvoted = { ...hasUpvoted };
+      newHasUpvoted[index] = false;
 
-    // Update the state with the new array
-    setIdeas(updatedIdeas);
+      // Update the state with the new array and hasUpvoted status
+      setIdeas(updatedIdeas);
+      setHasUpvoted(newHasUpvoted);
+
+      // Update local storage with the new hasUpvoted data
+      localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
+    } else {
+      // If the user hasn't upvoted this idea, proceed with the upvote
+
+      // Create a copy of the ideas array
+      const updatedIdeas = [...ideas];
+
+      // Increment the upvote count for the specific idea
+      updatedIdeas[index].upvotes += 1;
+
+      // Mark that the user has upvoted this idea
+      const newHasUpvoted = { ...hasUpvoted };
+      newHasUpvoted[index] = true;
+
+      // Update the state with the new array and hasUpvoted status
+      setIdeas(updatedIdeas);
+      setHasUpvoted(newHasUpvoted);
+
+      // Update local storage with the new hasUpvoted data
+      localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
+    }
   };
-
 
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas,'this are the ideas');
+  //  console.log(ideas,'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -93,24 +128,24 @@ export const IdeasHistory = () => {
     const formatDate = (createdate) => {
       const ideaDate = moment(createdate);
       const currentDate = moment();
-      const hoursDifference = currentDate.diff(ideaDate, 'hours');
+      const minutesDifference = currentDate.diff(ideaDate, 'minutes');
   
       let formattedDate;
-      if (hoursDifference < 1) {
+      if (minutesDifference < 1) {
         formattedDate = 'Just now';
-      } else if (hoursDifference < 12) {
-        formattedDate = 'Today';
-      } else if (hoursDifference < 24) {
-        formattedDate = 'Yesterday';
+      } else if (minutesDifference < 60) {
+        formattedDate = `${minutesDifference} minutes ago`;
+      } else if (minutesDifference < 1440) {
+        formattedDate = `${Math.floor(minutesDifference / 60)} hours ago`;
       } else {
-        formattedDate = ideaDate.format('YYYY-MM-DD');
+        formattedDate = ideaDate.format('YYYY-MM-DD HH:mm');
       }
       return formattedDate;
     };
   
-    
     // Function to update the date format in real-time
     const updateDatesInRealTime = () => {
+      const currentTime = moment();
       const updatedIdeas = ideas.map((idea) => {
         return {
           ...idea,
@@ -130,8 +165,6 @@ export const IdeasHistory = () => {
       // Clean up the interval on component unmount
       return () => clearInterval(interval);
     }, [ideas]);
-
-
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -283,29 +316,29 @@ export const IdeasHistory = () => {
                   //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                 >
                   <button
-                    style={{
-                      backgroundColor: 'white',
-                      color: 'black',
-                      border: '1px solid #026aa2',
-                      padding: '5px 12px',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.3s, color 0.3s',
-                      fontFamily: 'Inter, sans-serif',
-                      fontSize: '12px',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = '#0086C9';
-                      e.target.style.color = 'white';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = 'white';
-                      e.target.style.color = 'black';
-                    }}
-                    onClick={() => handleUpvote(index)}
-                  >
-                    Upvote
-                  </button>
+  style={{
+    backgroundColor: hasUpvoted[index] ? '#0086C9' : 'white',
+    color: hasUpvoted[index] ? 'white' : 'black',
+    border: '1px solid #026aa2',
+    padding: '8px 16px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s, color 0.3s',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '12px',
+  }}
+  onMouseEnter={(e) => {
+    e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+    e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+  }}
+  onMouseLeave={(e) => {
+    e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+    e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+  }}
+  onClick={() => handleUpvote(index)}
+>
+  Upvote
+</button>
                 </div>
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">{idea.upvotes}
 </p>
