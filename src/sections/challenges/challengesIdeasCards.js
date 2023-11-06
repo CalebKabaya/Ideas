@@ -33,7 +33,7 @@ export default function ChallengesCards() {
         redirect: 'follow',
       };
 
-      fetch('https://developer.britam.com/api/IdeasPortal/GetChallenges', requestOptions)
+      fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges', requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // Assuming result is JSON, parse it into an object
@@ -48,6 +48,8 @@ export default function ChallengesCards() {
     return 'Loading';
   }
   console.log(challenges);
+  console.log('id',challenges.id);
+
 
 //votes count
   const handleUpvote = (index) => {
@@ -66,6 +68,7 @@ export default function ChallengesCards() {
   return (
     <div className="flex flex-col justify-start items-start gap-6">
       {challenges.map((challenge, index) => (
+        
         <div
           key={index}
           className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-blue-400"
@@ -80,32 +83,99 @@ export default function ChallengesCards() {
                   <p className="flex-grow-0  flex-shrink-0 text-lg text-left text-[#101828]">
                     <span className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828] gap-2 sm:gap-2">
                       {challenge.title}
+                      {console.log(challenge.title,'idddddddddddddddddddddddddd')}
                     </span>
                     {/* <span className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#101828]">
                       {' '}
                       automation
                     </span> */}
                   </p>
-                  <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
-                    <svg
-                      width={8}
-                      height={8}
-                      viewBox="0 0 8 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <circle cx={4} cy={4} r={3} fill="#17B26A" />
-                    </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      {' '}
-                      {challenge.status}
-                    </p>
-                  </div>
+
+                                 {/* idea status */}
+
+                                 {challenge.status === 0 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fffaeb] border border-[#fedf89]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#F79009" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#b54708]">
+                        Pending
+                      </p>
+                    </div>
+                  )}
+
+                  {challenge.status === 1 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        Approved
+                      </p>
+                    </div>
+                  )}
+
+                  {challenge.status === 2 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fef3f2] border border-[#fecdca]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#F04438" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#b42318]">
+                        Declined
+                      </p>
+                    </div>
+                  )}
+
+                  {challenge.status === 4 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        Under Implementation{' '}
+                      </p>
+                    </div>
+                  )}
+                  {/* end of status */}
+                  
                 </div>
               </div>
-              <Link to="/dashboard/single-idea">
+        
+              <Link to={`/dashboard/single-idea/${challenge.id}`}>
+              {console.log(challenge.id,'idddddddddddddddddddddddddd')}
+
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                   <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
                   <svg
@@ -265,3 +335,5 @@ export default function ChallengesCards() {
     </div>
   );
 }
+
+

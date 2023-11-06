@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './modal.css';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-import icon from './uploadicon.png';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { authentication } from 'src/pages/extentionsfunctions';
 
+import icon from './uploadicon.png';
 
 function App() {
-
   const [showPopup, setShowPopup] = useState(false);
   const [ideaTitle, setIdeaTitle] = useState('');
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
   const [ideaDescription, setIdeaDescription] = useState('');
   const [potentialBenefits, setPotentialBenefits] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -19,114 +22,16 @@ function App() {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [accessToken, setAccessToken] = useState();
-  const [challenges, setChallenges] = useState([]);
-  const [message, setMessage] = useState(""); // Add message state
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showAlert, setShowAlert] = useState(false); // Add alert state
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
-
-  const handleTitleChange = (e) => {
-    const title = e.target.value;
-    if (title.length <= 275) {
-      setIdeaTitle(title);
-      const remainingChars = 275 - title.length;
-      setTitleCharCount(remainingChars);
-    }
-  };
-
-  const handleDescriptionChange = (e) => {
-    const description = e.target.value;
-    if (description.length <= 275) {
-      setIdeaDescription(description);
-      const remainingChars = 275 - description.length;
-      setDescriptionCharCount(remainingChars);
-    }
-  };
-
-  const handleBenefitsChange = (e) => {
-    const benefits = e.target.value;
-    if (benefits.length <= 275) {
-      setPotentialBenefits(benefits);
-      const remainingChars = 275 - benefits.length;
-      setBenefitsCharCount(remainingChars);
-    }
-  };
-
-  const handleDepartmentChange = (e) => {
-    const department = e.target.value;
-    setSelectedDepartment(department);
-  };
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    setUploadedFile(file);
-  };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle form submission here (e.g., send data to a server)
-  // };
-
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const userdata = {
-  //     title: ideaTitle,
-  //     description:ideaDescription,
-  //     benefits: potentialBenefits,
-  //     department:selectedDepartment,
-  //     file:uploadedFile,
-  //   };
-  //   await axios
-  //     .post(
-  //       "https://developer.britam.com/api/IdeasPortal/CreateIdea",
-  //       JSON.stringify(userdata)
-  //     )
-  //     .then((result) => {
-  //       setMessage(result.data.msg);
-  //       console.log(result.data);
-  //       console.log(result.data.msg);
-  //     });
-  // };
-
-
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!accessToken) {
-      console.error("Access token is missing.");
-      return;
-    }
-
-    const userdata = {
-      title: ideaTitle,
-      description: ideaDescription,
-      benefits: potentialBenefits,
-      department: selectedDepartment,
-      file: uploadedFile,
-    };
-
-    try {
-      const response = await axios.post(
-        "https://developer.britam.com/api/IdeasPortal/CreateIdea",
-        JSON.stringify(userdata),
-        {
-          headers: {
-            Authorization: 'Bearer ' + accessToken.access_token,
-            'Content-Type': 'application/json', // Set the content type
-          },
-        }
-      );
-      console.log("Response data:", response.data); // Log the entire response
-      console.log("Response message:", response.data.msg); // Log the 'msg' propert
-      setMessage(response.data.msg);
-    } catch (error) {
-      console.error('Error while posting idea:', error);
-    }
-  };
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    image: 'image.png',
+    startdate: null,
+    enddate: null,
+  });
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -139,12 +44,111 @@ function App() {
     };
 
     getAccessToken();
-  }, []); // No dependencies, it should only run once
+  }, []);
 
+  // const handleFormChange = (name, value, isTitleField) => {
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
 
-  if (accessToken === null) {
-    return 'Loading';
-  }
+  //   if (isTitleField) {
+  //     if (value.length <= 275) {
+  //       setIdeaTitle(value);
+  //       const remainingTitleChars = 275 - value.length;
+  //       setTitleCharCount(remainingTitleChars);
+  //     }
+  //   } else {
+  //     if (name === 'description' && value.length <= 275) {
+  //       setIdeaDescription(value);
+  //       const remainingDescriptionChars = 275 - value.length;
+  //       setDescriptionCharCount(remainingDescriptionChars);
+  //     }
+  //   }
+  // };
+
+  const handleFormChange = async (name, value, isTitleField) => {
+    // Check if the name is 'image' and the value is a File object
+    if (name === 'image' && value instanceof File) {
+      setUploadedFile(value);
+      setUploadProgress(0);
+
+      try {
+        const base64Data = await convertImageToBase64(value);
+        // Update the formData with the base64 image data
+        setFormData({
+          ...formData,
+          [name]: base64Data,
+        });
+      } catch (error) {
+        console.error('Error converting image to Base64:', error);
+        alert('Error converting image to Base64. Please try again.');
+      }
+    } else {
+      // Handle other form field changes
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+
+      if (isTitleField) {
+        if (value.length <= 275) {
+          setIdeaTitle(value);
+          const remainingTitleChars = 275 - value.length;
+          setTitleCharCount(remainingTitleChars);
+        }
+      } else {
+        if (name === 'description' && value.length <= 275) {
+          setIdeaDescription(value);
+          const remainingDescriptionChars = 275 - value.length;
+          setDescriptionCharCount(remainingDescriptionChars);
+        }
+      }
+    }
+  };
+
+  // const handleFileUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   setFormData({
+  //     ...formData,
+  //     image: file,
+  //   });
+  // };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Data to be submitted:', formData);
+
+    try {
+      // Make a POST request to the API
+      const response = await fetch('https://developer.britam.com/api/IdeasPortal/CreateChallenge', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('challenge posted successfully', response);
+
+        // Show a browser alert upon successful submission
+        window.alert('Data submitted successfully! Thank you.');
+
+        // After successful submission, close the popup
+        togglePopup();
+      } else {
+        console.error('Failed to post challenge to the API');
+      }
+    } catch (error) {
+      console.error('Error while posting idea:', error);
+    }
+  };
 
   const handleUpload = async () => {
     if (!uploadedFile) {
@@ -187,7 +191,22 @@ function App() {
     };
   }, []);
 
-  const department = "department";
+  // Function to convert an image to Base64
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
 
   return (
     <div className="App" style={{ margin: '0', padding: '0' }}>
@@ -204,96 +223,79 @@ function App() {
           outline: 'none' /* Remove button outline on focus */,
           fontFamily: 'Inter, sans-serif' /* Use the Inter font */,
           fontSize: '14px' /* Set font size to 12px */,
-          marginLeft: '10px' /* Add margin between buttons */,
+          marginLeft: '0px' /* Add margin between buttons */,
           height: '35px' /* Set button height */,
           display: 'flex',
           alignItems: 'center' /* Center text vertically */,
           justifyContent: 'center' /* Center text horizontally */,
           marginBottom: '0',
+          // marginTop: '45px',
+          whiteSpace: 'nowrap',
         }}
       >
-        + Add idea
+        + New Challenge
       </button>
 
       {showPopup && (
         <div className="popup">
-          <div className="popup-header">Idea Details</div>
+          <div className="popup-header">Challenge Details</div>
           <div className="popup-content">
             <div className="form-container">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} method="POST">
                 <div className="form-group">
-                  <label htmlFor="ideaTitle">Enter your idea title:</label>
+                  <label htmlFor="ideaTitle">Enter your challenge title:</label>
                   <input
                     type="text"
                     id="ideaTitle"
-                    name="ideaTitle"
+                    name="title"
                     placeholder="Idea title"
-                    value={ideaTitle}
-                    // onChange={handleTitleChange}
-                    onChange={(e) => setIdeaTitle(e.target.value)}
-                    required
-
+                    value={formData.title}
+                    onChange={(e) => handleFormChange('title', e.target.value, true)}
                   />
-
                   <span className="char-count">
                     {titleCharCount} {titleCharCount === 1 ? 'character left' : 'characters left'}
                   </span>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="ideaDescription">Give a description of the idea:</label>
+                  <label htmlFor="ideaDescription">Give a description of challenge:</label>
                   <textarea
                     id="ideaDescription"
-                    name="ideaDescription"
-                    placeholder="Idea description"
-                    value={ideaDescription}
-                    // onChange={handleDescriptionChange}
-                    onChange={(e) => setIdeaDescription(e.target.value)}
-                    required
-
+                    name="description"
+                    placeholder="Challenge description"
+                    value={formData.description}
+                    onChange={(e) => handleFormChange('description', e.target.value, false)}
                   />
                   <span className="char-count">
                     {descriptionCharCount} {descriptionCharCount === 1 ? 'character left' : 'characters left'}
                   </span>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="potentialBenefits">What are some of the potential benefits of your idea:</label>
-                  <textarea
-                    id="potentialBenefits"
-                    name="potentialBenefits"
-                    placeholder="Enter potential benefits"
-                    value={potentialBenefits}
-                    // onChange={handleBenefitsChange}
-                    onChange={(e) => setPotentialBenefits(e.target.value)}
-                    required
 
-                  />
-                  <span className="char-count">
-                    {benefitsCharCount} {benefitsCharCount === 1 ? 'character left' : 'characters left'}
-                  </span>
+                <div className="form-group">
+                  <label htmlFor="datePicker">Set time frame for idea submission:</label>
+                  <div className="date-picker-container">
+                    <div className="date-picker-field">
+                      <label htmlFor="fromDate">From:</label>
+                      <DatePicker
+                        id="fromDate"
+                        selected={formData.startdate}
+                        onChange={(date) => handleFormChange('startdate', date)}
+                        dateFormat="MM/dd/yyyy"
+                      />
+                    </div>
+                    <div className="date-picker-field">
+                      <label htmlFor="toDate">To:</label>
+                      <DatePicker
+                        id="toDate"
+                        selected={formData.enddate}
+                        onChange={(date) => handleFormChange('enddate', date)}
+                        dateFormat="MM/dd/yyyy"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="form-group">
-                  
-                  <label htmlFor={department}>What department/division would your idea serve:</label>
-
-                  <select
-                    id="department"
-                    name="department"
-                    value={selectedDepartment}
-                    // onChange={handleDepartmentChange}
-                    onChange={(e) => setSelectedDepartment(e.target.value)}
-                  >
-                    <option value="">Select Department</option>
-                    <option value="P&D">P&D</option>
-                    <option value="Asset management">Asset Management</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Customer support">Customer Support</option>
-                    <option value="Human resources">Human Resources</option>
-                  </select>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="attachment">Any attachment?</label>
+                  <label htmlFor="attachment">Upload Image?</label>
                   <div className="upload-frame">
                     <label htmlFor="attachment" className="upload-label">
                       <img src={icon} alt="Upload Icon" width="48" height="48" />{' '}
@@ -304,25 +306,17 @@ function App() {
                       </span>
                       <input
                         type="file"
-                        id="attachment"
-                        name="attachment"
+                        id="image"
+                        name="image"
                         accept=".svg, .png, .jpg, .gif"
                         // onChange={handleFileUpload}
-                        onChange={(e) => setUploadedFile(e.target.value)}
+                        onChange={(e) => handleFormChange('image', e.target.value, true)}
                         style={{ display: 'none' }}
                       />
                       <button className="upload-button" onClick={handleUpload} />
                       <div className="upload-progress">{uploadedFile && <p>Selected file: {uploadedFile.name}</p>}</div>
                     </label>
                   </div>
-                </div>
-
-                <div className="form-group">
-                  <div className="toggle-switch">
-                    <input type="checkbox" id="anonymous" name="anonymous" />
-                    <label htmlFor="anonymous">Anonymous</label>
-                  </div>
-                  <p className="toggle-description">By clicking this, your idea will be submitted anonymously.</p>
                 </div>
 
                 <div className="button-container">
@@ -348,6 +342,7 @@ function App() {
                   >
                     Cancel
                   </button>
+
                   <button
                     className="submit-button"
                     type="submit"
@@ -376,6 +371,8 @@ function App() {
           </div>
         </div>
       )}
+
+    
     </div>
   );
 }

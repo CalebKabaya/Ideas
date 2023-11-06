@@ -61,7 +61,7 @@ export const AdminUnreviewedIdeas = () => {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas, 'this are the ideas');
+  // console.log(ideas, 'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -213,22 +213,86 @@ export const AdminUnreviewedIdeas = () => {
                       {idea.title}
                     </span>
                   </p>
-                  <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
-                    <svg
-                      width={8}
-                      height={8}
-                      viewBox="0 0 8 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <circle cx={4} cy={4} r={3} fill="#17B26A" />
-                    </svg>
-                    <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      {idea.status}
-                    </p>
-                  </div>
+
+                                  {/* idea status */}
+
+                                  {idea.status === 0 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fffaeb] border border-[#fedf89]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#F79009" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#b54708]">
+                        Pending
+                      </p>
+                    </div>
+                  )}
+
+                  {idea.status === 1 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        Approved
+                      </p>
+                    </div>
+                  )}
+
+                  {idea.status === 2 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fef3f2] border border-[#fecdca]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#F04438" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#b42318]">
+                        Declined
+                      </p>
+                    </div>
+                  )}
+
+                  {idea.status === 1 && (
+                    <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                      <svg
+                        width={8}
+                        height={8}
+                        viewBox="0 0 8 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                      </svg>
+                      <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        Under Implementation{' '}
+                      </p>
+                    </div>
+                  )}
+                  {/* end of status */}
+
                 </div>
               </div>
 

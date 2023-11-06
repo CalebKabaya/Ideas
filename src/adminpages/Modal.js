@@ -4,77 +4,62 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { authentication } from 'src/pages/extentionsfunctions';
+
 import icon from './uploadicon.png';
 
 function App() {
-
   const [showPopup, setShowPopup] = useState(false);
-  const [ideaTitle, setIdeaTitle] = useState('');
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
-  const [ideaDescription, setIdeaDescription] = useState('');
-  const [potentialBenefits, setPotentialBenefits] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('');
-  const [titleCharCount, setTitleCharCount] = useState(275);
-  const [descriptionCharCount, setDescriptionCharCount] = useState(275);
-  const [benefitsCharCount, setBenefitsCharCount] = useState(275);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [accessToken, setAccessToken] = useState();
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    image: null,
+    startdate: null,
+    enddate: null,
+  });
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
+  useEffect(() => {
+    const getAccessToken = async () => {
+      try {
+        const res = await authentication();
+        setAccessToken(res);
+      } catch (error) {
+        console.error('Error while getting access token:', error);
+      }
+    };
 
-  const handleTitleChange = (e) => {
-    const inputValue = e.target.value;
-    if (inputValue.length <= 275) {
-      setIdeaTitle(inputValue);
-      const remainingChars = 275 - inputValue.length;
-      setTitleCharCount(remainingChars);
-    }
-  };
+    getAccessToken();
+  }, []);
 
-  const handleDescriptionChange = (e) => {
-    const inputValue = e.target.value;
-    if (inputValue.length <= 275) {
-      setIdeaDescription(inputValue);
-      const remainingChars = 275 - inputValue.length;
-      setDescriptionCharCount(remainingChars);
-    }
-  };
-
-  const handleBenefitsChange = (e) => {
-    const inputValue = e.target.value;
-    if (inputValue.length <= 275) {
-      setPotentialBenefits(inputValue);
-      const remainingChars = 275 - inputValue.length;
-      setBenefitsCharCount(remainingChars);
-    }
-  };
-
-  const handleDepartmentChange = (e) => {
-    setSelectedDepartment(e.target.value);
+  const handleFormChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    setUploadedFile(file);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here (e.g., send data to a server)
+    setFormData({
+      ...formData,
+      image: file,
+    });
   };
 
   const handleUpload = async () => {
-    if (!uploadedFile) {
+    if (!formData.image) {
       alert('Please select a file.');
       return;
     }
 
     try {
       const formData = new FormData();
-      formData.append('file', uploadedFile);
+      formData.append('file', formData.image);
 
       await axios.post('/upload', formData, {
         headers: {
@@ -82,7 +67,7 @@ function App() {
         },
         onUploadProgress: (progressEvent) => {
           const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-          setUploadProgress(progress); // Update the progress state
+          setUploadProgress(progress);
         },
       });
 
@@ -94,20 +79,34 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    // Add the viewport meta tag dynamically when the component mounts
-    const meta = document.createElement('meta');
-    meta.name = 'viewport';
-    meta.content = 'width=device-width, initial-scale=1.0';
-    document.head.appendChild(meta);
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
-    // Clean up the added meta tag when the component unmounts
-    return () => {
-      document.head.removeChild(meta);
-    };
-  }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Data to be submitted:', formData);
 
-  const department = "department";
+    try {
+      // Make a POST request to the API
+      const response = await fetch('https://developer.britam.com/api/IdeasPortal/CreateChallenge', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Idea posted successfully');
+      } else {
+        console.error('Failed to post idea to the API');
+      }
+    } catch (error) {
+      console.error('Error while posting idea:', error);
+    }
+  };
 
   return (
     <div className="App" style={{ margin: '0', padding: '0' }}>
@@ -115,23 +114,21 @@ function App() {
         onClick={togglePopup}
         className="submit-button"
         style={{
-          backgroundColor: '#0086C9' /* Blue background */,
-          color: '#fff' /* Text color */,
+          backgroundColor: '#0086C9',
+          color: '#fff',
           border: 'none',
-          padding: '0 20px' /* Adjust padding for button size */,
-          borderRadius: '3px' /* Set border radius to 3px */,
+          padding: '0 20px',
+          borderRadius: '3px',
           cursor: 'pointer',
-          outline: 'none' /* Remove button outline on focus */,
-          fontFamily: 'Inter, sans-serif' /* Use the Inter font */,
-          fontSize: '14px' /* Set font size to 12px */,
-          marginLeft: '0px' /* Add margin between buttons */,
-          height: '35px' /* Set button height */,
+          outline: 'none',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '14px',
+          marginLeft: '0',
+          height: '35px',
           display: 'flex',
-          alignItems: 'center' /* Center text vertically */,
-          justifyContent: 'center' /* Center text horizontally */,
+          alignItems: 'center',
+          justifyContent: 'center',
           marginBottom: '0',
-          // marginTop: '45px',
-          whiteSpace: 'nowrap'
         }}
       >
         + New Challenge
@@ -142,35 +139,29 @@ function App() {
           <div className="popup-header">Challenge Details</div>
           <div className="popup-content">
             <div className="form-container">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} method="POST">
                 <div className="form-group">
                   <label htmlFor="ideaTitle">Enter your challenge title:</label>
                   <input
                     type="text"
                     id="ideaTitle"
-                    name="ideaTitle"
+                    name="title"
                     placeholder="Idea title"
-                    value={ideaTitle}
-                    onChange={handleTitleChange}
+                    value={formData.title}
+                    onChange={(e) => handleFormChange('title', e.target.value)}
                   />
-                  <span className="char-count">
-                    {titleCharCount} {titleCharCount === 1 ? 'character left' : 'characters left'}
-                  </span>
                 </div>
                 <div className="form-group">
                   <label htmlFor="ideaDescription">Give a description of challenge:</label>
                   <textarea
                     id="ideaDescription"
-                    name="ideaDescription"
+                    name="description"
                     placeholder="Challenge description"
-                    value={ideaDescription}
-                    onChange={handleDescriptionChange}
+                    value={formData.description}
+                    onChange={(e) => handleFormChange('description', e.target.value)}
                   />
-                  <span className="char-count">
-                    {descriptionCharCount} {descriptionCharCount === 1 ? 'character left' : 'characters left'}
-                  </span>
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="datePicker">Set time frame for idea submission:</label>
                   <div className="date-picker-container">
@@ -179,7 +170,7 @@ function App() {
                       <DatePicker
                         id="fromDate"
                         selected={fromDate}
-                        onChange={(date) => setFromDate(date)}
+                        onChange={(date) => handleFormChange('startdate', date)}
                         dateFormat="MM/dd/yyyy"
                       />
                     </div>
@@ -188,18 +179,18 @@ function App() {
                       <DatePicker
                         id="toDate"
                         selected={toDate}
-                        onChange={(date) => setToDate(date)}
+                        onChange={(date) => handleFormChange('enddate', date)}
                         dateFormat="MM/dd/yyyy"
                       />
                     </div>
                   </div>
                 </div>
+                
                 <div className="form-group">
                   <label htmlFor="attachment">Upload Image?</label>
                   <div className="upload-frame">
                     <label htmlFor="attachment" className="upload-label">
-                      <img src={icon} alt="Upload Icon" width="48" height="48" />{' '}
-                      {/* Use the imported image variable */}
+                      <img src={icon} alt="Upload Icon" width="48" height="48" />
                       <span className="upload-text" style={{ color: '#0086C9' }}>
                         Click to upload or drag and drop <br />
                         SVG, PNG, JPG, or GIF (max. 800x400px)
@@ -222,42 +213,44 @@ function App() {
                   <button
                     className="cancel-button"
                     style={{
-                      backgroundColor: '#ccc' /* Gray background */,
-                      color: '#333' /* Text color */,
+                      backgroundColor: '#ccc',
+                      color: '#333',
                       border: 'none',
-                      padding: '0 20px' /* Adjust padding for button size */,
-                      borderRadius: '3px' /* Set border radius to 3px */,
+                      padding: '0 20px',
+                      borderRadius: '3px',
                       cursor: 'pointer',
-                      marginRight: '10px' /* Add margin between buttons */,
-                      outline: 'none' /* Remove button outline on focus */,
-                      height: '30px' /* Set button height */,
+                      marginRight: '10px',
+                      outline: 'none',
+                      height: '30px',
                       display: 'flex',
-                      alignItems: 'center' /* Center text vertically */,
-                      fontFamily: 'Inter, sans-serif' /* Use the Inter font */,
+                      alignItems: 'center',
+                      fontFamily: 'Inter, sans-serif',
                       fontSize: '12px',
-                      justifyContent: 'center' /* Center text horizontally */,
+                      justifyContent: 'center',
                     }}
                     onClick={togglePopup}
                   >
                     Cancel
                   </button>
+
                   <button
                     className="submit-button"
+                    type="submit"
                     style={{
-                      backgroundColor: '#0086C9' /* Blue background */,
-                      color: '#fff' /* Text color */,
+                      backgroundColor: '#0086C9',
+                      color: '#fff',
                       border: 'none',
-                      padding: '0 20px' /* Adjust padding for button size */,
-                      borderRadius: '3px' /* Set border radius to 3px */,
+                      padding: '0 20px',
+                      borderRadius: '3px',
                       cursor: 'pointer',
-                      outline: 'none' /* Remove button outline on focus */,
-                      fontFamily: 'Inter, sans-serif' /* Use the Inter font */,
-                      fontSize: '12px' /* Set font size to 12px */,
-                      marginLeft: '10px' /* Add margin between buttons */,
-                      height: '30px' /* Set button height */,
+                      outline: 'none',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '12px',
+                      marginLeft: '10px',
+                      height: '30px',
                       display: 'flex',
-                      alignItems: 'center' /* Center text vertically */,
-                      justifyContent: 'center' /* Center text horizontally */,
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     Submit

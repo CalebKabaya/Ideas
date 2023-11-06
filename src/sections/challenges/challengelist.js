@@ -34,7 +34,7 @@ export default function ChallengesList() {
         redirect: 'follow',
       };
 
-      fetch('https://developer.britam.com/api/IdeasPortal/GetChallenges', requestOptions)
+      fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges', requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // Assuming result is JSON, parse it into an object
@@ -53,7 +53,10 @@ export default function ChallengesList() {
   return (
     <div className="flex flex-col justify-start items-start gap-6">
       {challenges.map((challenge, index) => (
-        <Link to="/dashboard/challenges" className="w-full">
+          <Link to={`/dashboard/challenges/${challenge.id}`} className="w-full">
+             {console.log(challenge.id,'idddddddddddddddddddddddddd')}
+
+
           <div
             key={index}
             className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-[27px] p-4 rounded-xl bg-white border border-[#eaecf0]"

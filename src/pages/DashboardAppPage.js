@@ -9,7 +9,7 @@ import { Grid, Container, Typography, Stack } from '@mui/material';
 
 // components
 import Iconify from '../components/iconify';
-import Modal from './Modal';
+import Modal from './ModalNew';
 
 // sections
 import { IdeasHistory } from '../sections/@dashboard/app/Ideas';

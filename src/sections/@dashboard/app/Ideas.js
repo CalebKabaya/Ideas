@@ -25,8 +25,6 @@ export const IdeasHistory = () => {
   const [accessToken, setAccessToken] = useState();
   const [ideas, setIdeas] = useState([]);
   const [hasUpvoted, setHasUpvoted] = useState({});
-  
-
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -62,6 +60,21 @@ export const IdeasHistory = () => {
         .catch((error) => console.log('error', error));
     }
   }, [accessToken]); // Fetch challenges whenever accessToken changes
+
+  // Function to filter ideas based on search term
+  const filteredIdeas = ideas.filter((idea) => idea.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  // Function to handle search input change
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Function to handle Enter key press
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearchChange(event);
+    }
+  };
 
   useEffect(() => {
     // Initialize hasUpvoted with data from local storage
@@ -106,14 +119,12 @@ export const IdeasHistory = () => {
       // Update local storage with the new hasUpvoted data
       localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
     }
-
   };
 
   if (accessToken === null) {
     return 'Loading';
   }
   //  console.log(ideas,'this are the ideas');
-
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -126,48 +137,46 @@ export const IdeasHistory = () => {
     navigate('/dashboard/single-idea'); // Specify the path to the other page
   };
 
-    // Function to format the date 
-    const formatDate = (createdate) => {
-      const ideaDate = moment(createdate);
-      const currentDate = moment();
-      const minutesDifference = currentDate.diff(ideaDate, 'minutes');
-  
-      let formattedDate;
-      if (minutesDifference < 1) {
-        formattedDate = 'Just now';
-      } else if (minutesDifference < 60) {
-        formattedDate = `${minutesDifference} minutes ago`;
-      } else if (minutesDifference < 1440) {
-        formattedDate = `${Math.floor(minutesDifference / 60)} hours ago`;
-      } else {
-        formattedDate = ideaDate.format('YYYY-MM-DD HH:mm');
-      }
-      return formattedDate;
-    };
-  
-    // Function to update the date format in real-time
-    const updateDatesInRealTime = () => {
-      const currentTime = moment();
-      const updatedIdeas = ideas.map((idea) => {
-        return {
-          ...idea,
-          formattedDate: formatDate(idea.createdate),
-        };
-      });
-      setIdeas(updatedIdeas);
-    };
-  
-    useEffect(() => {
-      // Update the date format initially
-      updateDatesInRealTime();
-  
-      // Update the date format every minute (adjust the interval as needed)
-      const interval = setInterval(updateDatesInRealTime, 60000);
-  
-      // Clean up the interval on component unmount
-      return () => clearInterval(interval);
-    }, [ideas]);
+  // Function to format the date based on the logic you provided
+  const formatDate = (createdate) => {
+    const ideaDate = moment(createdate);
+    const currentDate = moment();
+    const hoursDifference = currentDate.diff(ideaDate, 'hours');
 
+    let formattedDate;
+    if (hoursDifference < 1) {
+      formattedDate = 'Just now';
+    } else if (hoursDifference < 12) {
+      formattedDate = 'Today';
+    } else if (hoursDifference < 24) {
+      formattedDate = 'Yesterday';
+    } else {
+      formattedDate = ideaDate.format('YYYY-MM-DD');
+    }
+    return formattedDate;
+  };
+
+  // Function to update the date format in real-time
+  const updateDatesInRealTime = () => {
+    const updatedIdeas = ideas.map((idea) => {
+      return {
+        ...idea,
+        formattedDate: formatDate(idea.createdate),
+      };
+    });
+    setIdeas(updatedIdeas);
+  };
+
+  useEffect(() => {
+    // Update the date format initially
+    updateDatesInRealTime();
+
+    // Update the date format every minute (adjust the interval as needed)
+    const interval = setInterval(updateDatesInRealTime, 60000);
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }, [ideas]);
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
@@ -186,7 +195,8 @@ export const IdeasHistory = () => {
                   type="search"
                   label="Search"
                   value={searchTerm}
-                  onChange={handleChange}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyPress}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -212,9 +222,9 @@ export const IdeasHistory = () => {
                     label="Select Status "
                     onChange={handleChange}
                   >
-                    <MenuItem value={10}>Pending</MenuItem>
-                    <MenuItem value={20}>Aprroved</MenuItem>
-                    <MenuItem value={30}>Declined</MenuItem>
+                    <MenuItem value={'Pending'}>Pending</MenuItem>
+                    <MenuItem value={'Approved'}>Aprroved</MenuItem>
+                    <MenuItem value={'Declined'}>Declined</MenuItem>
                   </Select>
                 </FormControl>
               </div>
@@ -235,8 +245,8 @@ export const IdeasHistory = () => {
                     onChange={handleChange}
                   >
                     <MenuItem value={'IT'}>IT</MenuItem>
-                    <MenuItem value={20}>P&D</MenuItem>
-                    <MenuItem value={30}>Life Insuarance</MenuItem>
+                    <MenuItem value={'P&D'}>P&D</MenuItem>
+                    <MenuItem value={'Life Insurance'}>Life Insuarance</MenuItem>
                   </Select>
                 </FormControl>
               </div>
@@ -246,133 +256,370 @@ export const IdeasHistory = () => {
       </div>
       {/* idea card */}
 
-      {ideas.map((idea, index) => (
-        <div
-          key={index}
-          className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600"
-        >
-          <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-            <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
-              <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
-                <p className="self-stretch flex-grow-0 flex-shrink-0  text-sm font-semibold text-left text-[#026aa2]">
-                  {idea.department}
-                </p>
-                <div className="flex flex-row justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
-                  <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-[#101828]">
-                    <span
-                      className="flex-grow-0 flex-shrink-0 text-sm
-                     font-semibold text-left text-[#101828] gap-2 sm:gap-2"
-                    >
-                      {idea.title}
-                    </span>
-
+      {ideas
+        .slice()
+        .reverse()
+        .map((idea, index) => (
+          <div
+            key={index}
+            className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+              <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
+                <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
+                  <p className="self-stretch flex-grow-0 flex-shrink-0  text-sm font-semibold text-left text-[#026aa2]">
+                    {idea.department}
                   </p>
-                  <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
-                    <svg
-                      width={8}
-                      height={8}
-                      viewBox="0 0 8 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <circle cx={4} cy={4} r={3} fill="#17B26A" />
-                    </svg>
+                  <div className="flex flex-row justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
+                    <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-[#101828]">
+                      <span
+                        className="flex-grow-0 flex-shrink-0 text-sm
+                     font-semibold text-left text-[#101828] gap-2 sm:gap-2"
+                      >
+                        {idea.title}
+                      </span>
+                    </p>
 
-                    {idea.status === 0 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      Pending
-                    </p>}
-                    {idea.status === 1 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      Approved
-                    </p>}{idea.status === 2 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      Declined
-                    </p>}{idea.status === 4 && <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      Under Implementation
-                    </p>}
+                    {/* idea status */}
 
-                    {/* <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
-                      {idea.status}
-                    </p> */}
+                    {idea.status === 0 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fffaeb] border border-[#fedf89]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#F79009" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#b54708]">
+                          Pending
+                        </p>
+                      </div>
+                    )}
 
+                    {idea.status === 1 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                          Approved
+                        </p>
+                      </div>
+                    )}
+
+                    {idea.status === 2 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fef3f2] border border-[#fecdca]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#F04438" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#b42318]">
+                          Declined
+                        </p>
+                      </div>
+                    )}
+
+                    {idea.status === 1 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                          Under Implementation{' '}
+                        </p>
+                      </div>
+                    )}
+                    {/* end of status */}
                   </div>
                 </div>
-              </div>
 
-              <Link to="/dashboard/single-idea">
-                <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
-                  <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
-                  <svg
-                    width={10}
-                    height={10}
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <path
-                      d="M5.83398 14.1667L14.1673 5.83333M14.1673 5.83333H5.83398M14.1673 5.83333V14.1667"
-                      stroke="#026AA2"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </Link>
-            </div>
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
-            {idea.description}
-            </p>
-            <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                <div
-                  
+                <Link to="/dashboard/single-idea">
+                  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
+                    <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
+                    <svg
+                      width={10}
+                      height={10}
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
+                      preserveAspectRatio="xMidYMid meet"
+                    >
+                      <path
+                        d="M5.83398 14.1667L14.1673 5.83333M14.1673 5.83333H5.83398M14.1673 5.83333V14.1667"
+                        stroke="#026AA2"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+              <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
+                {idea.description}
+              </p>
+              <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <div
+
                   //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-                >
-                  <button
-  style={{
-    backgroundColor: hasUpvoted[index] ? '#0086C9' : 'white',
-    color: hasUpvoted[index] ? 'white' : 'black',
-    border: '1px solid #026aa2',
-    padding: '8px 16px',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s, color 0.3s',
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '12px',
-  }}
-  onMouseEnter={(e) => {
-    e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
-    e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
-  }}
-  onMouseLeave={(e) => {
-    e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
-    e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
-  }}
-  onClick={() => handleUpvote(index)}
->
-  Upvote
-</button>
+                  >
+                    <button
+                      style={{
+                        backgroundColor: hasUpvoted[index] ? '#0086C9' : 'white',
+                        color: hasUpvoted[index] ? 'white' : 'black',
+                        border: '1px solid #026aa2',
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s, color 0.3s',
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '12px',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+                        e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+                        e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+                      }}
+                      onClick={() => handleUpvote(index)}
+                    >
+                      Upvote
+                    </button>
+                  </div>
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                    {idea.upvotes}
+                  </p>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">{idea.upvotes}
-</p>
-              </div>
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs  font-medium text-left text-[#475467]">
-                {idea.comments}                </p>
-              </div>
-              <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                {idea.formattedDate}
-
-                </p>
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs  font-medium text-left text-[#475467]">
+                    {idea.comments}{' '}
+                  </p>
+                </div>
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                    {idea.formattedDate}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+
+      {/* filteredIdeas */}
+
+      {filteredIdeas
+        .slice()
+        .reverse()
+        .map((idea, index) => (
+          <div
+            key={index}
+            className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+              <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
+                <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
+                  <p className="self-stretch flex-grow-0 flex-shrink-0  text-sm font-semibold text-left text-[#026aa2]">
+                    {idea.department}
+                  </p>
+                  <div className="flex flex-row justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
+                    <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-[#101828]">
+                      <span
+                        className="flex-grow-0 flex-shrink-0 text-sm
+                     font-semibold text-left text-[#101828] gap-2 sm:gap-2"
+                      >
+                        {idea.title}
+                        {/* {console.log(idea.title)} */}
+                      </span>
+                    </p>
+
+                    {/* idea status */}
+
+                    {idea.status === 0 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fffaeb] border border-[#fedf89]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#F79009" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#b54708]">
+                          Pending
+                        </p>
+                      </div>
+                    )}
+
+                    {idea.status === 1 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                          Approved
+                        </p>
+                      </div>
+                    )}
+
+                    {idea.status === 2 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fef3f2] border border-[#fecdca]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#F04438" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#b42318]">
+                          Declined
+                        </p>
+                      </div>
+                    )}
+
+                    {idea.status === 1 && (
+                      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
+                        <svg
+                          width={8}
+                          height={8}
+                          viewBox="0 0 8 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="flex-grow-0 flex-shrink-0 w-2 h-2 relative"
+                          preserveAspectRatio="xMidYMid meet"
+                        >
+                          <circle cx={4} cy={4} r={3} fill="#17B26A" />
+                        </svg>
+                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                          Under Implementation{' '}
+                        </p>
+                      </div>
+                    )}
+                    {/* end of status */}
+                  </div>
+                </div>
+
+                <Link to="/dashboard/single-idea">
+                  <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 ">
+                    <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
+                    <svg
+                      width={10}
+                      height={10}
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
+                      preserveAspectRatio="xMidYMid meet"
+                    >
+                      <path
+                        d="M5.83398 14.1667L14.1673 5.83333M14.1673 5.83333H5.83398M14.1673 5.83333V14.1667"
+                        stroke="#026AA2"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+              <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
+                {idea.description}
+              </p>
+              <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <div
+
+                  //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
+                  >
+                    <button
+                      style={{
+                        backgroundColor: hasUpvoted[index] ? '#0086C9' : 'white',
+                        color: hasUpvoted[index] ? 'white' : 'black',
+                        border: '1px solid #026aa2',
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s, color 0.3s',
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '12px',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+                        e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
+                        e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
+                      }}
+                      onClick={() => handleUpvote(index)}
+                    >
+                      Upvote
+                    </button>
+                  </div>
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                    {idea.upvotes}
+                  </p>
+                </div>
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs  font-medium text-left text-[#475467]">
+                    {idea.comments}{' '}
+                  </p>
+                </div>
+                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                  <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
+                    {idea.formattedDate}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
 
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 w-full gap-6 px-6 pt-6 pb-7 rounded-2xl bg-white border border-[#eaecf0] hover:bg-gray-50 dark:hover:bg-gray-600">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
@@ -463,4 +710,3 @@ export const IdeasHistory = () => {
     </div>
   );
 };
-

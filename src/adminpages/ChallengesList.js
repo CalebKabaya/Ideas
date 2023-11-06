@@ -8,7 +8,9 @@ import SearchIcon from '@mui/icons-material/Search';
 
 // components
 import ChallengesList from '../sections/admin/challenges/challengelist';
-import Modal from './Modal';
+
+// import Modal from './Modal';
+import Modal from './modaltest';
 
 
 export default function ChallengeListPage() {

@@ -12,6 +12,9 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import ChallengeListPage from './pages/ChallengesList';
 // admin
 import AdminSingleIdea from './adminpages/SingleIdea';
+import AdminLogin from './adminpages/LoginPage';
+import AdminForgotPass from './adminpages/ForgotPass';
+
 import AdminSettings from './adminpages/Settings';
 import AdminChallenges from './adminpages/Challenges';
 // import AdminPage404 from './pages/Page404';
@@ -30,10 +33,10 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'single-idea', element: <SingleIdea /> },
         { path: 'challenges', element: <Challenges /> },
+        { path: 'challenges/:challengeId', element: <Challenges /> }, 
         // { path: 'products', element: <ProductsPage /> },
         { path: 'settings', element: <Settings /> },
         { path: 'challengeslist', element: <ChallengeListPage /> },
-
       ],
     },
     {
@@ -44,10 +47,11 @@ export default function Router() {
         { path: 'admin/app', element: <AdminDashboardAppPage /> },
         { path: 'admin/single-idea', element: <AdminSingleIdea /> },
         { path: 'admin/challenges', element: <AdminChallenges /> },
-        // { path: 'products', element: <ProductsPage /> },
+        { path: 'admin/challenges/:challengeId', element: <Challenges /> }, // Add this route
+        { path: 'login', element: <AdminLogin /> },
+        { path: 'forgotpass', element: <AdminForgotPass /> },
         { path: 'admin/settings', element: <AdminSettings /> },
-        { path: 'admin/challengeslist', element: <AdminChallengeListPage/> },
-
+        { path: 'admin/challengeslist', element: <AdminChallengeListPage /> },
       ],
     },
     {

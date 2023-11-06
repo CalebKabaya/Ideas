@@ -1,15 +1,22 @@
-// import { Container, InputAdornment, TextField, Button } from "@mui/material";
-// export const DeclinedIdeas = () => {
 
+import { Container, InputAdornment, TextField, Button } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-
+import SearchIcon from '@mui/icons-material/Search';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import * as React from 'react';
 import { authentication } from 'src/pages/extentionsfunctions';
 import moment from 'moment';
 
 
 export const DeclinedIdeas = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [status, setStatus] = React.useState('');
+  const [department, setDepartment] = React.useState('');
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState();
   const [ideas, setIdeas] = useState([]);
@@ -52,7 +59,7 @@ export const DeclinedIdeas = () => {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(ideas,'this are the ideas');
+  // console.log(ideas,'this are the ideas');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -86,27 +93,28 @@ export const DeclinedIdeas = () => {
   };
 
   
-  // Function to update the date format in real-time
-  const updateDatesInRealTime = () => {
-    const updatedIdeas = ideas.map((idea) => {
-      return {
-        ...idea,
-        formattedDate: formatDate(idea.createdate),
-      };
-    });
-    setIdeas(updatedIdeas);
-  };
+ // Function to update the date format in real-time
+const updateDatesInRealTime = useCallback(() => {
+  const updatedIdeas = ideas.map((idea) => {
+    return {
+      ...idea,
+      formattedDate: formatDate(idea.createdate),
+    };
+  });
+  setIdeas(updatedIdeas);
+}, [ideas]);
 
-  useEffect(() => {
-    // Update the date format initially
-    updateDatesInRealTime();
+useEffect(() => {
+  // Update the date format initially
+  updateDatesInRealTime();
 
-    // Update the date format every minute (adjust the interval as needed)
-    const interval = setInterval(updateDatesInRealTime, 60000);
+  // Update the date format every minute (adjust the interval as needed)
+  const interval = setInterval(updateDatesInRealTime, 60000);
 
-    // Clean up the interval on component unmount
-    return () => clearInterval(interval);
-  }, [ideas]);
+  // Clean up the interval on component unmount
+  return () => clearInterval(interval);
+}, [updateDatesInRealTime]);
+
 
 
 
