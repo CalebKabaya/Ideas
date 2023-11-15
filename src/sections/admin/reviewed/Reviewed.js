@@ -6,7 +6,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { AcceptedIdeas } from "./AcceptedIdeas";
-import { DeclinedIdeas } from "./DeclinedIdeas";
+import { DeclinedIdeas } from "./Declined";
 
 
 

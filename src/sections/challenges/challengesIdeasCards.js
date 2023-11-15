@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate ,Link } from 'react-router-dom';
 // import { authentication } from 'src/pages/extentionsfunctions';
 import { authentication } from 'src/pages/extentionsfunctions';
+import { useParams } from 'react-router-dom';
 
 export default function ChallengesCards() {
   const [accessToken, setAccessToken] = useState();
-  const [challenges, setChallenges] = useState([]);
- 
+  const [challengesIdeas, setChallenges] = useState([]);
+   // Get the challengeId from the URL
+   const { challengeId } = useParams();
 
 
   useEffect(() => {
@@ -33,7 +35,8 @@ export default function ChallengesCards() {
         redirect: 'follow',
       };
 
-      fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges', requestOptions)
+      fetch(`https://developer.britam.com/api/IdeasPortal/GetIdeaByChallengeId?ChallengeId=${challengeId}`, requestOptions)
+
         .then((response) => response.text())
         .then((result) => {
           // Assuming result is JSON, parse it into an object
@@ -47,14 +50,14 @@ export default function ChallengesCards() {
   if (accessToken === null) {
     return 'Loading';
   }
-  console.log(challenges);
-  console.log('id',challenges.id);
+  // console.log(challengesIdeas);
+  // console.log('data in these id',challengesIdeas);
 
 
 //votes count
   const handleUpvote = (index) => {
     // Create a copy of the ideas array
-    const updatedVotes = [...challenges];
+    const updatedVotes = [...challengesIdeas];
 
     // Increment the upvote count for the specific idea
     updatedVotes[index].upvotes += 1;
@@ -67,7 +70,7 @@ export default function ChallengesCards() {
 
   return (
     <div className="flex flex-col justify-start items-start gap-6">
-      {challenges.map((challenge, index) => (
+      {challengesIdeas.map((cIdeas, index) => (
         
         <div
           key={index}
@@ -82,8 +85,8 @@ export default function ChallengesCards() {
                 <div className="flex flex-row  justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-7 relative gap-2 ">
                   <p className="flex-grow-0  flex-shrink-0 text-lg text-left text-[#101828]">
                     <span className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#101828] gap-2 sm:gap-2">
-                      {challenge.title}
-                      {console.log(challenge.title,'idddddddddddddddddddddddddd')}
+                      {cIdeas.title}
+                      {console.log(cIdeas.title,'idddddddddddddddddddddddddd')}
                     </span>
                     {/* <span className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#101828]">
                       {' '}
@@ -93,7 +96,7 @@ export default function ChallengesCards() {
 
                                  {/* idea status */}
 
-                                 {challenge.status === 0 && (
+                                 {cIdeas.status === 0 && (
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 sm:gap- pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fffaeb] border border-[#fedf89]">
                       <svg
                         width={8}
@@ -112,7 +115,7 @@ export default function ChallengesCards() {
                     </div>
                   )}
 
-                  {challenge.status === 1 && (
+                  {cIdeas.status === 1 && (
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
                       <svg
                         width={8}
@@ -131,7 +134,7 @@ export default function ChallengesCards() {
                     </div>
                   )}
 
-                  {challenge.status === 2 && (
+                  {cIdeas.status === 2 && (
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#fef3f2] border border-[#fecdca]">
                       <svg
                         width={8}
@@ -150,7 +153,7 @@ export default function ChallengesCards() {
                     </div>
                   )}
 
-                  {challenge.status === 4 && (
+                  {cIdeas.status === 4 && (
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5 pl-2 pr-2.5 py-0.5 rounded-2xl bg-[#ecfdf3] border border-[#abefc6]">
                       <svg
                         width={8}
@@ -173,8 +176,8 @@ export default function ChallengesCards() {
                 </div>
               </div>
         
-              <Link to={`/dashboard/single-idea/${challenge.id}`}>
-              {console.log(challenge.id,'idddddddddddddddddddddddddd')}
+              <Link to={`/dashboard/single-idea/${cIdeas.id}`}>
+              {console.log(cIdeas.id,'idddddddddddddddddddddddddd')}
 
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible sm:invisible xs:invisible">
                   <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View idea</p>
@@ -198,7 +201,7 @@ export default function ChallengesCards() {
                 </div>
               </Link>
             </div>
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]"></p>
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]"> {cIdeas.description}</p>
             <div className="flex lg:flex-row sm:flex-row w-full overflow-hidden justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-6 mr-6">
                <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
                 <div
@@ -231,7 +234,7 @@ export default function ChallengesCards() {
                   </button>
                 </div>
                 <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                  {challenge.upvotes}
+                  {cIdeas.upvotes}
                 </p>
               </div>
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">

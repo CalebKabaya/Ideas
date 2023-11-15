@@ -63,16 +63,21 @@ function LoginForm() {
   const classes = useStyles();
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // State to manage the loading indicator
 
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
   };
-
   const handleSignIn = () => {
-    // Add your authentication logic here
-    // For demonstration purposes, let's assume authentication is successful
-    // and navigate to the Dashboard component.
-    navigate('/Dashboard'); // Navigate to the Dashboard component
+    // Show loader when the sign-in process starts
+    setLoading(true);
+
+    // Simulating asynchronous login process with setTimeout
+    setTimeout(() => {
+      // After a timeout (simulating API call or authentication process), navigate to Dashboard
+      navigate('/Dashboard');
+      setLoading(false); // Hide the loader when the process completes
+    }, 2000); // Simulating a 2-second delay, replace this with your actual login logic
   };
 
   return (
@@ -126,13 +131,16 @@ function LoginForm() {
               variant="contained"
               className={classes.submit} /* Removed color property */
               onClick={handleSignIn}
+              disabled={loading} // Disable the button when loading is true
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             <Link href="#" variant="body2" style={{ color: 'white', textDecoration: 'white underline' }}>
               Forgot password?
             </Link>
           </form>
+          {/* Add a conditional rendering for the loader */}
+          {loading && <div>Loading...</div>}
         </Paper>
       </Container>
     </div>

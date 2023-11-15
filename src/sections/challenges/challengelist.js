@@ -34,7 +34,7 @@ export default function ChallengesList() {
         redirect: 'follow',
       };
 
-      fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges', requestOptions)
+      fetch('https://developer.britam.com/api/IdeasPortal/GetChallenges', requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // Assuming result is JSON, parse it into an object

@@ -58,7 +58,7 @@ export default function SingleIdea() {
               <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse lg:justify-between  md:justify-between sm:justify-between  xs:justify-left items-center flex-grow-0 flex-shrink-0 relative w-full gap-[19px]">
                 <div className="flex justify-start items-start text-left flex-grow-0 flex-shrink-0 relative gap-[13px]">
                   <p className="flex-grow-0 text-left flex-shrink-0  text-lg font-semibold  text-[#101828]">
-                    Ticket automation
+                    Ticket kkkkkkkkkk
                   </p>
                 </div>
                 <div className="flex flex-row justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[59px]">

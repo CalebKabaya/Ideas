@@ -99,7 +99,13 @@ function App() {
       });
 
       if (response.ok) {
-        console.log('Idea posted successfully');
+        console.log('Idea challenge successfully');
+        // Use React-Toastify for success message
+        toast.success('Challenge Created Successfully! Thank you.');
+        // Delay refresh after showing toast message
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000); // Refresh after 2 seconds (adjust the time as needed)
       } else {
         console.error('Failed to post idea to the API');
       }
@@ -185,7 +191,7 @@ function App() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="attachment">Upload Image?</label>
                   <div className="upload-frame">

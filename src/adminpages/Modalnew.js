@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import icon from './uploadicon.png';
 
 
+
 function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [ideaTitle, setIdeaTitle] = useState('');

@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { authentication } from 'src/pages/extentionsfunctions';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import icon from './uploadicon.png';
 
@@ -137,16 +139,24 @@ function App() {
       if (response.ok) {
         console.log('challenge posted successfully', response);
 
-        // Show a browser alert upon successful submission
-        window.alert('Data submitted successfully! Thank you.');
+        // Use React-Toastify for success message
+        toast.success('Challenge Created Successfully! Thank you.');
 
         // After successful submission, close the popup
         togglePopup();
+        // Delay refresh after showing toast message
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000); // Refresh after 2 seconds (adjust the time as needed)
       } else {
         console.error('Failed to post challenge to the API');
+        // Use React-Toastify for error message
+        toast.error('Failed to post challenge. Please try again.');
       }
     } catch (error) {
-      console.error('Error while posting idea:', error);
+      console.error('Error while posting challenge:', error);
+      // / Use React-Toastify for error message
+      toast.error('Error while posting challenge. Please try again.');
     }
   };
 
@@ -371,8 +381,8 @@ function App() {
           </div>
         </div>
       )}
-
-    
+         {/* Add the ToastContainer here */}
+         <ToastContainer />
     </div>
   );
 }

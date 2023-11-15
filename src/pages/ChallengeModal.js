@@ -6,6 +6,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { authentication } from 'src/pages/extentionsfunctions';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import icon from './uploadicon.png';
 
@@ -26,8 +28,8 @@ function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [showAlert, setShowAlert] = useState(false); // Add alert state
 
- // Get the challengeId from the URL
- const { challengeId } = useParams();
+  // Get the challengeId from the URL
+  const { challengeId } = useParams();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -37,7 +39,7 @@ function App() {
     comments: 'string',
     badge: 'badge',
     upvote: 0,
-    challengeId
+    challengeId,
   });
 
   useEffect(() => {
@@ -98,7 +100,7 @@ function App() {
     if (name === 'attachment' && value instanceof File) {
       setUploadedFile(value);
       setUploadProgress(0);
-  
+
       try {
         const base64Data = await convertImageToBase64(value);
         setFormData({
@@ -114,7 +116,7 @@ function App() {
         ...formData,
         [name]: value,
       });
-  
+
       if (isTitleField) {
         if (value.length <= 275) {
           setIdeaTitle(value);
@@ -129,12 +131,11 @@ function App() {
         setPotentialBenefits(value);
         const remainingPotentialBenefitsChars = 275 - value.length;
         setPotentialBenefitsCharCount(remainingPotentialBenefitsChars);
-
-      }else if (name === 'department') {
-        setSelectedDepartment(department);      }
+      } else if (name === 'department') {
+        setSelectedDepartment(department);
+      }
     }
   };
-  
 
   // const handleFileUpload = (e) => {
   //   const file = e.target.files[0];
@@ -154,7 +155,6 @@ function App() {
 
     try {
       // Make a POST request to the API
-
       const response = await fetch('https://developer.britam.com/api/IdeasPortal/CreateChallengeIdea', {
         method: 'POST',
         headers: {
@@ -167,16 +167,25 @@ function App() {
       if (response.ok) {
         console.log('challenge posted successfully', response);
 
-        // Show a browser alert upon successful submission
-        window.alert('Data submitted successfully! Thank you.');
+        // Use React-Toastify for success message
+        toast.success('Idea submitted successfully! Thank you.');
 
         // After successful submission, close the popup
         togglePopup();
+
+        // Delay refresh after showing toast message
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000); // Refresh after 2 seconds (adjust the time as needed)
       } else {
         console.error('Failed to post challenge to the API');
+        // Use React-Toastify for error message
+        toast.error('Failed to post idea. Please try again.');
       }
     } catch (error) {
       console.error('Error while posting idea:', error);
+      // / Use React-Toastify for error message
+      toast.error('Error while posting idea. Please try again.');
     }
   };
 
@@ -311,12 +320,13 @@ function App() {
                     onChange={(e) => handleFormChange('potentialBenefits', e.target.value, false)}
                   />
                   <span className="char-count">
-                    {potentialBenefitsCharCount} {potentialBenefitsCharCount === 1 ? 'character left' : 'characters left'}
+                    {potentialBenefitsCharCount}{' '}
+                    {potentialBenefitsCharCount === 1 ? 'character left' : 'characters left'}
                   </span>
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="department">What department/division would your idea serve:</label>
+                  <label htmlFor="department">What department/division would your idea serve:</label>
 
                   <select
                     id="department"
@@ -411,6 +421,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* the ToastContainer  */}
+      <ToastContainer />
     </div>
   );
 }

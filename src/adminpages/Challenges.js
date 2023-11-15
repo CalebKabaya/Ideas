@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Grid, Container, Typography,Stack } from '@mui/material';
 
 // components
-import  MyHeader from '../sections/admin/challenges/header';
+import  Header from '../sections/admin/challenges/header';
 import Modal from './Modal';
 
 
@@ -34,13 +34,10 @@ export default function DashboardAppPage() {
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h6" gutterBottom>
-            The Digital Transfomation Challenge
-          </Typography>
            
         </Stack>
 
-      <MyHeader />
+      <Header />
       </Container>
 
   </>

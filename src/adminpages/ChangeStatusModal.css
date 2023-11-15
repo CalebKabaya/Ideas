@@ -182,3 +182,28 @@ select:focus {
   width: 250px;
   z-index: 2; /* Place the modal above the backdrop */
 }
+
+.app-container {
+  position: relative;
+  /* Add any other styles you need */
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(5px); /* Apply blur effect to the background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Adjust z-index as needed */
+}
+
+.modal-container {
+  background-color: white; /* Modal background color */
+  padding: 20px;
+  /* Add any other styles for the modal container */
+}

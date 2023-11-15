@@ -1,25 +1,19 @@
-import { Container, InputAdornment, TextField } from '@mui/material';
 import { useState, useEffect, useCallback } from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 
 import ChallengesCards from './challengesIdeasCards';
 import RankingCards from './ranking';
-import ChallengesList from './challengelist';
 import { authentication } from 'src/pages/extentionsfunctions';
 
 import jobPostImage from './jobPostImage.png';
 import Pagination from '../pagination/pagination';
 
 export default function MyHeader() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [status, setStatus] = React.useState('');
   const [accessToken, setAccessToken] = useState();
   // Get the challengeId from the URL
@@ -58,9 +52,7 @@ export default function MyHeader() {
         redirect: 'follow',
       };
 
-      fetch(`https://developer.britam.com/api/IdeasPortal/GetPendingChallenges/${challengeId}`,requestOptions)
-        // fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges/${challengeId}', requestOptions)
-
+      fetch(`https://developer.britam.com/api/IdeasPortal/GetPendingChallenges=${challengeId}`,requestOptions)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`Network response was not ok (${response.status})`);
@@ -100,7 +92,7 @@ export default function MyHeader() {
         )}
       </div>
       <div
-        className="flex-grow-0 flex-shrink-0 w-full h-[196px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]"
+        className="flex-grow-0 flex-shrink-0 w-full h-[220px] relative rounded-2xl  bg-cover bg-no-repeat bg-center border border-[#eaecf0]"
         style={{ backgroundImage: `url(${jobPostImage})`, src: { jobPostImage } }}
       />
       <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">

@@ -18,7 +18,7 @@ import Iconify from '../components/iconify';
 
 // sections
 import { AdminUnreviewedIdeas } from '../sections/admin/app/AdminUnreviewedIdeas';
-import { AdminIdeasUnderImplementation } from '../sections/admin/app/AdminIdeasUnderImplementation';
+import { AdminIdeasUnderImplementation } from '../sections/admin/app/UnderImplementation';
 import BasicTabs from '../sections/admin/reviewed/Reviewed';
 import {PdfDownloadButton}  from './DownloadRecords';
 

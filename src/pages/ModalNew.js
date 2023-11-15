@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { authentication } from 'src/pages/extentionsfunctions';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import icon from './uploadicon.png';
 
@@ -29,11 +31,8 @@ function App() {
     title: '',
     description: '',
     potentialBenefits: '',
-    attachment: 'image.png',
+    // attachment: 'image.png',
     department: '',
-    comments: 'string',
-    badge: 'badge',
-    upvote: 0,
   });
 
   useEffect(() => {
@@ -94,7 +93,7 @@ function App() {
     if (name === 'attachment' && value instanceof File) {
       setUploadedFile(value);
       setUploadProgress(0);
-  
+
       try {
         const base64Data = await convertImageToBase64(value);
         setFormData({
@@ -110,27 +109,26 @@ function App() {
         ...formData,
         [name]: value,
       });
-  
+
       if (isTitleField) {
-        if (value.length <= 275) {
+        if (value.length <= 300) {
           setIdeaTitle(value);
-          const remainingTitleChars = 275 - value.length;
+          const remainingTitleChars = 300 - value.length;
           setTitleCharCount(remainingTitleChars);
         }
-      } else if (name === 'description' && value.length <= 275) {
+      } else if (name === 'description' && value.length <= 300) {
         setIdeaDescription(value);
-        const remainingDescriptionChars = 275 - value.length;
+        const remainingDescriptionChars = 300 - value.length;
         setDescriptionCharCount(remainingDescriptionChars);
-      } else if (name === 'potentialBenefits' && value.length <= 275) {
+      } else if (name === 'potentialBenefits' && value.length <= 300) {
         setPotentialBenefits(value);
-        const remainingPotentialBenefitsChars = 275 - value.length;
+        const remainingPotentialBenefitsChars = 300 - value.length;
         setPotentialBenefitsCharCount(remainingPotentialBenefitsChars);
-
-      }else if (name === 'department') {
-        setSelectedDepartment(department);      }
+      } else if (name === 'department') {
+        setSelectedDepartment(department);
+      }
     }
   };
-  
 
   // const handleFileUpload = (e) => {
   //   const file = e.target.files[0];
@@ -162,16 +160,26 @@ function App() {
       if (response.ok) {
         console.log('challenge posted successfully', response);
 
-        // Show a browser alert upon successful submission
-        window.alert('Data submitted successfully! Thank you.');
+        // Use React-Toastify for success message
+        toast.success('Idea submitted successfully! Thank you.');
 
         // After successful submission, close the popup
         togglePopup();
+
+        // Delay refresh after showing toast message
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000); // Refresh after 2 seconds (adjust the time as needed)
+
       } else {
         console.error('Failed to post challenge to the API');
+        // Use React-Toastify for error message
+        toast.error('Failed to post idea. Please try again.');
       }
     } catch (error) {
       console.error('Error while posting idea:', error);
+      // / Use React-Toastify for error message
+      toast.error('Error while posting idea. Please try again.');
     }
   };
 
@@ -306,12 +314,13 @@ function App() {
                     onChange={(e) => handleFormChange('potentialBenefits', e.target.value, false)}
                   />
                   <span className="char-count">
-                    {potentialBenefitsCharCount} {potentialBenefitsCharCount === 1 ? 'character left' : 'characters left'}
+                    {potentialBenefitsCharCount}{' '}
+                    {potentialBenefitsCharCount === 1 ? 'character left' : 'characters left'}
                   </span>
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="department">What department/division would your idea serve:</label>
+                  <label htmlFor="department">What department/division would your idea serve:</label>
 
                   <select
                     id="department"
@@ -329,12 +338,11 @@ function App() {
                   </select>
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="attachment">Any Attachment?</label>
                   <div className="upload-frame">
                     <label htmlFor="attachment" className="upload-label">
                       <img src={icon} alt="Upload Icon" width="48" height="48" />{' '}
-                      {/* Use the imported image variable */}
                       <span className="upload-text" style={{ color: '#0086C9' }}>
                         Click to upload or drag and drop <br />
                         SVG, PNG, JPG, or GIF (max. 800x400px)
@@ -344,7 +352,6 @@ function App() {
                         id="image"
                         name="image"
                         accept=".svg, .png, .jpg, .gif"
-                        // onChange={handleFileUpload}
                         onChange={(e) => handleFormChange('image', e.target.value, true)}
                         style={{ display: 'none' }}
                       />
@@ -352,7 +359,7 @@ function App() {
                       <div className="upload-progress">{uploadedFile && <p>Selected file: {uploadedFile.name}</p>}</div>
                     </label>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="button-container">
                   <button
@@ -406,6 +413,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* the ToastContainer  */}
+      <ToastContainer />
     </div>
   );
 }

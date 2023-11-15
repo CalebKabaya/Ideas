@@ -34,7 +34,7 @@ export default function ChallengesList() {
         redirect: 'follow',
       };
 
-      fetch('https://developer.britam.com/api/IdeasPortal/GetPendingChallenges', requestOptions)
+      fetch('https://developer.britam.com/api/IdeasPortal/GetChallenges', requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // Assuming result is JSON, parse it into an object
@@ -54,9 +54,6 @@ export default function ChallengesList() {
     <div className="flex flex-col justify-start items-start gap-6">
       {challenges.map((challenge, index) => (
           <Link to={`/dashboard/admin/challenges/${challenge.id}`} className="w-full">
-             {console.log(challenge.id,'idddddddddddddddddddddddddd')}
-
-
           <div
             key={index}
             className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-[27px] p-4 rounded-xl bg-white border border-[#eaecf0]"
@@ -106,6 +103,7 @@ export default function ChallengesList() {
                   </p>
                 </div>
               </div>
+
               <div className="self-stretch flex-grow-0 flex-shrink-0 h-[30px] relative">
                 <div className="flex justify-start items-start absolute left-0 top-[3px] gap-6">
                   <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2 ">
@@ -127,12 +125,13 @@ export default function ChallengesList() {
                       />
                     </svg>
                     <p className="flex-grow-0 flex-shrink-0 font-medium text-sm sm:text-xs xs:text-xs text-left text-[#475467]">
-                    {moment(challenge.startdate).format('MMM-YY')} - {moment(challenge.enddate).format('MMM-YY')} {' '}
+                    {moment(challenge.startdate).format('DD-MMM-YYYY')}  to  {moment(challenge.enddate).format('DD-MMM-YYYY')} {' '}
 
                     </p>
                   </div>
                 </div>
               </div>
+              
             </div>
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 lg:visible md:visible xs:invisible">
               <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#026aa2]">View Challenge</p>

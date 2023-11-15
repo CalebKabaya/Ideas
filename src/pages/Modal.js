@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import icon from './uploadicon.png';
 import { authentication } from 'src/pages/extentionsfunctions';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
