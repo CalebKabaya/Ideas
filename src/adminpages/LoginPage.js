@@ -68,16 +68,22 @@ function LoginForm() {
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
   };
-  const handleSignIn = () => {
-    // Show loader when the sign-in process starts
-    setLoading(true);
+  const handleSignIn = (event) => {
+    event.preventDefault(); // Prevent the default form submission
 
-    // Simulating asynchronous login process with setTimeout
-    setTimeout(() => {
-      // After a timeout (simulating API call or authentication process), navigate to Dashboard
-      navigate('/Dashboard');
-      setLoading(false); // Hide the loader when the process completes
-    }, 2000); // Simulating a 2-second delay, replace this with your actual login logic
+    const enteredEmail = event.target.email.value;
+    const enteredPassword = event.target.password.value;
+
+    if (enteredEmail === 'cmutuku@britam.com' && enteredPassword === 'Mbuguack7') {
+      setLoading(true);
+
+      setTimeout(() => {
+        navigate('/Dashboard');
+        setLoading(false);
+      }, 2000);
+    } else {
+      alert('Invalid email or password. Please try again.');
+    }
   };
 
   return (
@@ -90,7 +96,23 @@ function LoginForm() {
           <img src={logoImage} alt="Logo" className={classes.logo} />
           <Typography variant="h5">Welcome to Ideas portal</Typography>
           <Typography className={classes.detailsText}>Please enter your details</Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSignIn}>
+            {/* <TextField
+              variant="outlined"
+              margin="normal"
+              sx={{ mt: 2 }}
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              InputProps={{
+                className: classes.input,
+                classes: { input: classes.inputPlaceholder },
+              }}
+            /> */}
+
             <TextField
               variant="outlined"
               margin="normal"
@@ -105,6 +127,7 @@ function LoginForm() {
                 className: classes.input,
                 classes: { input: classes.inputPlaceholder },
               }}
+              value="cmutuku@britam.com" // Set the hardcoded email value
             />
             <TextField
               variant="outlined"
@@ -119,6 +142,7 @@ function LoginForm() {
                 className: classes.input,
                 classes: { input: classes.inputPlaceholder },
               }}
+              value="Mbuguack7" // Set the hardcoded password value
             />
             <FormControlLabel
               className={classes.rememberMeCheckbox}
@@ -126,12 +150,11 @@ function LoginForm() {
               label="Remember me for 30 days?"
             />
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className={classes.submit} /* Removed color property */
-              onClick={handleSignIn}
-              disabled={loading} // Disable the button when loading is true
+             type="submit"
+             fullWidth
+             variant="contained"
+             className={classes.submit}
+             disabled={loading}
             >
               {loading ? 'Signing In...' : 'Sign In'}
             </Button>
