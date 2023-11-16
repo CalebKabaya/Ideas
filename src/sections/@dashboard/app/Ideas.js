@@ -327,7 +327,7 @@ export const IdeasHistory = () => {
                         >
                           <circle cx={4} cy={4} r={3} fill="#17B26A" />
                         </svg>
-                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
                           Approved
                         </p>
                       </div>
@@ -346,7 +346,7 @@ export const IdeasHistory = () => {
                         >
                           <circle cx={4} cy={4} r={3} fill="#F04438" />
                         </svg>
-                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#b42318]">
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#b42318]">
                           Declined
                         </p>
                       </div>
@@ -365,7 +365,7 @@ export const IdeasHistory = () => {
                         >
                           <circle cx={4} cy={4} r={3} fill="#17B26A" />
                         </svg>
-                        <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-center text-[#067647]">
+                        <p className="flex-grow-0 flex-shrink-0 text-xs font-medium text-center text-[#067647]">
                           Under Implementation{' '}
                         </p>
                       </div>
