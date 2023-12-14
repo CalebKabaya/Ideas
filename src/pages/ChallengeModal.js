@@ -30,6 +30,7 @@ function App() {
 
   // Get the challengeId from the URL
   const { challengeId } = useParams();
+  
   const [formData, setFormData] = useState({
     title: '',
     description: '',

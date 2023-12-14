@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
+import { useNavigate, useLocation } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-import account from '../../../_mock/account';
+import { useUser } from '../../../hooks/UserContext'; // Import the useUser hook
 
-const MENU_OPTIONS = [
-];
+// import account from '../../../_mock/account';
+
+const MENU_OPTIONS = [];
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { userData, setUser } = useUser();
+
+  // Destructure userData to access specific properties
+  const { userId, userName, firstName, lastName, email } = userData;
+
+  const currentAccount = {
+    displayName: userName, // Use userName instead of {userName}
+    email: email, // Use email instead of {email}
+    photoURL: '/assets/images/avatars/avatar_default.jpg',
+  };
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -38,7 +50,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={currentAccount.photoURL} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -62,10 +74,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {currentAccount.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {currentAccount.email}
           </Typography>
         </Box>
 
@@ -83,14 +95,18 @@ export default function AccountPopover() {
         <MenuItem
           onClick={() => {
             handleClose();
-            navigate('/login'); // Navigate to the login page using navigate
+            navigate('/'); // Navigate to the login page using navigate
           }}
           sx={{ m: 1 }}
         >
-
           Logout
         </MenuItem>
       </Popover>
     </>
   );
 }
+
+// // Check if the location state contains the necessary data
+  // const { state: locationState } = location;
+  // const userName = (locationState && locationState.userName) || '';
+  // const email = (locationState && locationState.email) || '';

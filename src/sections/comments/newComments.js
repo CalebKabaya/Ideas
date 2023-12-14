@@ -61,9 +61,6 @@ const NewComment = ({
                 </div>
               </div>
             </div>
-
-          
-
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 ">
               <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative  w-full">
                 <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full relative gap-3">
@@ -100,7 +97,7 @@ const NewComment = ({
                   </svg>
                   <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
                     <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
-                      <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
+                      <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson 77777777777777777777777</p>
                       <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
                     </div>
 

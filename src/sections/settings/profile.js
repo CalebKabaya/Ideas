@@ -1,8 +1,11 @@
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import { useUser } from '../../hooks/UserContext'; // Import the useUser hook
+
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox ,Grid} from '@mui/material';
 import Box from '@mui/material/Box';
 import FileUpload from 'react-material-file-upload';
+
 import { useState, useRef, useCallback } from 'react';
 import logo from './Avatar_1.png';
 
@@ -10,6 +13,8 @@ import './settings.css';
 
 export const Profile = () => {
   const [file, setFile] = useState();
+  const { userData, setUser } = useUser();
+
   function handleChange(e) {
     console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -26,6 +31,14 @@ export const Profile = () => {
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();
   };
+  const { userId, userName, firstName, lastName, email } = userData;
+
+  const currentAccount = {
+    displayName: userName, // Use userName instead of {userName}
+    email: email, // Use email instead of {email}
+    photoURL: '/assets/images/avatars/avatar_default.jpg',
+  };
+
   return (
 <Grid>
 <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -72,7 +85,7 @@ export const Profile = () => {
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
                   <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#475467]">
                     <a href="#" className=" hover:underline text-[#475467]">
-                      Delete
+                      Delenjjjjjjjjjjjjjjjjjte
                     </a>
                   </p>
                 </div>
@@ -100,7 +113,7 @@ export const Profile = () => {
             <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
-                  User name
+                  use   rname
                 </p>
               </div>
               <div className="flex  justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[512px] gap-1.5">

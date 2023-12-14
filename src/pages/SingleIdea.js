@@ -1,68 +1,58 @@
-import { React, useState,useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import Comment from './comments/Comments';
+// import NewComment from './comments/CommentSection';
 import CommentSection from './comments/CommentSection';
+import useNode from "../hooks/useNode";
+
 
 
 
 import { authentication } from 'src/pages/extentionsfunctions';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 import Avatar1 from './avartas/Avatar1.png';
+import Icon from './avartas/Icon.png';
 
 
 
-const sampleComments = [
-  {
-    id: 1,
-    text: "Top-level Comment 1",
-    replies: [
-      {
-        id: 2,
-        text: "Reply to Comment 1",
-        replies: [
-          {
-            id: 3,
-            text: "Nested Reply 1 to Comment 2",
-          },
-        ],
-      },
-      {
-        id: 4,
-        text: "Another Reply to Comment 1",
-      },
-    ],
-  },
-  {
-    id: 5,
-    text: "Top-level Comment 2",
-  },
-];
+const comments = {
+  id: 1,
+  items: [],
+};
 
 export default function SingleIdea() {
-  
   const [accessToken, setAccessToken] = useState();
   const [ideas, setideas] = useState([]);
+
   // Get the challengeId from the URL
   const { ideaId } = useParams();
 
-  const [comment, setComment] = useState('');
+  // const [comment, setComment] = useState('');
+  const [commentsData, setCommentsData] = useState(comments);
 
+  const [formattedDate, setFormattedDate] = useState(null); // State variable for formatted date
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+  const { insertNode, editNode, deleteNode } = useNode();
+
+  const handleInsertNode = (folderId, item) => {
+    const finalStructure = insertNode(commentsData, folderId, item);
+    setCommentsData(finalStructure);
   };
 
-  const handleCommentSubmit = () => {
-    // You can add your logic here to handle the submitted comment
-    console.log('Submitted Comment:', comment);
-    // Reset the comment field
-    setComment('');
+  const handleEditNode = (folderId, value) => {
+    const finalStructure = editNode(commentsData, folderId, value);
+    setCommentsData(finalStructure);
   };
 
- 
- 
+  const handleDeleteNode = (folderId) => {
+    const finalStructure = deleteNode(commentsData, folderId);
+    const temp = { ...finalStructure };
+    setCommentsData(temp);
+  };
+
   useEffect(() => {
     const getAccessToken = async () => {
       try {
@@ -92,6 +82,15 @@ export default function SingleIdea() {
         .then((result) => {
           // Assuming result is JSON, parse it into an object
           const data = JSON.parse(result);
+          // Assuming the date is available in data.dateField (replace this with your actual date field)
+          const receivedDate = data.datecreated; // Replace 'dateField' with the actual field name from the response
+
+          // Parse and format the received date using Moment.js
+          const formattedDate = moment(receivedDate).format('MMMM Do YYYY, h:mm:ss a');
+
+          // Set the formatted date in your state
+          setFormattedDate(formattedDate);
+
           setideas(data); // Store the data in state
         })
         .catch((error) => console.log('error', error));
@@ -103,10 +102,10 @@ export default function SingleIdea() {
   }
   // console.log(ideas);
 
+
   return (
     <div className="flex flex-col justify-start items-start w-full gap-2.5 p-3 bg-white rounded-xl overflow-hidden">
       {ideas.map((cIdeas, index) => (
-        
         <div className="flex flex-col justify-start items-end flex-grow-0  w-full flex-shrink-0 gap-6 rounded-xl">
           <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 gap-2.5 w-full ">
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-[13px] w-full ">
@@ -175,16 +174,16 @@ export default function SingleIdea() {
                       <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-14 relative rounded-[200px] bg-[#e0e0e0]">
                         <div className="self-stretch flex-grow h-14 relative opacity-[0.08] overflow-hidden rounded-[200px] border-[0.75px] border-[#101828]" />
                       </div>
+
                       <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 relative gap-5 ">
                         <div className="flex">
                           <img className="w-10 h-10 rounded-full" src={Avatar1} alt="Jese" />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-2">
                           <p className="flex-grow-0 flex-shrink-0 text-xs font-semibold text-left text-[#101828]">
                             James Maina
                           </p>
-                          <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">{cIdeas.createdate}
-</p>
+                          <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">{formattedDate}</p>
                         </div>
                       </div>
                     </div>
@@ -253,7 +252,13 @@ export default function SingleIdea() {
               </div>
             </div>
             <form className="flex flex-col w-full">
-            <CommentSection comments={sampleComments} />
+            <CommentSection
+              handleInsertNode={handleInsertNode}
+              handleEditNode={handleEditNode}
+              handleDeleteNode={handleDeleteNode}
+              comment={commentsData}
+              />
+              
             </form>
           </div>
         </div>

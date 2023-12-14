@@ -6,7 +6,14 @@ import SimpleLayout from './layouts/simple';
 import SingleIdea from './pages/SingleIdea';
 import Settings from './pages/Settings';
 import Challenges from './pages/Challenges';
-import LoginPage from './pages/LoginPage';
+import Register from './pages/register';
+import RegisterSuccess from './pages/registersuccess';
+import CreatePassoword from './pages/createPassword';
+import ForgotPass from './pages/forgotpass';
+import RequestPass from './pages/requestpass';
+
+
+import LoginPage from './pages/loginnew';
 import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
 import ChallengeListPage from './pages/ChallengesList';
@@ -23,27 +30,94 @@ import AdminChallenges from './adminpages/Challenges';
 import AdminDashboardAppPage from './adminpages/AdminDashboardAppPage';
 import AdminChallengeListPage from './adminpages/ChallengesList';
 
+// import {AuthContext} from './hooks/AuthContext'; // Import your authentication context
+// import { useContext } from 'react'; // Import useContext
+import { useAuth } from './hooks/AuthContext'; // Import the useAuth hook
+
+
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
+
+  const { isAuthenticated } = useAuth(); // Access isAuthenticated from your authentication context
+
+  // Your ProtectedRoute component
+  const ProtectedRoute = ({ path, element }) => {
+    return isAuthenticated ? (
+      <Route path={path} element={element} />
+    ) : (
+      <Navigate to="/" replace />
+    );
+  };
+
+
   const routes = useRoutes([
     {
       path: '/',
       element: <LoginPage />, // Setting LoginPage as the initial route
     },
     {
+      path: '/registersuccess',
+      element: <RegisterSuccess />,
+    },
+    { 
+      path: '/registersuccess',
+      element: isAuthenticated ? <RegisterSuccess /> : <Navigate to="/" replace />,
+    },
+    {
+      path: '/createPassword',
+      element: <CreatePassoword />,
+    },
+    {
+      path: '/register',
+      element: <Register />,
+    },
+    {
+      path: '/forgotpassoword',
+      element: <ForgotPass />,
+    },
+    {
+      path: '/requestpassword',
+      element: <RequestPass />,
+    },
+    {
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'single-idea', element: <SingleIdea /> },
-        { path: 'single-idea/:ideaId', element: <SingleIdea /> }, 
-        { path: 'challenges', element: <Challenges /> },
-        { path: 'challenges/:challengeId', element: <Challenges /> }, 
-        // { path: 'products', element: <ProductsPage /> },
-        { path: 'settings', element: <Settings /> },
-        { path: 'challengeslist', element: <ChallengeListPage /> },
+        // { path: 'app', element: <DashboardAppPage /> },
+        { 
+          path: 'app',
+          element: isAuthenticated ? <DashboardAppPage /> : <Navigate to="/" replace />,
+        },
+        { 
+          path: 'single-idea',
+          element: isAuthenticated ? <SingleIdea /> : <Navigate to="/" replace />,
+        },
+        { 
+          path: 'single-idea/:ideaId',
+          element: isAuthenticated ? <SingleIdea /> : <Navigate to="/" replace />,
+        },
+        { 
+          path: 'challenges',
+          element: isAuthenticated ? <Challenges /> : <Navigate to="/" replace />,
+        },
+        { 
+          path: 'challenges/:challengeId',
+          element: isAuthenticated ? <Challenges /> : <Navigate to="/" replace />,
+        }, 
+
+        { 
+          path: 'settings',
+          element: isAuthenticated ? <Settings/> : <Navigate to="/" replace />,
+        }, 
+
+        { 
+          path: 'challengeslist',
+          element: isAuthenticated ? <ChallengeListPage/> : <Navigate to="/" replace />,
+        },
+        
       ],
     },
     {

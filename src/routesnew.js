@@ -1,4 +1,5 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
+import { useAuth } from './useAuth'; // A custom hook to track authentication status
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
@@ -23,58 +24,56 @@ import AdminChallenges from './adminpages/Challenges';
 import AdminDashboardAppPage from './adminpages/AdminDashboardAppPage';
 import AdminChallengeListPage from './adminpages/ChallengesList';
 
-// ----------------------------------------------------------------------
-
 export default function Router() {
-  const routes = useRoutes([
-    {
-      path: '/dashboard',
-      element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'single-idea', element: <SingleIdea /> },
-        { path: 'single-idea/:ideaId', element: <SingleIdea /> }, 
-        { path: 'challenges', element: <Challenges /> },
-        { path: 'challenges/:challengeId', element: <Challenges /> }, 
-        // { path: 'products', element: <ProductsPage /> },
-        { path: 'settings', element: <Settings /> },
-        { path: 'challengeslist', element: <ChallengeListPage /> },
-      ],
-    },
-    {
-      path: '/dashboard',
-      element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/admin/app" />, index: true },
-        { path: 'admin/app', element: <AdminDashboardAppPage /> },
-        { path: 'admin/single-idea', element: <AdminSingleIdea /> },
-        { path: 'admin/single-idea/:ideaId', element: <AdminSingleIdea /> }, 
-        { path: 'admin/challenges', element: <AdminChallenges /> },
-        { path: 'admin/challenges/:challengeId', element: <AdminChallenges /> }, // Add this route
-        { path: 'login', element: <AdminLogin /> },
-        { path: 'forgotpass', element: <AdminForgotPass /> },
-        { path: 'admin/settings', element: <AdminSettings /> },
-        { path: 'admin/challengeslist', element: <AdminChallengeListPage /> },
-      ],
-    },
-    {
-      path: 'login',
-      element: <LoginPage />,
-    },
-    {
-      element: <SimpleLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: '404', element: <Page404 /> },
-        { path: '*', element: <Navigate to="/404" /> },
-      ],
-    },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />,
-    },
-  ]);
+  const { isAuthenticated } = useAuth(); // Implement useAuth hook to track authentication status
 
-  return routes;
+  return (
+    <>
+      <Route path="/" element={<LoginPage />} />
+      <Route
+        path="/dashboard/*"
+        element={isAuthenticated ? <DashboardRoutes /> : <Navigate to="/" />}
+      />
+      <Route path="/404" element={<Page404 />} />
+      <Route path="*" element={<Navigate to="/404" replace />} />
+    </>
+  );
+}
+
+function DashboardRoutes() {
+  return (
+    <>
+      {/* Regular user dashboard routes */}
+      <Route index element={<Navigate to="/dashboard/app" />} />
+      {/* ... (other regular user routes) */}
+      <Route index element={<Navigate to="/dashboard/app" />} />
+      <Route path="app" element={<DashboardAppPage />} />
+      <Route path="single-idea" element={<SingleIdea />} />
+      <Route path="single-idea/:ideaId" element={<SingleIdea />} />
+      <Route path="challenges" element={<Challenges />} />
+      <Route path="challenges/:challengeId" element={<Challenges />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="challengeslist" element={<ChallengeListPage />} />
+
+      {/* Admin dashboard routes */}
+      <Route path="admin/*" element={<AdminDashboardRoutes />} />
+    </>
+  );
+}
+
+function AdminDashboardRoutes() {
+  return (
+    <>
+      {/* Admin dashboard routes */}
+      <Route index element={<Navigate to="/dashboard/admin/app" />} />
+      {/* ... (other admin routes) */}
+      <Route path="app" element={<AdminDashboardAppPage />} />
+      <Route path="single-idea" element={<AdminSingleIdea />} />
+      <Route path="single-idea/:ideaId" element={<AdminSingleIdea />} />
+      <Route path="challenges" element={<AdminChallenges />} />
+      <Route path="challenges/:challengeId" element={<AdminChallenges />} />
+      <Route path="settings" element={<AdminSettings />} />
+      <Route path="challengeslist" element={<AdminChallengeListPage />} />
+    </>
+  );
 }

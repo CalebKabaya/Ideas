@@ -90,7 +90,7 @@ const NewComment = ({ handleInsertNode, handleEditNode, handleDeleteNode, commen
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
               <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
-                <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
+                <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson 77777777777777777777777777</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
               </div>
 
@@ -141,7 +141,7 @@ const NewComment = ({ handleInsertNode, handleEditNode, handleDeleteNode, commen
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow gap-1.5 w-full ">
               <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2 w-full">
-                <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson</p>
+                <p className="flex-grow w-full text-sm font-medium text-left text-[#344054]">Joshua Wilson yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">Today 2:20pm</p>
               </div>
 

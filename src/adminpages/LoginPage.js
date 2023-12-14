@@ -97,22 +97,7 @@ function LoginForm() {
           <Typography variant="h5">Welcome to Ideas portal</Typography>
           <Typography className={classes.detailsText}>Please enter your details</Typography>
           <form className={classes.form} noValidate onSubmit={handleSignIn}>
-            {/* <TextField
-              variant="outlined"
-              margin="normal"
-              sx={{ mt: 2 }}
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              InputProps={{
-                className: classes.input,
-                classes: { input: classes.inputPlaceholder },
-              }}
-            /> */}
-
+          
             <TextField
               variant="outlined"
               margin="normal"
