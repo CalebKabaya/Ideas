@@ -125,15 +125,53 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/admin/app" />, index: true },
-        { path: 'admin/app', element: <AdminDashboardAppPage /> },
-        { path: 'admin/single-idea', element: <AdminSingleIdea /> },
-        { path: 'admin/single-idea/:ideaId', element: <AdminSingleIdea /> }, 
-        { path: 'admin/challenges', element: <AdminChallenges /> },
-        { path: 'admin/challenges/:challengeId', element: <AdminChallenges /> }, // Add this route
-        { path: 'login', element: <AdminLogin /> },
-        { path: 'forgotpass', element: <AdminForgotPass /> },
-        { path: 'admin/settings', element: <AdminSettings /> },
-        { path: 'admin/challengeslist', element: <AdminChallengeListPage /> },
+        { 
+          path: 'admin/app',
+          element: isAuthenticated ? <AdminDashboardAppPage /> : <Navigate to="/" replace />,
+        },
+        // { path: 'admin/app', element: <AdminDashboardAppPage /> },
+        // { path: 'admin/single-idea', element: <AdminSingleIdea /> },
+        { 
+          path: 'admin/single-idea/:ideaId',
+          element: isAuthenticated ? <AdminSingleIdea /> : <Navigate to="/" replace />,
+        },
+        // { path: 'admin/single-idea/:ideaId', element: <AdminSingleIdea /> }, 
+        // { path: 'admin/challenges', element: <AdminChallenges /> },
+        { 
+          path: 'admin/challenges',
+          element: isAuthenticated ? <AdminChallenges /> : <Navigate to="/" replace />,
+        },
+
+        // { path: 'admin/challenges/:challengeId', element: <AdminChallenges /> }, 
+        { 
+          path: 'admin/challenges/:challengeId',
+          element: isAuthenticated ? <AdminChallenges /> : <Navigate to="/" replace />,
+        },
+
+        // { path: 'login', element: <AdminLogin /> },
+
+        { 
+          path: 'login',
+          element: isAuthenticated ? <AdminLogin  /> : <Navigate to="/" replace />,
+        },
+
+        // { path: 'forgotpass', element: <AdminForgotPass /> },
+        { 
+          path: 'forgotpass',
+          element: isAuthenticated ? <AdminForgotPass  /> : <Navigate to="/" replace />,
+        },
+
+        // { path: 'admin/settings', element: <AdminSettings /> },
+        { 
+          path: 'admin/settings',
+          element: isAuthenticated ? <AdminSettings  /> : <Navigate to="/" replace />,
+        },
+
+        // { path: 'admin/challengeslist', element: <AdminChallengeListPage /> },
+        { 
+          path: 'admin/challengeslist',
+          element: isAuthenticated ? <AdminChallengeListPage  /> : <Navigate to="/" replace />,
+        },
       ],
     },
     {

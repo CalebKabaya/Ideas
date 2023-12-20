@@ -122,12 +122,30 @@ function LoginForm() {
         const statusCode = data.status;
         console.log('Status Code:', statusCode);
 
+        // if (statusCode === 200) {
+        //   // Extract user data from the response JSON
+        //   const { userId, userName, firstName, lastName, email } = data;
+
+        //   toast.success('Login successful!!');
+
+        //   setUser({
+        //     userId,
+        //     userName,
+        //     firstName,
+        //     lastName,
+        //     email,
+        //   });
+
+        //   setTimeout(() => {
+        //     navigate('/dashboard/app', {});
+        //   }, 1500);
+
         if (statusCode === 200) {
           // Extract user data from the response JSON
           const { userId, userName, firstName, lastName, email } = data;
-
+  
           toast.success('Login successful!!');
-
+  
           setUser({
             userId,
             userName,
@@ -135,10 +153,20 @@ function LoginForm() {
             lastName,
             email,
           });
-
-          setTimeout(() => {
-            navigate('/dashboard/app', {});
-          }, 1500);
+  
+          // Check if the username is 'pd-innovation' for redirection
+          if (userName === 'cmutuku') {
+            setTimeout(() => {
+              navigate('/dashboard/admin/app', {});
+            }, 1500);
+          } else {
+            setTimeout(() => {
+              navigate('/dashboard/app', {});
+            }, 1500);
+          }
+        
+        // ... (existing else if conditions)
+      
           
         } else if (statusCode === 204) {
           toast.error('User Not found!!');
