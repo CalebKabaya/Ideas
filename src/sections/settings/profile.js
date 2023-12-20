@@ -31,6 +31,7 @@ export const Profile = () => {
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();
   };
+  
   const { userId, userName, firstName, lastName, email } = userData;
 
   const currentAccount = {
@@ -85,7 +86,7 @@ export const Profile = () => {
                 <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2">
                   <p className="flex-grow-0 flex-shrink-0 text-sm font-semibold text-left text-[#475467]">
                     <a href="#" className=" hover:underline text-[#475467]">
-                      Delenjjjjjjjjjjjjjjjjjte
+                      Delete
                     </a>
                   </p>
                 </div>
@@ -113,7 +114,7 @@ export const Profile = () => {
             <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
                 <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
-                  use   rname
+                  username
                 </p>
               </div>
               <div className="flex  justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[512px] gap-1.5">
@@ -121,7 +122,7 @@ export const Profile = () => {
                  
                   spacing={3}
                 >
-                  <TextField fullWidth name="username" label="Username " id="fullWidth" size="small" />
+                  <TextField disabled fullWidth name="username" label={currentAccount.displayName} id="fullWidth" size="small" />
                 </Stack>
                 {/* <Box
                   component="form"
@@ -156,7 +157,7 @@ export const Profile = () => {
                  
                  spacing={3}
                >
-                 <TextField fullWidth name="email" label="Email address " id="fullWidth" size="small" />
+                 <TextField disabled fullWidth name="email" label={currentAccount.email} id="fullWidth" size="small" />
                </Stack>
                     <div className="flex justify-start items-center flex-grow relative gap-2" />
                   </div>
