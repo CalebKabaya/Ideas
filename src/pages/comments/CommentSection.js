@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import Action from './Action';
 import { authentication } from 'src/pages/extentionsfunctions';
 import { useParams } from 'react-router-dom';
+import { useUser } from '../../hooks/UserContext'; // Import the useUser hook
 
 import { ReactComponent as DownArrow } from './assets/down-arrow.svg';
 import { ReactComponent as UpArrow } from './assets/up-arrow.svg';
 import Avatar1 from '../avartas/Avatar1.png';
 
-const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, userName, userProfileImage }) => {
+const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, userName, userProfileImage,UserId }) => {
   const [input, setInput] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [showInput, setShowInput] = useState(false);
@@ -15,8 +16,20 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
   const inputRef = useRef(null);
   const [accessToken, setAccessToken] = useState();
   const { ideaId } = useParams();
+  const { userData, setUser } = useUser();
 
   const [usersComments, setComments] = useState([]);
+
+  // get user id from the props
+
+  const { userId } = userData;
+  const { userId: commentUserId, useR_COMMENT } = comment; // Assuming user ID is available in comment.userId
+
+  const isCommentAuthor = UserId === commentUserId;
+
+  const currentAccount = {
+    userId: userId, // Use userName instead of {userName}
+  };
 
   useEffect(() => {
     inputRef?.current?.focus();
@@ -39,6 +52,7 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
 
     getAccessToken();
   }, []); // No dependencies, it should only run once
+
   const onAddComment = async () => {
     if (editMode) {
       handleEditNode(comment.id, inputRef?.current?.innerText);
@@ -50,19 +64,19 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
     }
 
     try {
-      const res = await authentication(); // Get access token
-      setAccessToken(res); // Set access token
-
-      if (res) {
+      // Remove this redundant call to authentication()
+      if (accessToken) {
+        // Check if accessToken exists before making the API call
         const requestOptions = {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${res.access_token}`,
+            Authorization: `Bearer ${accessToken.access_token}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             ideaId: ideaId,
             comment: input,
+            userId: currentAccount.userId,
           }),
         };
 
@@ -72,7 +86,7 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
         }
 
         const data = await response.json();
-        console.log('API Response:', data);
+        // console.log('API Response:', data);
         // Handle the API response data or update state if required
         // setCommentss(data);
       }
@@ -84,8 +98,31 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
     if (editMode) setEditMode(false);
   };
 
+  // ... (Remaining code remains unchanged)
+
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     let myHeaders = new Headers();
+  //     myHeaders.append('Authorization', 'Bearer ' + accessToken.access_token);
+
+  //     let requestOptions = {
+  //       method: 'POST',
+  //       headers: myHeaders,
+  //       redirect: 'follow',
+  //     };
+
+  //     fetch(`https://developer.britam.com/api/IdeasPortal/GetCommentsByIdeaId?ideaId=${ideaId}`, requestOptions)
+  //       .then((response) => response.text())
+  //       .then((result) => {
+  //         const data = JSON.parse(result);
+  //         setComments(data); // Store the data in state
+  //       })
+  //       .catch((error) => console.log('error', error));
+  //   }
+  // }, [accessToken, ideaId]);
+
   useEffect(() => {
-    if (accessToken && ideaId) {
+    if (accessToken) {
       let myHeaders = new Headers();
       myHeaders.append('Authorization', 'Bearer ' + accessToken.access_token);
 
@@ -94,19 +131,28 @@ const Comment = ({ handleInsertNode, handleEditNode, handleDeleteNode, comment, 
         headers: myHeaders,
         redirect: 'follow',
       };
+
       fetch(`https://developer.britam.com/api/IdeasPortal/GetCommentsByIdeaId?ideaId=${ideaId}`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
+          // Assuming result is JSON, parse it into an object
           const data = JSON.parse(result);
-          setComments(data); // Store the data in state
-        })
+  //         setComments(data); // Store the data in state
+})
         .catch((error) => console.log('error', error));
     }
-  }, [accessToken, ideaId]);
+  }, [accessToken]);
+
+  // const handleDelete = () => {
+  //   handleDeleteNode(comment.id);
+  // };
 
   const handleDelete = () => {
+    // Handle delete logic here
     handleDeleteNode(comment.id);
+    // Assuming logic to delete comment with comment.id
   };
+
 
   return (
     <div>

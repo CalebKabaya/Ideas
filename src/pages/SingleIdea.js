@@ -5,18 +5,15 @@ import Button from '@mui/material/Button';
 // import Comment from './comments/Comments';
 // import NewComment from './comments/CommentSection';
 import CommentSection from './comments/CommentSection';
-import useNode from "../hooks/useNode";
-
-
-
+import useNode from '../hooks/useNode';
+import { useHasUpvoted } from '../hooks/HasUpvotedContext';
+import { useUser } from '../hooks/UserContext'; // Import the useUser hook
 
 import { authentication } from 'src/pages/extentionsfunctions';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import Avatar1 from './avartas/Avatar1.png';
 import Icon from './avartas/Icon.png';
-
-
 
 const comments = {
   id: 1,
@@ -26,10 +23,21 @@ const comments = {
 export default function SingleIdea() {
   const [accessToken, setAccessToken] = useState();
   const [ideas, setideas] = useState([]);
+  const [hasUpvoted, setHasUpvoted] = useState({});
 
   // Get the challengeId from the URL
   const { ideaId } = useParams();
+  const { userData, setUser } = useUser();
 
+
+
+   // Destructure userData to access specific properties
+   const { userId, userName, firstName, lastName, email } = userData;
+
+   const currentUser = {
+     newUserID: userId, // Use userName instead of {userName}
+   };
+   
   // const [comment, setComment] = useState('');
   const [commentsData, setCommentsData] = useState(comments);
 
@@ -97,11 +105,53 @@ export default function SingleIdea() {
     }
   }, [accessToken]); // Fetch challenges whenever accessToken changes
 
+  // Function to handle user voting
+  const handleVote = async (ideaId) => {
+    try {
+      // Check if the user has already voted for this idea
+      if (hasUpvoted[ideaId]) {
+        // If the user has already voted, you can show a message or handle it as needed
+        console.log('You have already voted for this idea.');
+        return;
+      }
+
+      // Call the API to vote for the idea
+      const voteRequestOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ideaId: ideaId,
+          userId: currentUser.newUserID, // Replace 'user123' with the actual user ID or fetch it from somewhere
+        }),
+      };
+
+      console.log(userId, 'userrrr');
+
+      const voteResponse = await fetch('https://developer.britam.com/api/IdeasPortal/VoteIdea', voteRequestOptions);
+      if (voteResponse.ok) {
+        // If the vote was successful, update the state to mark this idea as upvoted by the user
+        setHasUpvoted((prevState) => ({
+          ...prevState,
+          [ideaId]: true,
+        }));
+        console.log('Vote submitted successfully!');
+      } else {
+        console.error('Failed to submit vote:', voteResponse.statusText);
+        // Handle the failure scenario here (e.g., show an error message)
+      }
+    } catch (error) {
+      console.error('Error while submitting vote:', error);
+      // Handle the error scenario here (e.g., show an error message)
+    }
+  };
+
   if (accessToken === null) {
     return 'Loading';
   }
   // console.log(ideas);
-
 
   return (
     <div className="flex flex-col justify-start items-start w-full gap-2.5 p-3 bg-white rounded-xl overflow-hidden">
@@ -145,30 +195,24 @@ export default function SingleIdea() {
                   </div>
                   <div className="flex flex-row justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[59px]">
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
-                      <div
-                        className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2 px-3.5 py-2 rounded-lg bg-[#0086c9] border border-[#0086c9]"
-                        style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
-                      >
-                        <svg
-                          width={20}
-                          height={20}
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
-                          preserveAspectRatio="xMidYMid meet"
-                        >
-                          <path
-                            d="M8.16699 17.5C7.93364 17.5 7.81696 17.5 7.72783 17.4546C7.64943 17.4146 7.58569 17.3509 7.54574 17.2725C7.50033 17.1834 7.50033 17.0667 7.50033 16.8333V8.33333H4.16699L10.0003 2.5L15.8337 8.33333H12.5003V16.8333C12.5003 17.0667 12.5003 17.1834 12.4549 17.2725C12.415 17.3509 12.3512 17.4146 12.2728 17.4546C12.1837 17.5 12.067 17.5 11.8337 17.5H8.16699Z"
-                            stroke="white"
-                            strokeWidth="1.66667"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-white">Upvote</p>
-                      </div>
-                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">123</p>
+                    <button
+                      onClick={() => handleVote(cIdeas.id)}
+                      style={{
+                        backgroundColor: hasUpvoted[cIdeas.id] ? '#0086C9' : 'white',
+                        color: hasUpvoted[cIdeas.id] ? 'white' : 'black',
+                        border: '1px solid #026aa2',
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s, color 0.3s',
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '12px',
+                      }}
+                      disabled={hasUpvoted[cIdeas.id]} // Disable the button if the user has already voted
+                    >
+                      {hasUpvoted[cIdeas.id] ? 'Voted' : 'Vote'}
+                    </button>
+                      <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#475467]">{cIdeas.voteCount}</p>
                     </div>
                     <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4 w-full">
                       <div className="flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-14 relative rounded-[200px] bg-[#e0e0e0]">
@@ -252,13 +296,12 @@ export default function SingleIdea() {
               </div>
             </div>
             <form className="flex flex-col w-full">
-            <CommentSection
-              handleInsertNode={handleInsertNode}
-              handleEditNode={handleEditNode}
-              handleDeleteNode={handleDeleteNode}
-              comment={commentsData}
+              <CommentSection
+                handleInsertNode={handleInsertNode}
+                handleEditNode={handleEditNode}
+                handleDeleteNode={handleDeleteNode}
+                comment={commentsData}
               />
-              
             </form>
           </div>
         </div>

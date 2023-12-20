@@ -20,10 +20,10 @@
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 
-
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './hooks/AuthContext'; // Import the AuthProvider
 import { UserProvider } from './hooks/UserContext'; // Import the UserProvider
+import { HasUpvotedProvider } from './hooks/HasUpvotedContext';
 
 import App from './App';
 
@@ -37,7 +37,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthProvider>
     <UserProvider>
-      <App />
+      <HasUpvotedProvider>
+        <App />
+      </HasUpvotedProvider>
     </UserProvider>
   </AuthProvider>
 );

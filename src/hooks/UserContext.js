@@ -15,13 +15,13 @@ export const UserProvider = ({ children }) => {
 
   // Sample function to set user data, using the data set upon successful login
   const initializeUser = () => {
-    // Assuming userData is initially set to null
-    const fetchedUserData = userData; // Use the existing userData (set upon successful login)
-    if (fetchedUserData) {
-      setUser(fetchedUserData);
-    } else {
-      // Handle scenarios where fetchedUserData is null or undefined
-      // For instance: setUser(null);
+    if (!userData) {
+      // Set initial user data here if userData is null
+      setUser({
+        userId: '',
+        userName: '',
+        // Add other default properties or set empty string as needed
+      });
     }
   };
 

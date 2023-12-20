@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
@@ -14,8 +14,19 @@ export default function AccountPopover() {
   const location = useLocation();
   const { userData, setUser } = useUser();
 
-  // Destructure userData to access specific properties
-  const { userId, userName, firstName, lastName, email } = userData;
+  useEffect(() => {
+    // Redirect to login page if userData is null
+    if (!userData) {
+      navigate('/'); 
+    }
+  }, [navigate, userData]);
+
+   // Check if userData exists before destructuring its properties
+   const userName = userData?.userName || '';
+   const email = userData?.email || '';
+
+  // // Destructure userData to access specific properties
+  // const { userId, userName, firstName, lastName, email } = userData;
 
   const currentAccount = {
     displayName: userName, // Use userName instead of {userName}
@@ -50,7 +61,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={currentAccount.photoURL} alt="photoURL" />
+        <Avatar src={currentAccount.photoURL} alt={currentAccount.displayName} />
       </IconButton>
 
       <Popover

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { result } from 'lodash';
 
 export async function authentication() {
-  console.log('sdsdsfgdfdfdfdfdfddf');
+  // console.log('sdsdsfgdfdfdfdfdfddf');
   let myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
 
@@ -20,9 +20,9 @@ export async function authentication() {
   let data;
 
   const res = await axios.post('https://developer.britam.com/api/Authentication/login', raw).then((response) => {
-    console.log(response.data);
+    // console.log(response.data);
     data = response.data;
   });
-  console.log(data, ' Before');
+  // console.log(data, ' Before');
   return data;
 }

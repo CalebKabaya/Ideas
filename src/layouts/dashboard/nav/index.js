@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
@@ -39,18 +39,44 @@ Nav.propTypes = {
 export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
   const { userData, setUser } = useUser();
+  const navigate = useNavigate();
+
 
   const isDesktop = useResponsive('up', 'lg');
 
 
-  // Destructure userData to access specific properties
-  const { userId, userName, firstName, lastName, email } = userData;
+
+
+  useEffect(() => {
+    // Redirect to login page if userData is null
+    if (!userData) {
+      navigate('/'); 
+    }
+  }, [navigate, userData]);
+
+   // Check if userData exists before destructuring its properties
+   const userName = userData?.userName || '';
+   const email = userData?.email || '';
+
+  // // Destructure userData to access specific properties
+  // const { userId, userName, firstName, lastName, email } = userData;
 
   const currentAccount = {
     displayName: userName, // Use userName instead of {userName}
     email: email, // Use email instead of {email}
     photoURL: '/assets/images/avatars/avatar_default.jpg',
+    role: "User",
+
   };
+
+  // // Destructure userData to access specific properties
+  // const { userId, userName, firstName, lastName, email } = userData;
+
+  // const currentAccount = {
+  //   displayName: userName, // Use userName instead of {userName}
+  //   email: email, // Use email instead of {email}
+  //   photoURL: '/assets/images/avatars/avatar_default.jpg',
+  // };
 
   useEffect(() => {
     if (openNav) {
@@ -73,7 +99,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+            <Avatar src={account.photoURL} alt={currentAccount.displayName} />
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
@@ -81,7 +107,7 @@ export default function Nav({ openNav, onCloseNav }) {
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+                {currentAccount.role}
               </Typography>
             </Box>
           </StyledAccount>

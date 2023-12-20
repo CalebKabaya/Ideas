@@ -17,7 +17,7 @@ export const Notifications = () => {
       <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-4">
         <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-md font-semibold text-left text-[#101828]">
-            Teams And Cojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnditions
+            Teams And Conditions
           </p>
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-full text-sm text-left text-[#475467]">
             We may still send you important notifications about your account outside of your

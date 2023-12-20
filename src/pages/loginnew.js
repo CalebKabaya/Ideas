@@ -85,6 +85,9 @@ function LoginForm() {
         setAccessToken(res);
       } catch (error) {
         console.error('Error while getting access token:', error);
+        toast.error('an error occoured!, please try again later');
+
+
       }
     };
 
@@ -135,13 +138,19 @@ function LoginForm() {
 
           setTimeout(() => {
             navigate('/dashboard/app', {});
-          }, 3000);
+          }, 1500);
           
-        } else if (statusCode === 204 || statusCode === 202) {
+        } else if (statusCode === 204) {
           toast.error('User Not found!!');
           setTimeout(() => {
             navigate('/register');
           }, 5000);
+
+        } else if (statusCode === 202) {
+          toast.success('New user, Create passowrod!');
+          setTimeout(() => {
+            navigate('/createPassword');
+          }, 5000);  
         } else if (statusCode === 203) {
           toast.error('Wrong username or password!!');
           setTimeout(() => {

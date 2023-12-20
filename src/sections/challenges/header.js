@@ -7,6 +7,8 @@ import * as React from 'react';
 
 import ChallengesCards from './challengesIdeasCards';
 import RankingCards from './ranking';
+import WPChallenge from './whatsappchallenge';
+
 import { authentication } from 'src/pages/extentionsfunctions';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -155,7 +157,7 @@ export default function MyHeader() {
               </div>
             </div>
           </div>
-
+{/* 
           <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-full gap-3  bg-gray-50">
             <div className="flex flex-col sm:flex-row justify-start items-start flex-grow-0 gap-3 w-full">
               <div className="flex flex-col justify-start items-start flex-grow gap-2 w-full">
@@ -183,27 +185,42 @@ export default function MyHeader() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse justify-start items-start relative gap-8 w-full">
           {/* challenges */}
 
-          <div className="lg:w-3/5 md:w-full sm:w-full xs:w-full">
-            <ChallengesCards />
+          <div className="lg:w-full md:w-full sm:w-full xs:w-full">
+            <WPChallenge />
           </div>
 
           {/* raking */}
-          <div className="lg:w-2/5 md:w-full sm:w-full xs:w-full">
+          {/* <div className="lg:w-2/5 md:w-full sm:w-full xs:w-full">
             <RankingCards />
-          </div>
+          </div> */}
         </div>
-
+        
+{/* 
         <div className="flex justify-center w-full mt-9">
           <Pagination />
-        </div>
+        </div> */}
       </div>
      ))} 
   </div>
   );
 }
+
+
+{/* <div className="flex lg:flex-row md:flex-row sm:flex-col-reverse  xs:flex-col-reverse justify-start items-start relative gap-8 w-full">
+          {/* challenges */}
+
+          // <div className="lg:w-3/5 md:w-full sm:w-full xs:w-full">
+          //   <ChallengesCards />
+          // </div>
+
+          {/* raking */}
+          // <div className="lg:w-2/5 md:w-full sm:w-full xs:w-full">
+          //   <RankingCards />
+          // </div>
+        // </div> */}

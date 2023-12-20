@@ -4,15 +4,35 @@ import './settings.css'; // Import  CSS file
 
 
 export const Terms = () => {
-  // const handleSubmit = useCallback((event) => {
-  //   event.preventDefault();
-  // }, []);
-  // const label = { inputProps: { 'aria-label': 'Size switch demo' } };
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
+  const [commentPushChecked, setCommentPushChecked] = React.useState(false);
+  const [commentEmailChecked, setCommentEmailChecked] = React.useState(false);
+  const [votesPushChecked, setVotePushChecked] = React.useState(false);
+  const [votesEmailChecked, setVoteEmailChecked] = React.useState(false);
+  const [remidersPushChecked, setremidersPushChecked] = React.useState(false);
+  const [remidersEmailChecked, setremidersEmailChecked] = React.useState(false);
+ 
+  const handleCommentPushChange = () => {
+    setCommentPushChecked(!commentPushChecked);
   };
+
+  const handleCommentEmailChange = () => {
+    setCommentEmailChecked(!commentEmailChecked);
+  };
+  const handleVotesPushChange = () => {
+    setVotePushChecked(!votesPushChecked);
+  };
+
+  const handleVotesEmailChange = () => {
+    setVoteEmailChecked(!votesEmailChecked);
+  };
+  const handleRemidersPushChange = () => {
+    setremidersPushChecked(!remidersPushChecked);
+  };
+
+  const handleRemidersEmailChange = () => {
+    setremidersEmailChecked(!remidersEmailChecked);
+  };
+  
 
   return (
     <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6  w-full overflow-hidden">
@@ -43,7 +63,8 @@ export const Terms = () => {
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[280px]  gap-4">
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                  <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />
+                  <FormControlLabel control={<Switch checked={commentPushChecked} onChange={handleCommentPushChange} />} />
+
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -53,7 +74,8 @@ export const Terms = () => {
               </div>
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                  <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />{' '}
+                  <FormControlLabel control={<Switch checked={commentEmailChecked} onChange={handleCommentEmailChange} />} />
+
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -63,7 +85,7 @@ export const Terms = () => {
               </div>
             </div>
           </div>
-          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
+          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0] w-full" />
           <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-16">
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
@@ -76,7 +98,7 @@ export const Terms = () => {
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[512px] gap-4">
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                  <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />{' '}
+                <FormControlLabel control={<Switch checked={votesPushChecked} onChange={handleVotesPushChange} />} />
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -86,7 +108,7 @@ export const Terms = () => {
               </div>
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />{' '}
+                <FormControlLabel control={<Switch checked={votesEmailChecked} onChange={handleVotesEmailChange} />} />
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -96,7 +118,7 @@ export const Terms = () => {
               </div>
             </div>
           </div>
-          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
+          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0] w-full" />
           <div className="flex flex-col sm:flex-row justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-16">
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[280px] relative">
               <p className="self-stretch flex-grow-0 flex-shrink-0 w-[280px] text-sm font-semibold text-left text-[#344054]">
@@ -109,7 +131,7 @@ export const Terms = () => {
             <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[512px] gap-4">
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />{' '}
+                <FormControlLabel control={<Switch checked={remidersPushChecked} onChange={handleRemidersPushChange} />} />
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -119,7 +141,7 @@ export const Terms = () => {
               </div>
               <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2">
                 <div className="flex justify-end items-center flex-grow-0 flex-shrink-0 w-9 h-5 relative  p-0.5 rounded-xl ">
-                <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} />{' '}
+                <FormControlLabel control={<Switch checked={remidersEmailChecked} onChange={handleRemidersEmailChange} />} />
                 </div>
                 <div className="flex flex-col justify-start items-start flex-grow relative">
                   <p className="self-stretch flex-grow-0 flex-shrink-0 w-[468px] text-sm font-medium text-left text-[#344054]">
@@ -129,7 +151,7 @@ export const Terms = () => {
               </div>
             </div>
           </div>
-          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0]" />
+          <div className="self-stretch flex-grow-0 flex-shrink-0 h-px bg-[#eaecf0] w-full" />
       </div>
     </div>
   );

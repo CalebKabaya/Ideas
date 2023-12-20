@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { authentication } from 'src/pages/extentionsfunctions';
+import { useUser } from '../hooks/UserContext'; // Import the useUser hook
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,16 +25,29 @@ function App() {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [accessToken, setAccessToken] = useState();
+  const { userData, setUser } = useUser();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [showAlert, setShowAlert] = useState(false); // Add alert state
 
+
+
+
+  const { userId } = userData;
+
+  const currentAccount = {
+    userId: userId, // Use userName instead of {userName}
+
+  };
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     potentialBenefits: '',
     // attachment: 'image.png',
     department: '',
+    userId: currentAccount.userId,
+
   });
+  console.log(currentAccount.userId)
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -166,10 +180,10 @@ function App() {
         // After successful submission, close the popup
         togglePopup();
 
-        // Delay refresh after showing toast message
-        setTimeout(() => {
-          window.location.reload();
-        }, 5000); // Refresh after 2 seconds (adjust the time as needed)
+        // // Delay refresh after showing toast message
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 5000); // Refresh after 2 seconds (adjust the time as needed)
 
       } else {
         console.error('Failed to post challenge to the API');
@@ -271,7 +285,7 @@ function App() {
 
       {showPopup && (
         <div className="popup">
-          <div className="popup-header">Idea Details</div>
+          <div className="popup-header">Idea  Details</div>
           <div className="popup-content">
             <div className="form-container">
               <form onSubmit={handleSubmit} method="POST">

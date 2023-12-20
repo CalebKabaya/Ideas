@@ -12,6 +12,10 @@ import * as React from 'react';
 // import { authentication } from 'src/pages/extentionsfunctions';
 import { authentication } from 'src/pages/extentionsfunctions';
 import moment from 'moment';
+import { useUser } from '../../../hooks/UserContext'; // Import the useUser hook
+import { useHasUpvoted } from '../../../hooks/HasUpvotedContext';
+
+
 import { useParams } from 'react-router-dom';
 
 import jobPostImage from './jobPostImage.png';
@@ -28,19 +32,19 @@ export const IdeasHistory = () => {
   const [hasUpvoted, setHasUpvoted] = useState({});
   // Get the ideaId from the URL
   const { ideaId } = useParams();
+  const { userData, setUser } = useUser();
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Number of items per page
 
-  // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const sortedIdeas = ideas.slice().sort((a, b) => {
-  //   // Assuming 'timestamp' is the property indicating the idea's posting time
-  //   return new Date(b.timestamp) - new Date(a.timestamp);
-  // });
-
-  // const displayedIdeas = sortedIdeas.slice(startIndex, endIndex);
-
   const [displayedIdeas, setDisplayedIdeas] = useState([]);
+
+  // Destructure userData to access specific properties
+  const { userId, userName, firstName, lastName, email } = userData;
+
+  const currentUser = {
+    newUserID: userId, // Use userName instead of {userName}
+  };
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -75,7 +79,50 @@ export const IdeasHistory = () => {
         })
         .catch((error) => console.log('error', error));
     }
-  }, [accessToken]); // Fetch challenges whenever accessToken changes
+  }, [accessToken]); // Fetch ideas whenever accessToken changes
+
+  // Function to handle user voting
+  const handleVote = async (ideaId) => {
+    try {
+      // Check if the user has already voted for this idea
+      if (hasUpvoted[ideaId]) {
+        // If the user has already voted, you can show a message or handle it as needed
+        console.log('You have already voted for this idea.');
+        return;
+      }
+
+      // Call the API to vote for the idea
+      const voteRequestOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ideaId: ideaId,
+          userId: currentUser.newUserID, // Replace 'user123' with the actual user ID or fetch it from somewhere
+        }),
+      };
+
+      console.log(userId, 'userrrr');
+
+      const voteResponse = await fetch('https://developer.britam.com/api/IdeasPortal/VoteIdea', voteRequestOptions);
+      if (voteResponse.ok) {
+        // If the vote was successful, update the state to mark this idea as upvoted by the user
+        setHasUpvoted((prevState) => ({
+          ...prevState,
+          [ideaId]: true,
+        }));
+        console.log('Vote submitted successfully!');
+      } else {
+        console.error('Failed to submit vote:', voteResponse.statusText);
+        // Handle the failure scenario here (e.g., show an error message)
+      }
+    } catch (error) {
+      console.error('Error while submitting vote:', error);
+      // Handle the error scenario here (e.g., show an error message)
+    }
+  };
 
   // Update the handleNextPage and handlePreviousPage functions
   const handleNextPage = () => {
@@ -130,7 +177,6 @@ export const IdeasHistory = () => {
 
       // Update displayedIdeas state with slicedIdeas
       setDisplayedIdeas(slicedIdeas);
-      
     } catch (error) {
       console.error('Error filtering ideas:', error);
       // Handle the error, set an error state, or log the error for further investigation
@@ -193,51 +239,6 @@ export const IdeasHistory = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSearchChange(event);
-    }
-  };
-
-  useEffect(() => {
-    // Initialize hasUpvoted with data from local storage
-    const upvotedIdeasFromStorage = JSON.parse(localStorage.getItem('upvotedIdeas')) || {};
-    setHasUpvoted(upvotedIdeasFromStorage);
-  }, []);
-
-  const handleUpvote = (index) => {
-    // Check if the user has already upvoted this idea
-    if (hasUpvoted[index]) {
-      // If the user has already upvoted, decrement the upvote count and remove the upvote status
-      const updatedIdeas = [...ideas];
-      updatedIdeas[index].upvotes -= 1;
-
-      // Mark that the user has removed their upvote for this idea
-      const newHasUpvoted = { ...hasUpvoted };
-      newHasUpvoted[index] = false;
-
-      // Update the state with the new array and hasUpvoted status
-      setIdeas(updatedIdeas);
-      setHasUpvoted(newHasUpvoted);
-
-      // Update local storage with the new hasUpvoted data
-      localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
-    } else {
-      // If the user hasn't upvoted this idea, proceed with the upvote
-
-      // Create a copy of the ideas array
-      const updatedIdeas = [...ideas];
-
-      // Increment the upvote count for the specific idea
-      updatedIdeas[index].upvotes += 1;
-
-      // Mark that the user has upvoted this idea
-      const newHasUpvoted = { ...hasUpvoted };
-      newHasUpvoted[index] = true;
-
-      // Update the state with the new array and hasUpvoted status
-      setIdeas(updatedIdeas);
-      setHasUpvoted(newHasUpvoted);
-
-      // Update local storage with the new hasUpvoted data
-      localStorage.setItem('upvotedIdeas', JSON.stringify(newHasUpvoted));
     }
   };
 
@@ -447,7 +448,7 @@ export const IdeasHistory = () => {
 
                   //style={{ boxShadow: '0px 1px 2px 0 rgba(16,24,40,0.05)' }}
                   >
-                    <button
+                    {/* <button
                       style={{
                         backgroundColor: hasUpvoted[index] ? '#0086C9' : 'white',
                         color: hasUpvoted[index] ? 'white' : 'black',
@@ -467,13 +468,29 @@ export const IdeasHistory = () => {
                         e.target.style.backgroundColor = hasUpvoted[index] ? '#0086C9' : 'white';
                         e.target.style.color = hasUpvoted[index] ? 'white' : 'black';
                       }}
-                      onClick={() => handleUpvote(index)}
-                    >
+                      onClick={() => handleVote(idea.id)}                    >
                       Upvote
+                    </button> */}
+                    <button
+                      onClick={() => handleVote(idea.id)}
+                      style={{
+                        backgroundColor: hasUpvoted[idea.id] ? '#0086C9' : 'white',
+                        color: hasUpvoted[idea.id] ? 'white' : 'black',
+                        border: '1px solid #026aa2',
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s, color 0.3s',
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '12px',
+                      }}
+                      disabled={hasUpvoted[idea.id]} // Disable the button if the user has already voted
+                    >
+                      {hasUpvoted[idea.id] ? 'Voted' : 'Vote'}
                     </button>
                   </div>
                   <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                    {idea.upvotes} 0
+                    {idea.voteCount} 
                   </p>
                 </div>
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
