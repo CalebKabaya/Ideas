@@ -15,7 +15,6 @@ import moment from 'moment';
 import { useUser } from '../../../hooks/UserContext'; // Import the useUser hook
 import { useHasUpvoted } from '../../../hooks/HasUpvotedContext';
 
-
 import { useParams } from 'react-router-dom';
 
 import jobPostImage from './jobPostImage.png';
@@ -45,6 +44,11 @@ export const IdeasHistory = () => {
   const currentUser = {
     newUserID: userId, // Use userName instead of {userName}
   };
+
+  // Reload the page without reloading the whole page
+  function refreshPage() {
+    location.reload();
+  }
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -76,6 +80,8 @@ export const IdeasHistory = () => {
           // Assuming result is JSON, parse it into an object
           const data = JSON.parse(result);
           setIdeas(data); // Store the data in state
+          //  Call the refreshPage function when needed
+          refreshPage();
         })
         .catch((error) => console.log('error', error));
     }
@@ -490,7 +496,7 @@ export const IdeasHistory = () => {
                     </button>
                   </div>
                   <p className="flex-grow-0 flex-shrink-0 text-sm sm:text-xs font-medium text-left text-[#475467]">
-                    {idea.voteCount} 
+                    {idea.voteCount}
                   </p>
                 </div>
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">

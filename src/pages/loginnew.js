@@ -157,11 +157,11 @@ function LoginForm() {
           // Check if the username is 'pd-innovation' for redirection
           if (userName === 'cmutuku') {
             setTimeout(() => {
-              navigate('/dashboard/admin/app', {});
+              navigate('/dashboard/admin/app');
             }, 1500);
           } else {
             setTimeout(() => {
-              navigate('/dashboard/app', {});
+              navigate('/dashboard/app');
             }, 1500);
           }
         
